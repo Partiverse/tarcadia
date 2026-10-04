@@ -38,10 +38,11 @@ const PROFILES = {
   ui: {
     file: 'docs/pixel-ui.html',
     /* 通用校验：宽=首行长 ∈ 16 的倍数集 {16,32,48,64,96,112}，行数 ∈ 同集；
-       规格特例走 per-array 白名单（SIGN_SLIP 40×14、SEP_TRIDOT 96×4——签条/分隔线规格件非 16 倍数行数） */
+       规格特例走 per-array 白名单（SIGN_SLIP 40×14、SEP_TRIDOT 96×4——签条/分隔线规格件非 16 倍数行数；
+       TAB_SLIP/TAB_SLIP_ON 24×12——杂记五栏签条规格件，v0.2 增） */
     wantRows: (nm, h, w) => {
       const S = [16, 32, 48, 64, 96, 112];
-      const OV = { SIGN_SLIP: [40, 14], SEP_TRIDOT: [96, 4] };
+      const OV = { SIGN_SLIP: [40, 14], SEP_TRIDOT: [96, 4], TAB_SLIP: [24, 12], TAB_SLIP_ON: [24, 12] };
       if (OV[nm]) return (w === OV[nm][0] && h === OV[nm][1]) ? null : ('应 ' + OV[nm][0] + '×' + OV[nm][1] + '，实际 ' + w + '×' + h);
       if (S.indexOf(w) < 0) return ('宽 ' + w + ' ∉{16,32,48,64,96,112}');
       if (S.indexOf(h) < 0) return ('行数 ' + h + ' ∉ 同集');
@@ -49,7 +50,7 @@ const PROFILES = {
     },
     width: null,
     widthSet: [16, 32, 48, 64, 96, 112],
-    widthOV: { SIGN_SLIP: 40, SEP_TRIDOT: 96 },
+    widthOV: { SIGN_SLIP: 40, SEP_TRIDOT: 96, TAB_SLIP: 24, TAB_SLIP_ON: 24 },
     palKeys: `const PALSET=new Set(Object.keys(UI_PAL).filter(k=>k!=='name'));`,
   },
 };
