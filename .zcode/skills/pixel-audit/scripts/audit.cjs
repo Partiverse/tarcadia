@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+/* pixel-audit 审计器：宽度/行数/色键/语法，按 profile 参数化。
+   用法：node audit.cjs characters|world  （在 tarcadia 仓根执行） */
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.resolve(__dirname, '..', '..', '..', '..');
+const PROFILES = {
+  characters: {
+    file: 'docs/pixel-characters.html',
+    /* 期望行数：默认 32（全身/叠加层）；16（脸/物件）；WALK2=29；SIDE_OPEN_M/F=6、_J=5 */
+    wantRows: (nm, h, w) => {
+      if (nm === 'WALK2') return h === 29 ? null : ('腿段应 29 行（rows 20-28），实际 ' + h);
+      if (nm === 'SIDE_OPEN_M' || nm === 'SIDE_OPEN_F') return h === 6 ? null : ('侧视腿段应 6 行，实际 ' + h);
+      if (nm === 'SIDE_OPEN_J') return h === 5 ? null : ('侧视腿段应 5 行，实际 ' + h);
+      if (h === 32 || h === 16) return null;
+      return ('行数异常 ' + h);
+    },
+    width: 16,
+    palKeys: `const PALSET=new Set(Object.keys(PAL));`,
+  },
+  world: {
+    file: 'docs/pixel-world.html',
+    wantRows: (nm, h, w) => {
+      const want = w === 16 ? 16 : 32;
+      return h === want ? null : ('行数 ' + h + ' 与宽 ' + w + ' 不配（应 ' + want + '）');
+    },
+    width: null, /* 宽=首行长度，须 ∈{16,32,48} */
+    palKeys: `const PALSET=new Set(Object.keys(SEASON_PALS.spring).filter(k=>k!=='name'));`,
+  },
+};
+
+const profileName = process.argv[2];
+const prof = PROFILES[profileName];
+if (!prof) {
+  console.log('用法: node audit.cjs characters|world');
+  process.exit(2);
+}
+const file = path.join(ROOT, prof.file);
+const html = fs.readFileSync(file, 'utf8');
+const m = html.match(/<script>([\s\S]*)<\/script>/);
+if (!m) { console.log('FAIL: 无 script 段'); process.exit(1); }
+const script = m[1];
+const cut = script.indexOf('/* ===== 渲染器');
+if (cut < 0) { console.log('FAIL: 找不到渲染器注释锚（数据段边界）'); process.exit(1); }
+const data = script.slice(0, cut);
+const names = [...data.matchAll(/const ([A-Z_0-9]+)=\[/g)].map(x => x[1]);
+const problems = [];
+let count = 0;
+
+/* 在数据段作用域内 eval：色板定义 + 数组定义 + 逐个检查 */
+const code = data + `
+;${prof.palKeys}
+PALSET.add('.'); PALSET.add(' ');
+const AUDIT_NAMES = ${JSON.stringify(names)};
+const AUDIT_WR = ${prof.wantRows.toString()};
+const AUDIT_PROBLEMS = [];
+let AUDIT_COUNT = 0;
+for (const nm of AUDIT_NAMES) {
+  const arr = eval(nm);
+  if (typeof arr[0] !== 'string') continue; /* CAST/FACES/ITEMS 等数据表 */
+  AUDIT_COUNT++;
+  const w = ${prof.width === null ? 'arr[0].length' : prof.width};
+  if (${prof.width === null ? '![16,32,48].includes(w)' : 'false'}) AUDIT_PROBLEMS.push(nm + ': 宽 ' + w + ' 非法');
+  const rowErr = AUDIT_WR(nm, arr.length, w);
+  if (rowErr) AUDIT_PROBLEMS.push(nm + ': ' + rowErr);
+  arr.forEach((r, j) => {
+    if (r.length !== w) AUDIT_PROBLEMS.push(nm + '[' + j + ']: 宽 ' + r.length + ' != ' + w + ' [' + JSON.stringify(r) + ']');
+    for (const ch of r) if (!PALSET.has(ch)) AUDIT_PROBLEMS.push(nm + '[' + j + ']: 未定义色键 "' + ch + '"');
+  });
+}
+if (AUDIT_PROBLEMS.length) { AUDIT_PROBLEMS.forEach(p => console.log('  ' + p)); }
+console.log((AUDIT_PROBLEMS.length ? 'FAIL ' + AUDIT_PROBLEMS.length + ' 处' : 'PASS') + ': ' + AUDIT_COUNT + '/' + AUDIT_NAMES.length + ' 个像素数组，宽/行数/色键' + (AUDIT_PROBLEMS.length ? ' 违规' : ' 合规') + '，色板 ' + (PALSET.size - 2) + ' 键');
+if (AUDIT_PROBLEMS.length) process.exit(1);
+`;
+try { eval(code); } catch (e) { console.log('FAIL eval: ' + e.message); process.exit(1); }
+try { new Function(script); console.log('SYNTAX PASS'); } catch (e) { console.log('SYNTAX FAIL: ' + e.message); process.exit(1); }
