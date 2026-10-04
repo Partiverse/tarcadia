@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桃花源 · 像素人物稿板 v0.4</title>
+<style>
+:root{
+  --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --cinnabar:#9A3B2B;
+  --spring:#6F8B6A; --summer:#4C7C72; --autumn:#A8663C; --winter:#71757A;
+  --grid:rgba(43,42,36,.14); --grid-faint:rgba(43,42,36,.07);
+  --serif:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+  --sans:"PingFang SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+.wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+canvas{image-rendering:pixelated;display:block}
+.checker{background:
+  repeating-conic-gradient(rgba(43,42,36,.06) 0 25%,transparent 0 50%) 0 0/16px 16px}
+header{padding-top:34px}
+.colophon{display:flex;align-items:flex-start;gap:14px;padding:6px 0 10px}
+.title-band{writing-mode:vertical-rl;font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:.22em;line-height:1;padding:22px 12px;border:1.5px solid var(--ink);background:#F5F2E8;box-shadow:3px 3px 0 rgba(43,42,36,.12)}
+.subtitle{max-width:600px;padding-top:6px}
+.subtitle .rule{font-family:var(--serif);font-size:20px;line-height:1.6;margin-bottom:8px}
+.subtitle p{color:var(--indigo);font-size:14px}
+.subtitle .docs{font-size:12.5px;opacity:.65;margin-top:8px}
+.spec{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.spec span{font-size:12.5px;border:1px solid var(--ink);padding:1px 9px;background:#F5F2E8}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;margin-top:22px;border:1.5px solid var(--ink);padding:20px;background:#F5F2E8}
+.hero .note{font-size:13.5px;color:var(--indigo)}
+.hero .note h3{font-family:var(--serif);font-size:17px;color:var(--ink);margin:12px 0 2px}
+.hero .note h3:first-child{margin-top:0}
+.hero .note code{font-family:var(--sans);border-bottom:1px dotted var(--indigo)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.toolbar .tbtn{font-family:var(--serif);font-size:14.5px;letter-spacing:.08em;border:1px solid var(--ink);background:var(--paper);padding:5px 14px;cursor:pointer;color:var(--ink)}
+.toolbar .tbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.toolbar .tbtn:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+.toolbar .cap{font-size:12.5px;color:var(--indigo)}
+section{margin-top:56px}
+.term-head{display:flex;align-items:baseline;gap:14px;border-bottom:1.5px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.term-plaque{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.14em;padding:2px 12px;border:1px solid var(--ink);background:#F5F2E8}
+.term-head h2{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:.06em}
+.term-head .en{font-size:12.5px;color:var(--indigo);letter-spacing:.04em}
+.lede{max-width:800px;font-size:14.5px;color:var(--indigo);margin:10px 0 22px}
+.lede b{color:var(--ink)}
+.film{display:flex;flex-wrap:wrap;gap:18px;border:1px solid var(--grid);padding:16px;background:#F5F2E8}
+.frame{text-align:center}
+.frame figcaption{font-size:12px;color:var(--indigo);margin-top:6px}
+.frame canvas{margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{border:1px solid var(--ink);background:#F5F2E8;padding:12px 10px 10px;text-align:center}
+.card canvas{margin:0 auto}
+.card .nm{font-family:var(--serif);font-size:16px;font-weight:700;margin-top:8px}
+.card .sil{font-size:12px;color:var(--indigo)}
+.card .pal{font-size:11.5px;color:var(--autumn)}
+.card .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-top:7px}
+.card .chips i{width:12px;height:12px;border:1px solid rgba(43,42,36,.3)}
+@media (max-width:820px){.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}}
+.dirs{border:1.5px solid var(--ink);background:#F5F2E8}
+.drow{display:grid;grid-template-columns:96px repeat(4,1fr);gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--grid)}
+.drow:last-child{border-bottom:0}
+.drow .who{font-family:var(--serif);font-size:14.5px;font-weight:700}
+.drow .who small{display:block;font-family:var(--sans);font-weight:400;font-size:11px;color:var(--indigo)}
+.dcell{text-align:center}
+.dcell canvas{margin:0 auto}
+.dcell span{font-size:11px;color:var(--indigo);display:block}
+.dirs-head{display:grid;grid-template-columns:96px repeat(4,1fr);gap:8px;padding:8px 14px;border-bottom:1.5px solid var(--ink);font-size:12px;color:var(--indigo);text-align:center}
+.dirs-head span:first-child{text-align:left}
+.faces{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.face{border:1px solid var(--ink);background:#F5F2E8;padding:12px;text-align:center}
+.face canvas{margin:0 auto}
+.face .fm{font-family:var(--serif);font-size:15px;font-weight:700;margin-top:6px}
+.face p{font-size:11.5px;color:var(--indigo)}
+.face-group{margin-top:18px}
+.face-group h3{font-family:var(--serif);font-size:18px;margin-bottom:10px}
+@media (max-width:820px){.faces{grid-template-columns:repeat(2,1fr)}}
+.dist{border:1px solid var(--ink);background:#F5F2E8;padding:14px 16px;display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap;margin-top:14px}
+.dist .dcol{text-align:center}
+.dist .dcol canvas{margin:0 auto}
+.dist .dcol span{font-size:11.5px;color:var(--indigo);display:block;margin-top:5px}
+.dist .who{font-family:var(--serif);font-size:14px;font-weight:700;width:72px;text-align:left}
+.fair{border:1.5px solid var(--ink);background:#F5F2E8;padding:18px 12px 12px;overflow-x:auto}
+.fair canvas{margin:0 auto}
+.fair-cap{font-size:12.5px;color:var(--indigo);margin-top:10px}
+.items{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.item{border:1px solid var(--ink);background:#F5F2E8;padding:14px 10px;text-align:center}
+.item canvas{margin:0 auto}
+.item .nm{font-family:var(--serif);font-size:15px;font-weight:700;margin-top:8px}
+.item p{font-size:12px;color:var(--indigo);margin-top:2px}
+.item .redline{border:1px solid var(--cinnabar);color:var(--cinnabar)}
+.cinnabar-note{margin-top:16px;font-size:13px;border-left:3px solid var(--cinnabar);padding:2px 0 2px 10px}
+.rules{margin-top:20px;border:1px solid var(--grid);border-left:3px solid var(--indigo);padding:12px 16px;font-size:14px}
+.rules ul{list-style:none}
+.rules li{padding:3px 0}
+.rules li::before{content:"禁　";font-family:var(--serif);font-weight:700;color:var(--indigo);margin-right:4px}
+.rules li.pos::before{content:"则　";color:var(--spring)}
+footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:var(--indigo)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="colophon">
+    <div class="title-band">像素人物稿</div>
+    <div class="subtitle">
+      <div class="rule">每一个点都是手排的：本页全部精灵为代码内像素矩阵，零生图。</div>
+      <p>v0.3 据调研重排：<b>帧格 16×20→16×32</b>（对齐星露谷宽1tile高2tile硬规格），<b>工笔多色线</b>（全局黑描边废除，每料取本色暗一档为线），<b>三色阶衣料</b>（亮/中/影各角色主衣三档），<b>发色双重编码</b>（八人发块不再同色同形），<b>女性不挂粉</b>（小满桃夭降为滚边，主衣改靛青）。<b>v0.4 补调研欠账</b>：<b>肤色五档</b>（白净q/常肤S/赭晒b/黝黑x/髹漆同x——星露谷被骂"全员一肤"才扩到 24 档，我们第一版就拉开），<b>发色四族落位</b>（玄H·褐f·霜N·雪W，帽下露发即年龄语言），<b>表情补 7 型</b>（女主 3 型 + NPC 方言 4 型：德厚怒＝胡子翘、黄婶喜＝笑眼眯、大山倦＝日头眯眼、小满赧＝红晕辫梢）。</p>
+      <div class="spec">
+        <span>16×32 × 四方向</span><span>待机 2 + 行走 4 + 工具 5</span><span>肤色 5 档 · 发色 4 族</span><span>表情 15 型（男5 女3 江客3 方言4）</span><span>每角色 ≤12 色</span><span>朱砂只给人情事件</span><span>禁 3D 预渲染</span>
+      </div>
+      <div class="docs">上游：research-stardew-characters.md · art-style-guide §2/§4 · character-roster · design-board v0.2</div>
+    </div>
+  </div>
+  <div class="toolbar" role="toolbar" aria-label="审稿开关">
+    <button class="tbtn" id="btnSil" aria-pressed="false">剪影模式</button>
+    <button class="tbtn" id="btnGrid" aria-pressed="false">像素网格</button>
+    <button class="tbtn" id="btnAnim" aria-pressed="true">动画：播放</button>
+    <span class="cap">剪影模式＝远景只认轮廓的机器验证；网格＝排点审稿用。</span>
+  </div>
+  <div class="hero">
+    <div><canvas id="heroCv" class="checker" aria-label="主角男性待机帧，16×32 像素放大"></canvas></div>
+    <div class="note">
+      <h3>主角 · 男（待机 A）</h3>
+      <p>色谱＝靛短打 <code>I</code>（亮档 <code>v</code>、暗档 <code>c</code>）+ 白褙带 <code>W</code>（淡墨线 <code>k</code>）+ 苎麻裤 <code>e</code>（暗线 <code>t</code>）。工笔多色线：发用 <code>K</code>、肤用 <code>s</code>、靛用 <code>c</code>、白用 <code>k</code>——禁全局黑描边一色走天下。</p>
+      <h3>帧格 16×32</h3>
+      <p>角色实高约 28px，脚留 4px 阴影位。头+发占 10 行（31%），躯干 10 行，腿+靴 8 行——脱离 v0.2 的 40% 幼态比例，对齐星露谷 2.5-3 头身。</p>
+      <h3>帧预算账</h3>
+      <p>4 方向里左＝右水平镜像（引擎翻 x，省一半帧）；待机 A/B 差 1px 沉降；行走 4 帧（contact/下沉/通过/抬起）只换腿；工具 5 类各 3 帧只叠道具层；表情走对话特写帧，不进行走图集。</p>
+    </div>
+  </div>
+</header>
+<section aria-labelledby="t-frames">
+  <div class="term-head">
+    <span class="term-plaque">惊蛰</span>
+    <h2 id="t-frames">帧语法 · 一套骨骼的形变</h2>
+    <span class="en">idle 2 · walk 4 · tool 3×5</span>
+  </div>
+  <p class="lede">同一具 16×32 骨骼：<b>待机两帧差 1px 沉降，行走四帧（contact/下沉/通过/抬起）只换腿，工具帧只叠道具层</b>。产能账就是这么算的——5 类工具动作如果逐菜动画，M9 就崩了。</p>
+  <div class="film" id="film"></div>
+</section>
+<section aria-labelledby="t-cast">
+  <div class="term-head">
+    <span class="term-plaque">立夏</span>
+    <h2 id="t-cast">人物稿 · 切片八人 · 一人一色谱</h2>
+    <span class="en">靛 · 苔绿 · 墨灰 · 月白 · 苎麻 · 靛青 · 荷碧 · 烟灰</span>
+  </div>
+  <p class="lede">八张卡：色谱各不重复（卡下色卡条即账），体型各走极端，格内挂一个<b>剪影特征件</b>。<b>开剪影模式再过一遍</b>：全黑之后还能叫出名字，这张卡才算过。</p>
+  <div class="grid" id="cast"></div>
+  <div class="rules">
+    <ul>
+      <li class="pos">工笔多色线：每料取本色暗一档为线（靛线 c、苔线 d、肤线 s、发线 K、白物淡墨 k），禁全局黑描边</li>
+      <li class="pos">三色阶衣料：每角色主衣亮/中/影三档（hue-shift 15-20°，亮偏暖暗偏冷）</li>
+      <li class="pos">剪影区分度三级：先体型（驼/宽/矮/瘦），再特征件（占轮廓外沿 ≥2px），最后才是配色</li>
+      <li class="pos">女性不挂粉：小满主衣靛青 u、桂珍月白+苔绿，桃夭 p 仅作滚边/发带点缀</li>
+      <li>禁 3D 预渲染精灵、禁圆润高饱和（动森式换皮标签）</li>
+      <li>禁 AI 生成像素进管线——本页矩阵手排即为工作流示范，外包审稿单同口径</li>
+      <li>禁朱砂上身（除人情事件物）：本页 R 色只出现在定亲红绦</li>
+    </ul>
+  </div>
+</section>
+<section aria-labelledby="t-dirs">
+  <div class="term-head">
+    <span class="term-plaque">小满</span>
+    <h2 id="t-dirs">四方向 · 正 / 侧 / 背</h2>
+    <span class="en">left = mirror(right) · 背视才是特征件的正面照</span>
+  </div>
+  <p class="lede">侧视与背视不是附赠——<b>书包、药篓、发髻、围裙系带这些"背后话"只有背视能讲</b>；侧视管驼背与扁担。左向＝右向水平镜像，帧数直接省半。</p>
+  <div class="dirs" id="dirs"></div>
+</section>
+<section aria-labelledby="t-faces">
+  <div class="term-head">
+    <span class="term-plaque">处暑</span>
+    <h2 id="t-faces">表情 · 对话特写帧 16×16</h2>
+    <span class="en">主角 5 型起步 · NPC 走表情方言</span>
+  </div>
+  <p class="lede">16px 脸上表情只有<b>眉、眼形、嘴、汗/泪/红晕</b>五个可动件——特写帧（对话框头像位）才放表情，行走图不带脸。星露谷每 NPC 4 型表情立绘，我们主角备 5 型、NPC 走表情方言。</p>
+  <div class="face-group"><h3>主角 · 男 · 五型</h3><div class="faces" id="facesM"></div></div>
+  <div class="face-group"><h3>江客 · 三型（候选的极简语法）</h3><div class="faces" id="facesJ"></div></div>
+  <div class="face-group"><h3>主角 · 女 · 三型</h3><div class="faces" id="facesF"></div></div>
+  <div class="face-group"><h3>NPC 表情方言 · 四型样本（一人一个可动件）</h3><div class="faces" id="facesN"></div></div>
+</section>
+<section aria-labelledby="t-dist">
+  <div class="term-head">
+    <span class="term-plaque">白露</span>
+    <h2 id="t-dist">远景测试 · ×1 / ×2 / ×4</h2>
+    <span class="en">1280×720 实机约 ×1——玩家真的这么看</span>
+  </div>
+  <p class="lede">16px 精灵在 720p 窗口里就是<b>一小撮点</b>。逐人放大排过去：×1 认不出是谁的，回炉改轮廓，改配色没用。</p>
+  <div id="distWrap"></div>
+</section>
+<section aria-labelledby="t-fair">
+  <div class="term-head">
+    <span class="term-plaque">大寒</span>
+    <h2 id="t-fair">年集 · 18 人同屏</h2>
+    <span class="en">换色不换形：同一骨骼换季色，轮廓仍不混</span>
+  </div>
+  <p class="lede">年集是全作同屏人数峰值。下面 18 人由八张稿<b>换色复用</b>而来（春苔青/夏荷碧/秋橘赭/冬墨灰各挂衣料主色）——如果换色后还能分清谁是谁，说明区分度真的长在剪影上，不在色板里。</p>
+  <div class="fair">
+    <canvas id="fairCv" class="checker" aria-label="年集十八人同屏条"></canvas>
+    <p class="fair-cap">▲ 年集带 · 高 32px 帧 ×18 · 横向可滚。冬装四人（墨灰）压后，缸与灯的暖色留给人事——此处无朱砂。</p>
+  </div>
+</section>
+<section aria-labelledby="t-items">
+  <div class="term-head">
+    <span class="term-plaque">冬至</span>
+    <h2 id="t-items">信物与拾获 · 16×16 物件帧</h2>
+    <span class="en">物件比角色小一格：信物、门内物、灶头物共用 16×16</span>
+  </div>
+  <p class="lede">四件样张：恋爱信物一件、地层拾获两件、灶台节令一件。<b>全页唯一一处朱砂在红绦上</b>——婚约物，宪法允许。</p>
+  <div class="items" id="items"></div>
+  <div class="cinnabar-note">色彩语义账：玩家在第 40 小时看到红绦掉出来的瞬间就该心跳半拍——这是 80 小时只喂四次朱砂换来的条件反射。外包审稿单第一条：这个红是不是人情事件？不是，换掉。</div>
+</section>
+<footer>
+  <span>桃花源（Tarcadia）像素人物稿板 v0.4 · 2026-10-03 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：剪影可辨 · 四方向齐 · 表情五型 · ×1 远景可辨 · 年集换色不混 · 朱砂=人情事件</span>
+</footer>
+</div>
+<script>
+/* ===== 色谱 v0.3：工笔多色线 ===== */
+const PAL={
+  K:'#2B2A24',
+  S:'#C9986E', s:'#A87550',
+  H:'#3B362F',
+  W:'#EFEBDD', k:'#B9B29F',
+  I:'#31475F', v:'#47668A', c:'#26374B',
+  G:'#6F8B6A', j:'#8CA683', d:'#4E6B54',
+  B:'#4C7C72', m:'#6A9A8F', g:'#365A52',
+  O:'#A8663C', o:'#7E4A2A',
+  N:'#71757A', z:'#565A5F',
+  Y:'#C8A85C', y:'#A8873F',
+  R:'#9A3B2B',
+  F:'#5A4A38',
+  e:'#8A7A5C', t:'#6E6046',
+  p:'#C98F8F',
+  u:'#5E6E8E', w:'#46536E',
+  x:'#8A5F3F', n:'#6B4830',
+  Z:'#57503F', f:'#6B4A34',
+  q:'#DCB189',
+  b:'#B07A50', h:'#8B6B4A'
+};
+/* ===== 前视 16×32 ===== */
+const MALE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKKKK....',
+'...KHHHHHHHHK...',
+'...KHHHHHHHHK...',
+'...KHZHHHHHHK...',
+'..KHHSSSSSSHHK..',
+'..KHSKSSSSKSHK..',
+'..KHSSSSSSSSsK..',
+'...KsSSSSSSsK...',
+'....KkSSSSkK....',
+'...KvIIIIIIc....',
+'..KSIWvIIIWcSK..',
+'..KSIWvIIIWcSK..',
+'..KsIvvvvvvIcK..',
+'..KcIIIIIIIccK..',
+'...KccccccccK...',
+'...KteeeeeetK...',
+'...KteeeeeetK...',
+'...KteeKKeetK...',
+'....Kte..etK....',
+'....Kte..etK....',
+'....Kte..etK....',
+'....KtF..FtK....',
+'...KtFF..FFtK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const WALK2=[
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................','................','................',
+'...KteeeeeetK...',
+'...KteeeeeetK...',
+'...KteeKKeetK...',
+'..KteeK..KteetK.',
+'..KteK....KteK..',
+'.KteK......KteK.',
+'.KtFK......KFtK.',
+'KtFFK......KFFtK',
+'.KKK........KKK.'];
+const FEMALE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKKKK....',
+'...KffffffffK...',
+'..KffffffffffK..',
+'..KffqqqqqqffK..',
+'..KfqKqqqqKqfK..',
+'..KfqqqqqqqqsK..',
+'...KsqqqqqqsK...',
+'....KkqqqqkK....',
+'...KjGGGGGGd....',
+'..KqGGpWWpGdqK..',
+'..KsGGWWWWWdqK..',
+'..KsGGGGGGGGdK..',
+'..KdGGWWWWGGdK..',
+'...KkWWWWWWkK...',
+'...KkWWWWWWkK...',
+'...KkWWKKWWkK...',
+'....KkWWWWkK....',
+'....KkWW..WkK...',
+'....KkWW..WkK...',
+'....KkFF..FkK...',
+'...KkFFF..FFkK..',
+'....KKK....KK...',
+'................',
+'................',
+'................',];
+const DEHOU=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'..KKKKKKKKKKKK..',
+'...KNNNNNNNNK...',
+'...KNNNNNNNNK...',
+'...KNZNNNNNNK...',
+'....KNNqqqqNNK.O',
+'....KNqKqqqqsK.O',
+'....KWWWWWWWWK.O',
+'.....KWWWWWWK.O.',
+'....KzNNNNNNK.O.',
+'...KqNNzWWWNNd.O',
+'...KsNNzWWWNNsK.',
+'...KsNNNNNNNzK.O',
+'....KzNNNNNNK.O.',
+'....KzNNNNNNK.O.',
+'....KzNNNNNNK.O.',
+'.....KzNNNzK..O.',
+'.....KFF.KFK..O.',
+'....KFFF.KFFK...',
+'.....KKK..KKK...',
+'................',
+'................',
+'................',];
+const GUIZHEN=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'......KKKK......',
+'.....KNNNNK.....',
+'....KNNNNNNK....',
+'...KNNNNNNNNK...',
+'..KNNbbbbbbNNK..',
+'..KNbKbbbbKbNK..',
+'..KsbbbbbbbbsK..',
+'...KKbbbbbbKK...',
+'..KjuuuuuuuudK..',
+'.KubuuWWWWuubK..',
+'.KjsuuWWWWuusK..',
+'.KjsuuuuuuuusK..',
+'..KdWWWWWWWWK...',
+'..KkWWWWWWWWkK..',
+'..KkWWKKKKWWkK..',
+'...KkWK..KWkK...',
+'...KkFK..FkK....',
+'..KkFFK..KFFkK..',
+'..KKKK....KKKK..',
+'................',
+'................',
+'................',];
+const DASHAN=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'......KKKK......',
+'.....KYYYYK.....',
+'....KYYYYYYK....',
+'..KKYYYYYYYYKK..',
+'.KYYYYYYYYYYYYK.',
+'..KHbbbbbbbbsK..',
+'..KHbKbbbbKbHK..',
+'...KsbbbbbbsK...',
+'....KkbbbbkK....',
+'..OOOvteeetOOO..',
+'..KWWevvveeWWK..',
+'..KsWevvveeWtK..',
+'..KtWeeeeeeeWtK.',
+'...KteeeeeeeetK.',
+'...KccccccccK...',
+'...KteeKKeetK...',
+'....Kte..etK....',
+'....Kte..etK....',
+'....KtF..FtK....',
+'...KtFF..FFtK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const XIAOMAN=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'...KKKKKKKKKK...',
+'..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..',
+'..KHHxxxxxxHHK..',
+'.HKHxKxxxxKxHKH.',
+'.HKHxxxxxxxxHKH.',
+'..HKsxxxxxxsKH..',
+'..HK.KKxxKK.HK..',
+'....KKxxxxKK....',
+'...KwuuuuuuwK..O',
+'..KxuuWWWWuusK.O',
+'..KsuuWWWWuusK.O',
+'..KsuuuuuuusK..O',
+'...KwuuuuuuwK..O',
+'...KwuuKKuuwK..O',
+'....Kwe..ewK...O',
+'....Kwe..ewK...O',
+'....KwF..FwK....',
+'...KwFF..FFwK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const CHENGLU=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKKKK....',
+'...KHHHHHHHHK...',
+'...KYYYYYYYYK.O.',
+'..KHHxxxxxxHHK.O',
+'..KHSKxxxxKSHK.O',
+'..KHsxxxxxxsK..O',
+'....KKxxxxKK...O',
+'...KmBBBBBBg...O',
+'..KBxYmBBYxBgK.O',
+'..KsBBBBBBBBgK.O',
+'..KsBBmBBmBBgK.O',
+'...KBBBBBBBBgK.O',
+'...KggggggggK.O.',
+'...KzNNKKNNzK.O.',
+'....KzN..NzK.O..',
+'....KzN..NzKO...',
+'....KzF..FzK....',
+'...KzFF..FFzK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const JIANGKE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'........KKKK....',
+'.......KHHHHK...',
+'.....KNNNNNNNK..',
+'....KNNNNNNNNNK.',
+'......KSSSSSSK..',
+'......KSKSSKSSK.',
+'.......KsSSsK..O',
+'........KKKK...O',
+'..OOOOKzNNNNK.O.',
+'..OWWOKzNNNNK.O.',
+'..OOOOsKzNNsK.O.',
+'..OOOOsKzNNsK.O.',
+'....KszNNNNsK..O',
+'.....KzNNNNK...O',
+'.....KzNNzNK...O',
+'......zNN.NNz..O',
+'......zNN.NNz..O',
+'......zNF.FNz..O',
+'.....KzFF.FFzK.O',
+'......KKK.KKK..O',
+'................',
+'................',
+'................',];
+/* ===== 侧视（右向；左向=镜像） ===== */
+const MALE_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKK......',
+'...KHHHHHHK.....',
+'...KHHHHHHK.....',
+'...KHHHSSSSK....',
+'...KHHKSSSSK....',
+'...KHHSSSSSK....',
+'...KsSSSSsK.....',
+'....KkSSkK......',
+'....KvIIK.......',
+'...KSvIIK.......',
+'...KsvIcK.......',
+'...KsvIIK.......',
+'....KccK........',
+'....KteK........',
+'....KteK........',
+'....KteK........',
+'....KteK........',
+'....KtFK........',
+'...KtFFK........',
+'...KKKK.........',
+'................',
+'................',
+'................',];
+const FEMALE_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKK......',
+'...KffffffK.....',
+'..KffffffffK....',
+'..KfffqqqqK.....',
+'..KffKqqqqK.....',
+'..KffqqqqqK.....',
+'..KfsqqqsK......',
+'...KKqqKK.......',
+'...KjGGK........',
+'..KqjGGWK.......',
+'..KsjGGWK.......',
+'..KsjGGGWK......',
+'...KkWWK........',
+'...KkWWK........',
+'....KkW.........',
+'....KkW.........',
+'....KkF.........',
+'...KkFFK........',
+'...KKKK.........',
+'................',
+'................',
+'................',];
+const DEHOU_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'.....KKKKKK.....',
+'.....KNNNNNK....',
+'....KNNNNNNK....',
+'....KNNqqqqK.O..',
+'....KNqKqqqK.O..',
+'....KWWWWWK..O..',
+'.....KWWWK...O..',
+'....KzNNNNK..O..',
+'...KqzNWWqK..O..',
+'...KsNzWNNK..O..',
+'...KsNNNNNK..O..',
+'....KzNNNNK..O..',
+'....KzNNNNK..O..',
+'....KzNNNNK..O..',
+'....KzNNKK...O..',
+'....KFF.KFK..O..',
+'...KFFF.FFK..O..',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const GUIZHEN_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'......KKK.......',
+'.....KNNNK......',
+'....KNNNNNK.....',
+'....KNNbbbbK....',
+'....KNbKbbbK....',
+'....KsbbbbsK....',
+'.....KKbbKK.....',
+'....KjuuuuuK....',
+'...KbjuuuWbK....',
+'...KsjuuuWsk....',
+'...KsjuuuuuK....',
+'...KkWWWWWWK....',
+'...KkWWWWWWK....',
+'...KkWWWWWK.....',
+'....KkW.........',
+'....KkF.........',
+'...KkFFK........',
+'...KKKK.........',
+'................',
+'................',
+'................',];
+const DASHAN_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'......KKKK......',
+'.....KYYYYK.....',
+'....KYYYYYYK....',
+'..KYYYYYYYYYYK..',
+'.KYYYYYYYYYYYYK.',
+'.....KbbbbsK....',
+'.....KbKbbK.....',
+'......KsbsK.....',
+'OOOOOKvteeKOOOO.',
+'.KWWKveveKWWbK..',
+'.KWWKsveKWWbK...',
+'..KKKteeKKKK....',
+'.....KteeK......',
+'.....KcccK......',
+'.....KteK.......',
+'.....KteK.......',
+'.....KtFK.......',
+'....KtFFK.......',
+'....KKKK........',
+'................',
+'................',
+'................',];
+const XIAOMAN_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKK......',
+'...KHHHHHHK.....',
+'..KHHHHHHHHK....',
+'..KHHHxxxxK.....',
+'..KHHKxxxxK.....',
+'..KHHxxxxxK.....',
+'..HKsxxxsK......',
+'..HK.KKxxK......',
+'..HY...KxK......',
+'.KuKwuuuuK......',
+'.KuuKswwsK......',
+'.KuKswuusK......',
+'..KKKwuuk.......',
+'...KwuuK........',
+'...Kwuk.........',
+'...KweK.........',
+'...KwF..........',
+'..KwFFK.........',
+'..KKKK..........',
+'................',
+'................',
+'................',];
+const CHENGLU_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKK......',
+'...KHHHHHHK.....',
+'...KYYYYYYK.O...',
+'...KHYxxxK..O...',
+'...KHHKxxxK.O...',
+'...KsxxxxK..O...',
+'....KKxxKK..O...',
+'....KmBBK...O...',
+'...KBmYYBK..O...',
+'...KsBBBgK..O...',
+'...KsBBBgK..O...',
+'....KgggK...O...',
+'....KzNK....O...',
+'....KzNK....O...',
+'....KzNK...O....',
+'....KzF.........',
+'...KzFFK........',
+'...KKKK.........',
+'................',
+'................',
+'................',];
+const JIANGKE_SIDE=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'........KKKK....',
+'.......KHHHHK...',
+'......KNNNNNK...',
+'.....KNNNNNNNK..',
+'........KSKSSKO.',
+'........KSSSSKO.',
+'.......KsSSsK.O.',
+'..OO...KKKK...O.',
+'.OOOOKzNNNK...O.',
+'.OWWOKzNNsK...O.',
+'.OOOOKzNssK...O.',
+'..OOOKszNkK...O.',
+'.....KzNNK....O.',
+'.....KzNNK....O.',
+'......zNK.....O.',
+'......zNK.....O.',
+'......zFK.....O.',
+'.....KzFFK....O.',
+'.....KK.KKK.....',
+'................',
+'................',
+'................',];
+/* ===== 背视 ===== */
+const MALE_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKKKK....',
+'...KHHHHHHHHK...',
+'...KHHHHHHHHK...',
+'...KHHHHHHHHK...',
+'...KHHHHHHHHK...',
+'...KHHHHHHHHK...',
+'....KHHHHHHK....',
+'.....KKKKKK.....',
+'...KvIIIIIIc....',
+'..KIvccccccIK...',
+'..KsvIIIIIIIsK..',
+'..KsvIIIIIIIsK..',
+'...KccccccccK...',
+'...KteeeeeetK...',
+'...KteeKKeetK...',
+'....Kte..etK....',
+'....Kte..etK....',
+'....KtF..FtK....',
+'...KtFF..FFtK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const FEMALE_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKKKK....',
+'...KffffffffK...',
+'..KffffffffffK..',
+'..KffffffffffK..',
+'..KffffffffffK..',
+'...KffffffffK...',
+'...KffffffffK...',
+'....KffffffK....',
+'...KjGGGGGGd....',
+'..KqGGGGGGGdqK..',
+'..KsGGKKKKGGdK..',
+'..KsGGWWWWGGdK..',
+'...KdWWWWWWdK...',
+'...KkWWWWWWkK...',
+'...KkWWKKWWkK...',
+'....KkWWWWkK....',
+'....KkWW..WkK...',
+'....KkFF..FkK...',
+'...KkFFF..FFkK..',
+'....KKK....KK...',
+'................',
+'................',
+'................',];
+const DEHOU_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'..KKKKKKKKKKKK..',
+'...KNNNNNNNNK...',
+'...KNNNNNNNNK...',
+'...KNNNNNNNNK...',
+'....KNNNNNNK....',
+'....KKKKKKKK....',
+'...KzNNNNNNK....',
+'...KzNNNNNNK.O..',
+'..KsNNNNNNNNsK.O',
+'..KsNNNNNNNNsK.O',
+'..KsNNNNNNNNsK.O',
+'...KzNNNNNNNK.O.',
+'...KzNNNNNNNK.O.',
+'...KzNNNNNNNK.O.',
+'...KzNNKKNNNK.O.',
+'....KFF..FFK..O.',
+'...KFFF..FFFK.O.',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const GUIZHEN_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'.....KKKKKK.....',
+'....KNNNNNNK....',
+'....KNNNNNNK....',
+'...KNNNNNNNNK...',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'...KNNNNNNNNK...',
+'....KKKKKKKK....',
+'..KjuuuuuuuuuuuK',
+'.KsjuuuuuuuuuusK',
+'.KsjuuuKKuuuuusK',
+'.KsjuuuWWWWuuuus',
+'..KkWWWWWWWWWWK.',
+'..KkWWWWWWWWWWK.',
+'..KkWWKKKKKKWWK.',
+'...KkWK..KWkK...',
+'...KkFK..FkK....',
+'..KkFFK..KFFkK..',
+'..KKKK....KKKK..',
+'................',
+'................',
+'................',];
+const DASHAN_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'......KKKK......',
+'.....KYYYYK.....',
+'....KYYYYYYK....',
+'..KYYYYYYYYYYK..',
+'.KYYYYYYYYYYYYK.',
+'..KHHHHHHHHHHK..',
+'...KHHHHHHHHK...',
+'....KKKKKKKK....',
+'..OOOvteeeetOOO.',
+'..KWWevvveeWWK..',
+'..KsWevvveeWtK..',
+'..KWWeeeeeeeWWK.',
+'...KteeeeeeeetK.',
+'...KccccccccK...',
+'...KteeKKeetK...',
+'....Kte..etK....',
+'....Kte..etK....',
+'....KtF..FtK....',
+'...KtFF..FFtK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const XIAOMAN_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'...KKKKKKKKKK...',
+'..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..',
+'...KHHHHHHHHK...',
+'...KHHHHHHHHK...',
+'..KHKKHHHHKKHK..',
+'..KH..KHHK..HK..',
+'..KY...KKKK...Y.',
+'...KwuuuuuuwK...',
+'...KsuuuuuusK...',
+'....KuuuuuuK....',
+'...KuuuWWuuuK...',
+'...KuuuuuuuuK...',
+'...KuKKKKKKuK...',
+'....Kwe..ewK....',
+'....Kwe..ewK....',
+'....KwF..FwK....',
+'...KwFF..FFwK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const CHENGLU_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'....KKKKKKKK....',
+'...KHHHHHHHHK...',
+'...KYYYYYYYYK.O.',
+'...KHHHHHHHHK.O.',
+'...KHHHHHHHHK.O.',
+'....KHHHHHHK..O.',
+'.....KKKKKK...O.',
+'...KmBBBBBBg..O.',
+'..KBYmBBBBmYBg.O',
+'..KsBBmBBmBBgK.O',
+'..KsBBBBBBBBgK.O',
+'...KBBBBBBBBgK.O',
+'...KggggggggK.O.',
+'...KzNNKKNNzK.O.',
+'....KzN..NzKO...',
+'....KzN..NzK....',
+'....KzF..FzK....',
+'...KzFF..FFzK...',
+'....KKK..KKK....',
+'................',
+'................',
+'................',];
+const JIANGKE_BACK=[
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'................',
+'........KKKK....',
+'.......KHHHHK...',
+'.....KNNNNNNNK..',
+'....KNNNNNNNNNK.',
+'....KNNNNNNNNNK.',
+'.....KHHHHHHK...',
+'......KKKKKK....',
+'....OOOOOOOOOK..',
+'...OOzzzzzzOO...',
+'...OOOOOOOOOO...',
+'...OOzzzzzOOOO..',
+'...OOOOOOOOOO...',
+'..OOOOOOOOOOOOO.',
+'..OOzzzzzOOzzOO.',
+'.....KzNNNNK....',
+'......zNNNK.....',
+'......zNNNK....O',
+'......zNF.FNz...',
+'.....KzFF.FFzK..',
+'......KKK.KKK...',
+'................',
+'................',
+'................',];
+/* ===== 工具层（锄三帧 16×32） ===== */
+const HOE_A=[
+'..............YO','.............YYO','.............YO.','.............YO.','.............YO.',
+'..............O.','................ ','................','................','................',
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................'];
+const HOE_B=[
+'................','................','................','................','................',
+'................','................','................',
+'.Y.............O','YY............OO','.YO........YYY..','..YO....YY......','...YOOOY........',
+'....YY..........','................','................','................','................',
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................','................'];
+const HOE_C=[
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................','..............YO','.............YO.','............YO..',
+'...........YO...','..........YO....','.........YO.....','........YYY.....','.......YK K.....',
+'................','................','................','................','................',
+'................','................','................','................','................',
+'................','................'];
+/* ===== 表情特写 16×16 ===== */
+const F_M_BASE=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSSSSSSSSSSSK.','..KSSKKSSSSKKSSK','..KSSKKSSSSKKSSK',
+'..KSSSSSSSSSSSSK','..KsSSSSSSSSSSsK','..KSSSSSSSSSSSSK','..KSSSSSSSSSSSSK',
+'..KSSSSSKKSSSSSK','..KSSSSSSSSSSSSK','...KsSSSSSSSSsK.','....KKKKKKKK....'];
+const F_M_JOY=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSSSSSSSSSSSK.','..KSSKKSSSSKKSSK','..KSSKKSSSSKKSSK',
+'..KSSSSSSSSSSSSK','..KsSSSSSSSSSSsK','..KSSSSSSSSSSSSK','..KSSKSSSSSSKSSK',
+'..KSSSKKKKKKSSSK','..KSSKWKKKWSSSK.','...KsSSSSSSSSsK.','....KKKKKKKK....'];
+const F_M_SAD=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSSKKSSSSKKSSK','..KSSKKSSSSKKSSK','..KSSSSSSSSSSSSK',
+'..KSuSSSSSSSSSSK','..KsSSSSSSSSSSsK','..KSSSSSSSSSSSSK','..KSSSSSSSSSSSSK',
+'..KSSSSKKSSSSSSK','..KSSSKSSSSKSSSK','...KsSSSSSSSSsK.','....KKKKKKKK....'];
+const F_M_ANG=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSKKSSSSKKSKK.','..KSSKKSSKKSSSSK','..KSSKKSSSSKKSSK',
+'..KSSSSSSSSSSSSK','..KsSSSSSSSSSSsK','..KSSSSSSSSSSSSK','..KSSSSSSSSSSSSK',
+'..KSSKKKKKKKSSSK','..KSSKKWKKWSSSSK','...KsSSSSSSSSsK.','....KKKKKKKK....'];
+const F_M_SHY=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSSSSSSSSSSSK.','..KSSKKKKKKKKSSK','..KSSSSSSSSSSSSK',
+'..KSpSSSSSSSSpSK','..KsSpSSSSSSpSsK','..KSSSSSSSSSSSSK','..KSSSSSSSSSSSSK',
+'..KSSSSSKSSSSSSK','..KSSSSSSSSSSSSK','...KsSSSSSSSSsK.','....KKKKKKKK....'];
+const F_J_BASE=[
+'.....KKKKKKK....','....KNNNNNNNK...','...KNNNNNNNNNK..','..KNNNNNNNNNNK..',
+'.....KSSSSSSSSK.','.....KSKSSKSSSK.','.....KSKSSKSSSK.','.....KsSSSSSSsK.',
+'......KSSSSSSK..','......KsSSSSsK..','......KSSSSSSK..','......KSSSSSSK..',
+'......KSKSSKSK..','......KSSSSSSK..','.......KsSSK....','........KK......'];
+const F_J_SMILE=[
+'.....KKKKKKK....','....KNNNNNNNK...','...KNNNNNNNNNK..','..KNNNNNNNNNNK..',
+'.....KSSSSSSSSK.','.....KSSSSSSSSK.','.....KSKSSKSSSK.','.....KsSSSSSSsK.',
+'......KSSSSSSK..','......KsSSSSsK..','......KSSKSSSK..','......KSSSSKSK..',
+'......KSSSSSSK..','......KSSSSSSK..','.......KsSSK....','........KK......'];
+const F_J_STERN=[
+'.....KKKKKKK....','....KNNNNNNNK...','...KNNNNNNNNNK..','..KNNNNNNNNNNK..',
+'.....KSSSSSSSSK.','.....KKSSSKSSKK.','.....KSKSSKSSSK.','.....KsSSSSSSsK.',
+'......KSSSSSSK..','......KsSSSSsK..','......KSSSSSSK..','......KSSSSSSK..',
+'......KKKKKKSK..','......KSSSSSSK..','.......KsSSK....','........KK......'];
+/* ===== v0.4 表情：女主 3 型 + NPC 方言 4 型 ===== */
+const F_F_BASE=[
+'......KKKK......',
+'.....KfffffK....',
+'....KfhhffffK...',
+'..KffffffffffK..',
+'..KffffffffffK..',
+'..KqqqqqqqqqqqK.',
+'..KqqKKqqqqKKqqK',
+'..KqqKKqqqqKKqqK',
+'..KqqqqqqqqqqqqK',
+'..KsqqqqqqqqqqsK',
+'..KqqqqqqqqqqqqK',
+'..KqqqqqqqqqqqqK',
+'..KqqqqqKKqqqqqK',
+'..KqqqqqqqqqqqqK',
+'...KsqqqqqqqqsK.',
+'....KKKKKKKK....'];
+const F_F_JOY=[
+'......KKKK......',
+'.....KfffffK....',
+'....KfhhffffK...',
+'..KffffffffffK..',
+'..KffffffffffK..',
+'..KqqqqqqqqqqqK.',
+'..KqqKKqqqqKKqqK',
+'..KqqKKqqqqKKqqK',
+'..KqqqqqqqqqqqqK',
+'..KsqqqqqqqqqqsK',
+'..KqqqqqqqqqqqqK',
+'..KqqKqqqqqqKqqK',
+'..KqqqKKKKKKqqqK',
+'..KqqKWKKKWqqqK.',
+'...KsqqqqqqqqsK.',
+'....KKKKKKKK....'];
+const F_F_ANG=[
+'......KKKK......',
+'.....KfffffK....',
+'....KfhhffffK...',
+'..KffffffffffK..',
+'..KffffffffffK..',
+'..KqKKqqqqKKqKK.',
+'..KqqKKqqKKqqqqK',
+'..KqqKKqqqqKKqqK',
+'..KqqqqqqqqqqqqK',
+'..KsqqqqqqqqqqsK',
+'..KqqqqqqqqqqqqK',
+'..KqqqqqqqqqqqqK',
+'..KqqKKKKKKKqqqK',
+'..KqqKKWKKWqqqqK',
+'...KsqqqqqqqqsK.',
+'....KKKKKKKK....'];
+const F_D_ANG=[
+'..KKKKKKKKKKKK..',
+'..KKKKKKKKKKKK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KqKKqqqqKKqKK.',
+'..KqqKKqqKKqqqqK',
+'..KqqKKqqqqKKqqK',
+'..KqqqqqqqqqqqqK',
+'..KsqqqqqqqqqqsK',
+'W.KqqqqqqqqqqqqK',
+'..KqqqqqqqqqqqqK',
+'..KqqWWKKKKWWqqK',
+'..KqqWWWWWWWWqqK',
+'...KsqWWWWWWqsK.',
+'....KWWWWWWK....'];
+const F_G_JOY=[
+'......KKKK......',
+'.....KNNNNK.....',
+'....KNNNNNNK....',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KbbbbbbbbbbbK.',
+'..KbbbbbbbbbbbbK',
+'..KbbKKbbbKKbbK.',
+'..KbbbbbbbbbbbbK',
+'..KsbbbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbKbbbbbbKbbK',
+'..KbbbKKKKKKbbbK',
+'..KbbKWKKKWbbbK.',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_DS_TIRED=[
+'....KYYYYYYK....',
+'...KYYYYYYYYK...',
+'..KYYYYYYYYYYK..',
+'.KYYYYYYYYYYYYK.',
+'..KHHHHHHHHHHK..',
+'..KbbbbbbbbbbbK.',
+'..KbbbbbbbbbbbbK',
+'..KbbKKKbbKKKbbK',
+'..KbbbbbbbbbbbbK',
+'..KsbbbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbKKbbbbbK',
+'..KbbbbbbbbbbbbK',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_X_SHY=[
+'...KKKKKKKKKK...',
+'..KHHHHHHHHHHK..',
+'.HKHHHHHHHHHHKH.',
+'.HKHHHHHHHHHHKH.',
+'.HKHHHHHHHHHHKH.',
+'..KxxxxxxxxxxxK.',
+'..KxxKKKKKKKKxxK',
+'..KxxxxxxxxxxxxK',
+'..KxpxxxxxxxxpxK',
+'..KsxpxxxxxxpxsK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxxKxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'...KsxxxxxxxxsK.',
+'....KKKKKKKK....'];
+/* ===== 物件 16×16 ===== */
+const HONGTAO=[
+'................','......KKKK......','.....KRRRRK.....','....KRKRRKRK....',
+'....KRRRRRRK....','.....KRRRRK.....','......KRRK......','.......KK.......',
+'......K..K......','.....K....K.....','.....K....K.....','....K......K....',
+'....K.YY.K......','.....KYYK.......','......KK........','................'];
+const BANLIANG=[
+'................','......KKKK......','...KKYYYYYYKK...','..KYYYYYYYYYYK..',
+'..KYYYKKKKYYYK..','..KYYYKKKKYYYK..','..KYYYKKKKYYYK..','..KYYYKKKKYYYK..',
+'..KYYYYYYYYYYK..','..KYYYYYYYYYYK..','...KKYYYYYYKK...','......KKKK......',
+'................','................','................','................'];
+const YAOLOU=[
+'................','....KKKKKKKK....','...KOOOOOOOOK...','..KOcOOOOOOOcOK.',
+'..KOOOOOOOOOOOOK','..KOcOOOOOOOcOK.','...KOOOOOOOOK...','....KKKKKKKK....',
+'................','................','................','................',
+'................','................','................','................'];
+const GUAYU=[
+'................','......KKKK......','.....KGGGGK.....','....KGWWWWGK....',
+'...KGWWGGWWGK...','...KGWWGGWWGK...','....KGWWWWGK....','.....KGGGGK.....',
+'......KKKK......','................','................','................',
+'................','................','................','................'];
+/* ===== 数据表 ===== */
+const CAST=[
+ {rows:MALE,    nm:'主角 · 男',    sil:'短打+白褙带',    pal:'肤S 常 · 发H 玄',              side:MALE_SIDE,    back:MALE_BACK},
+ {rows:FEMALE,  nm:'主角 · 女',    sil:'苔绿袄+白围裙',    pal:'肤q 白净 · 发f 褐',          side:FEMALE_SIDE,  back:FEMALE_BACK},
+ {rows:DEHOU,   nm:'黄德厚',      sil:'幞头翅+拐杖+白髯', pal:'肤q 白净 · 帽下发N 霜',       side:DEHOU_SIDE,   back:DEHOU_BACK},
+ {rows:GUIZHEN, nm:'王桂珍 · 黄婶', sil:'发髻+大方围裙',    pal:'肤b 灶火赭 · 发N 霜',        side:GUIZHEN_SIDE, back:GUIZHEN_BACK},
+ {rows:DASHAN,  nm:'吴大山',      sil:'斗笠+扁担双桶',    pal:'肤b 赭晒 · 笠檐阴影',         side:DASHAN_SIDE,  back:DASHAN_BACK},
+ {rows:XIAOMAN, nm:'黄小满',      sil:'双辫+蓝布书包',    pal:'肤x 黝黑 · 发H 玄',           side:XIAOMAN_SIDE, back:XIAOMAN_BACK},
+ {rows:CHENGLU, nm:'黄承律 · 阿松', sil:'头巾+斜握船篙',    pal:'肤x 晒黑 · 巾Y 草黄',        side:CHENGLU_SIDE, back:CHENGLU_BACK},
+ {rows:JIANGKE, nm:'江客',        sil:'斗笠+药篓+佝背',    pal:'肤S 常 · 发N 霜早生',         side:JIANGKE_SIDE, back:JIANGKE_BACK}
+];
+const FACES_M=[
+ {rows:F_M_BASE, cap:'常 · 平眼直嘴'},
+ {rows:F_M_JOY,  cap:'喜 · 张口见齿'},
+ {rows:F_M_SAD,  cap:'悲 · 眉垂一滴'},
+ {rows:F_M_ANG,  cap:'怒 · 眉压齿紧'},
+ {rows:F_M_SHY,  cap:'赧 · 闭眼双晕'}
+];
+const FACES_J=[
+ {rows:F_J_BASE, cap:'倦 · 眼半阖'},
+ {rows:F_J_SMILE,cap:'悦 · 眼缝开半格'},
+ {rows:F_J_STERN,cap:'肃 · 眉线一刀'}
+];
+const FACES_F=[
+ {rows:F_F_BASE, cap:'常 · 齐额发髻'},
+ {rows:F_F_JOY,  cap:'喜 · 张口见齿'},
+ {rows:F_F_ANG,  cap:'嗔 · 眉压眼缝'}
+];
+const FACES_N=[
+ {rows:F_D_ANG,  cap:'德厚 · 怒＝胡子翘（髯即表情器官）'},
+ {rows:F_G_JOY,  cap:'黄婶 · 喜＝笑眼眯'},
+ {rows:F_DS_TIRED,cap:'大山 · 倦＝日头眯眼'},
+ {rows:F_X_SHY,  cap:'小满 · 赧＝红晕双辫'}
+];
+const ITEMS=[
+ {rows:HONGTAO,nm:'定亲红绦',cap:'江客线最深里程碑 · 全页唯一朱砂',red:true},
+ {rows:BANLIANG,nm:'秦半两',cap:'一层 · 剧情绑定不可卖'},
+ {rows:YAOLOU, nm:'药篓',   cap:'江客剪影特征件同款贴图'},
+ {rows:GUAYU,  nm:'谷雨粿', cap:'节令 d28–30 · 青馅两点'}
+];
+/* ===== 渲染器 ===== */
+function draw(cv,rows,scale,o){
+  o=o||{};
+  const w=16,h=rows.length;
+  cv.width=w*scale;cv.height=h*scale;
+  const x=cv.getContext('2d');
+  x.clearRect(0,0,cv.width,cv.height);
+  rows.forEach((r,j)=>{
+    for(let i=0;i<w;i++){
+      const ch=r[i];
+      if(!ch||ch==='.'||ch===' ')continue;
+      x.fillStyle=(o.sil?'#2B2A24':((o.swap&&o.swap[ch])||PAL[ch]||'#F0F'));
+      x.fillRect(i*scale,j*scale,scale,scale);
+    }
+  });
+  if(o.grid&&scale>=5){
+    x.strokeStyle='rgba(43,42,36,.14)';x.lineWidth=1;
+    for(let i=1;i<w;i++){x.beginPath();x.moveTo(i*scale+.5,0);x.lineTo(i*scale+.5,h*scale);x.stroke();}
+    for(let j=1;j<h;j++){x.beginPath();x.moveTo(0,j*scale+.5);x.lineTo(w*scale,j*scale+.5);x.stroke();}
+  }
+}
+function overlay(cv,rows,scale,o){
+  const x=cv.getContext('2d');
+  rows.forEach((r,j)=>{
+    for(let i=0;i<16;i++){
+      const ch=r[i];
+      if(!ch||ch==='.'||ch===' ')continue;
+      x.fillStyle=(o&&o.sil)?'#2B2A24':(PAL[ch]||'#F0F');
+      x.fillRect(i*scale,j*scale,scale,scale);
+    }
+  });
+}
+function flip(rows){return rows.map(r=>[...r].reverse().join(''));}
+function usedColors(rows){
+  const set=new Set();
+  rows.forEach(r=>{for(const ch of r)if(ch!=='.'&&ch!==' '&&PAL[ch])set.add(ch);});
+  return [...set];
+}
+function withLegs(base,legs){const out=base.slice();for(let i=20;i<29;i++)out[i]=legs[i];return out;}
+function bob(rows){return ['................'].concat(rows.slice(0,31));}
+/* ===== 装配 ===== */
+const media=window.matchMedia('(prefers-reduced-motion: reduce)');
+const state={sil:false,grid:false,anim:!media.matches,walkF:0};
+const opts=(swap)=>({sil:state.sil,grid:state.grid,swap});
+const heroWrap=document.createElement('div');
+document.querySelector('.hero > div').replaceWith(heroWrap);
+const heroCv=document.createElement('canvas');heroCv.className='checker';heroWrap.appendChild(heroCv);
+const FILM=[
+ {cap:'待机 A',rows:MALE},
+ {cap:'待机 B（沉降 1px）',rows:bob(MALE)},
+ {cap:'行走 1（contact）',rows:MALE},
+ {cap:'行走 2（下沉）',rows:withLegs(MALE,WALK2)},
+ {cap:'行走 3（通过）',rows:MALE},
+ {cap:'行走 4（抬起）',rows:bob(MALE)},
+ {cap:'锄 · 举',rows:MALE,ovl:HOE_A},
+ {cap:'锄 · 挥',rows:MALE,ovl:HOE_B},
+ {cap:'锄 · 落',rows:MALE,ovl:HOE_C}
+];
+const filmEl=document.getElementById('film');
+FILM.forEach(f=>{
+  const fig=document.createElement('figure');fig.className='frame';
+  const cv=document.createElement('canvas');cv.className='checker';fig.appendChild(cv);
+  const cap=document.createElement('figcaption');cap.textContent=f.cap;fig.appendChild(cap);
+  filmEl.appendChild(fig);f.cv=cv;
+});
+const castEl=document.getElementById('cast');
+CAST.forEach(p=>{
+  const card=document.createElement('div');card.className='card';
+  const cv=document.createElement('canvas');cv.className='checker';card.appendChild(cv);
+  const nm=document.createElement('div');nm.className='nm';nm.textContent=p.nm;
+  const sil=document.createElement('div');sil.className='sil';sil.textContent=p.sil;
+  const pal=document.createElement('div');pal.className='pal';pal.textContent=p.pal;
+  const chips=document.createElement('div');chips.className='chips';
+  usedColors(p.rows).forEach(k=>{const i=document.createElement('i');i.style.background=PAL[k];i.title=k;chips.appendChild(i);});
+  card.append(nm,sil,pal,chips);castEl.appendChild(card);p.cv=cv;
+});
+const dirsEl=document.getElementById('dirs');
+const DIR_CELLS=[];
+(function(){
+  const head=document.createElement('div');head.className='dirs-head';
+  ['角色','正 · front','侧 · right','背 · back','侧 · left＝镜像'].forEach(t=>{
+    const s=document.createElement('span');s.textContent=t;head.appendChild(s);
+  });
+  dirsEl.appendChild(head);
+  CAST.forEach(p=>{
+    const row=document.createElement('div');row.className='drow';
+    const who=document.createElement('div');who.className='who';
+    const small=document.createElement('small');small.textContent=p.pal.replace('色谱：','');
+    who.appendChild(document.createTextNode(p.nm));who.appendChild(small);
+    row.appendChild(who);
+    [[p.rows,'·'],[p.side,'·'],[p.back,'·'],[flip(p.side),'帧数省半']].forEach(([rows,note])=>{
+      const cell=document.createElement('div');cell.className='dcell';
+      const cv=document.createElement('canvas');cv.className='checker';cell.appendChild(cv);
+      const sp=document.createElement('span');sp.textContent=note;cell.appendChild(sp);
+      row.appendChild(cell);
+      DIR_CELLS.push({cv,rows});
+    });
+    dirsEl.appendChild(row);
+  });
+})();
+function faceInto(el,list,scale){
+  list.forEach(f=>{
+    const d=document.createElement('div');d.className='face';
+    const cv=document.createElement('canvas');cv.className='checker';d.appendChild(cv);
+    const nm=document.createElement('div');nm.className='fm';nm.textContent=f.cap.split(' · ')[0];
+    const p=document.createElement('p');p.textContent=f.cap;
+    d.append(nm,p);el.appendChild(d);f.cv=cv;f.scale=scale;
+  });
+}
+faceInto(document.getElementById('facesM'),FACES_M,10);
+faceInto(document.getElementById('facesJ'),FACES_J,10);
+faceInto(document.getElementById('facesF'),FACES_F,10);
+faceInto(document.getElementById('facesN'),FACES_N,10);
+const distEl=document.getElementById('distWrap');
+const DIST=[];
+CAST.slice(2).forEach(p=>{
+  const row=document.createElement('div');row.className='dist';
+  const who=document.createElement('span');who.className='who';who.textContent=p.nm.split(' · ')[0];
+  row.appendChild(who);
+  [[1,'×1 实机'],[2,'×2'],[4,'×4 放大']].forEach(([s,lab])=>{
+    const col=document.createElement('div');col.className='dcol';
+    const cv=document.createElement('canvas');cv.className='checker';col.appendChild(cv);
+    const sp=document.createElement('span');sp.textContent=lab;col.appendChild(sp);
+    row.appendChild(col);DIST.push({cv,rows:p.rows,s});
+  });
+  distEl.appendChild(row);
+});
+const SEASON_SWAP={0:{I:'#6F8B6A',v:'#8CA683',c:'#4E6B54'},1:{G:'#4C7C72',j:'#6A9A8F',d:'#365A52'},4:{e:'#A8663C',t:'#7E4A2A'},5:{u:'#71757A',w:'#565A5F'},7:{B:'#31475F',m:'#47668A',g:'#26374B'}};
+const FAIR_ORDER=[0,3,1,4,2,5,6,7, 0,3, 1,4, 2,5, 6,7, 0,4];
+function e_fair(){
+  const cv=document.getElementById('fairCv');
+  const sc=3,n=FAIR_ORDER.length;
+  cv.width=n*18*sc;cv.height=34*sc;
+  const x=cv.getContext('2d');x.clearRect(0,0,cv.width,cv.height);
+  FAIR_ORDER.forEach((idx,i)=>{
+    const p=CAST[idx];
+    const tmp=document.createElement('canvas');
+    draw(tmp,p.rows,sc,{sil:state.sil,swap:SEASON_SWAP[idx]});
+    x.drawImage(tmp,(i*18)*sc,(i%3)*sc);
+  });
+}
+const itemsEl=document.getElementById('items');
+ITEMS.forEach(it=>{
+  const d=document.createElement('div');d.className='item';
+  const cv=document.createElement('canvas');cv.className='checker';d.appendChild(cv);
+  const nm=document.createElement('div');nm.className='nm'+(it.red?' redline':'');nm.textContent=it.nm;
+  const p=document.createElement('p');p.textContent=it.cap;
+  d.append(nm,p);itemsEl.appendChild(d);it.cv=cv;
+});
+function fullRender(){
+  const heroRows=state.anim&&state.walkF===1?withLegs(MALE,WALK2):MALE;
+  draw(heroCv,heroRows,12,opts());
+  FILM.forEach(f=>{draw(f.cv,f.rows,6,opts());if(f.ovl)overlay(f.cv,f.ovl,6,{sil:state.sil});});
+  CAST.forEach(p=>draw(p.cv,p.rows,6,opts()));
+  DIR_CELLS.forEach(d=>draw(d.cv,d.rows,5,opts()));
+  FACES_M.concat(FACES_J,FACES_F,FACES_N).forEach(f=>draw(f.cv,f.rows,f.scale,opts()));
+  DIST.forEach(d=>draw(d.cv,d.rows,d.s,{sil:state.sil}));
+  e_fair();
+  ITEMS.forEach(it=>draw(it.cv,it.rows,8,opts()));
+  const b1=document.getElementById('btnSil'),b2=document.getElementById('btnGrid'),b3=document.getElementById('btnAnim');
+  b1.setAttribute('aria-pressed',String(state.sil));
+  b2.setAttribute('aria-pressed',String(state.grid));
+  b3.setAttribute('aria-pressed',String(state.anim));
+  b3.textContent='动画：'+(state.anim?'播放':'暂停');
+}
+document.getElementById('btnSil').addEventListener('click',()=>{state.sil=!state.sil;fullRender();});
+document.getElementById('btnGrid').addEventListener('click',()=>{state.grid=!state.grid;fullRender();});
+document.getElementById('btnAnim').addEventListener('click',()=>{state.anim=!state.anim;fullRender();});
+fullRender();
+setInterval(()=>{
+  if(!state.anim)return;
+  state.walkF=(state.walkF+1)%4;
+  const seq=[MALE,withLegs(MALE,WALK2),MALE,bob(MALE)];
+  draw(heroCv,seq[state.walkF],12,opts());
+},150);
+</script>
+</body>
+</html>

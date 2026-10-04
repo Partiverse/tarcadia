@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桃花源 · 设计板（交互版）</title>
+<style>
+:root{
+  --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --cinnabar:#9A3B2B;
+  --spring:#6F8B6A; --summer:#4C7C72; --autumn:#A8663C; --winter:#71757A;
+  --grid:rgba(43,42,36,.14); --grid-faint:rgba(43,42,36,.07);
+  --serif:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+  --sans:"PingFang SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+.wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+:focus-visible{outline:2.5px solid var(--indigo);outline-offset:2px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ===== 开篇：一年历法带 + 竖签书名 ===== */
+header{padding-top:34px}
+.colophon{display:flex;align-items:flex-start;gap:14px;padding:6px 0 10px}
+.title-band{writing-mode:vertical-rl;font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:.22em;line-height:1;padding:22px 12px;border:1.5px solid var(--ink);background:#F5F2E8;box-shadow:3px 3px 0 rgba(43,42,36,.12)}
+.subtitle{max-width:520px;padding-top:6px}
+.subtitle .rule{font-family:var(--serif);font-size:20px;line-height:1.6;margin-bottom:8px}
+.subtitle p{color:var(--indigo);font-size:14px}
+.subtitle .docs{font-size:12.5px;color:var(--ink);opacity:.65;margin-top:8px}
+.cinnabar-note{margin-top:10px;font-size:13px;border-left:3px solid var(--cinnabar);padding:2px 0 2px 10px}
+.ribbon-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:22px}
+.ribbon-head .t{font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:.1em}
+.ribbon-head .h{font-size:12.5px;color:var(--indigo)}
+.cal-ribbon{display:flex;width:100%;margin-top:10px;border:1px solid var(--ink);background:var(--paper)}
+.cal-ribbon .seg{flex:1;padding:9px 0 7px;text-align:center;border-right:1px solid var(--grid);position:relative;opacity:0;transform:translateY(4px);animation:light .55s calc(var(--d,0)*38ms) forwards}
+.cal-ribbon .seg:last-child{border-right:0}
+.cal-ribbon .seg span{font-family:var(--serif);font-size:13px;letter-spacing:.05em;display:block}
+.cal-ribbon button.seg:hover{background:#F5F2E8}
+.cal-ribbon button.seg[aria-pressed="true"]{box-shadow:inset 0 -3px 0 var(--ink);background:#F5F2E8}
+.seg.s1{background:rgba(111,139,106,.14)} .seg.s2{background:rgba(76,124,114,.16)}
+.seg.s3{background:rgba(168,102,60,.15)}  .seg.s4{background:rgba(113,117,122,.15)}
+.seg i{position:absolute;top:2px;left:0;right:0;font-style:normal;font-size:9px;color:var(--indigo);opacity:.75}
+@keyframes light{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.cal-ribbon .seg{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* 本段面板 */
+.term-panel{border:1px solid var(--ink);border-top:0;background:#F5F2E8;display:grid;grid-template-columns:150px 1fr 1.2fr;gap:0;min-height:96px}
+.term-panel .tp-hint{grid-column:1/4;padding:16px;color:var(--indigo);font-size:14px}
+.tp-left{padding:12px 14px;border-right:1px solid var(--grid)}
+.tp-left .tp-name{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:.08em;line-height:1.2}
+.tp-left .tp-meta{font-size:12px;color:var(--indigo);margin-top:2px}
+.tp-mid{padding:12px 14px;border-right:1px solid var(--grid)}
+.tp-mid .lab,.tp-right .lab{font-size:11.5px;color:var(--indigo);letter-spacing:.12em;margin-bottom:4px}
+.tp-mid .chip{display:inline-block;border:1px solid var(--grid);padding:0 8px;margin:2px 6px 2px 0;font-size:13px;background:var(--paper)}
+.tp-mid .chip.no{border-style:dashed;color:var(--indigo)}
+.tp-right{padding:12px 14px}
+.tp-right .micro{font-family:var(--serif);font-size:16px;font-weight:700}
+.tp-right .quote{font-size:13.5px;color:var(--indigo)}
+.tp-right .note{font-size:12.5px;margin-top:4px}
+.tp-right .note::before{content:"此时　";font-family:var(--serif);font-weight:700;color:var(--ink)}
+@media (max-width:820px){.term-panel{grid-template-columns:1fr}.tp-left,.tp-mid{border-right:0;border-bottom:1px solid var(--grid)}}
+
+/* ===== 章节：节令牌 ===== */
+section{margin-top:56px}
+.term-head{display:flex;align-items:baseline;gap:14px;border-bottom:1.5px solid var(--ink);padding-bottom:10px;margin-bottom:6px;flex-wrap:wrap}
+.term-plaque{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.14em;padding:2px 12px;border:1px solid var(--ink);background:#F5F2E8}
+.term-head h2{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:.06em}
+.term-head .en{font-size:12.5px;color:var(--indigo);letter-spacing:.04em}
+.lede{max-width:760px;font-size:14.5px;color:var(--indigo);margin:10px 0 22px}
+.lede b{color:var(--ink)}
+
+/* ===== 人物：米字格习字帖 ===== */
+.filterbar{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.filterbar .fb-lab{font-size:13px;color:var(--indigo)}
+.fbtn{border:1px solid var(--ink);padding:2px 14px;font-size:14px;background:#F5F2E8}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.fbtn.cand{border-color:var(--cinnabar);color:var(--cinnabar)}
+.fbtn.cand[aria-pressed="true"]{background:var(--cinnabar);color:#F5F2E8}
+.fcount{font-size:12.5px;color:var(--indigo);margin-left:auto}
+.sheet{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1.5px solid var(--ink)}
+.cell{position:relative;aspect-ratio:1/1.08;border:1px solid var(--grid);padding:10px 8px 8px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;transition:background .18s}
+.cell:hover{background:#F5F2E8}
+.cell[hidden]{display:none}
+.cell::before,.cell::after{content:"";position:absolute;inset:0;pointer-events:none}
+.cell::before{background:
+  linear-gradient(to right,transparent calc(50% - .5px),var(--grid-faint) calc(50% - .5px) calc(50% + .5px),transparent calc(50% + .5px)),
+  linear-gradient(to bottom,transparent calc(50% - .5px),var(--grid-faint) calc(50% - .5px) calc(50% + .5px),transparent calc(50% + .5px))}
+.cell::after{background:
+  linear-gradient(45deg,transparent calc(50% - .4px),var(--grid-faint) calc(50% - .4px) calc(50% + .4px),transparent calc(50% + .4px)) no-repeat,
+  linear-gradient(-45deg,transparent calc(50% - .4px),var(--grid-faint) calc(50% - .4px) calc(50% + .4px),transparent calc(50% + .4px)) no-repeat}
+.glyph{font-family:var(--serif);font-size:30px;font-weight:700;z-index:1}
+.candidate .glyph::after{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid var(--cinnabar);margin:0 0 6px 4px}
+.cell .nm{font-family:var(--serif);font-size:15px;font-weight:700;z-index:1;text-align:center;line-height:1.3}
+.cell .role{font-size:11.5px;color:var(--indigo);z-index:1;text-align:center;line-height:1.4}
+.cell .sil{font-size:11px;color:var(--ink);opacity:.75;z-index:1}
+.sheet-legend{display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;color:var(--indigo);margin-top:12px}
+.sheet-legend .dot{display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid var(--cinnabar);vertical-align:-1px;margin-right:5px}
+.rules{margin-top:20px;border:1px solid var(--grid);border-left:3px solid var(--indigo);padding:12px 16px;font-size:14px}
+.rules ul{list-style:none}
+.rules li{padding:3px 0}
+.rules li::before{content:"禁　";font-family:var(--serif);font-weight:700;color:var(--indigo);margin-right:4px}
+.rules li.pos::before{content:"则　";color:var(--spring)}
+
+/* ===== 物品：地层剖面 ===== */
+.strata{border:1.5px solid var(--ink);margin-top:6px}
+.layer{border-bottom:1px solid var(--ink)}
+.layer:last-child{border-bottom:0}
+.layer-btn{display:grid;grid-template-columns:118px 1fr 150px;width:100%;text-align:left;align-items:stretch}
+.layer .l-depth{font-family:var(--serif);font-size:15px;font-weight:700;padding:14px 12px;border-right:1px solid var(--grid);letter-spacing:.04em}
+.layer .l-depth small{display:block;font-family:var(--sans);font-weight:400;font-size:11.5px;color:var(--indigo)}
+.layer .l-depth .tw{float:right;font-size:11px;color:var(--indigo);font-family:var(--sans);font-weight:400}
+.layer .l-items{padding:12px 16px;font-size:14px}
+.layer .l-items .chip{display:inline-block;border:1px solid var(--grid);padding:0 8px;margin:2px 6px 2px 0;font-size:13px;background:#F5F2E8}
+.layer .l-items .chip.bind{border-color:var(--ink);font-weight:700}
+.layer .l-rule{padding:14px 12px;font-size:12.5px;color:var(--indigo);border-left:1px solid var(--grid);text-align:right}
+.l-more{display:none;padding:0 16px 12px;font-size:13px;color:var(--indigo)}
+.l-more b{color:var(--ink)}
+.layer.open .l-more{display:block}
+.l1{background:rgba(113,117,122,.10)} .l2{background:rgba(111,139,106,.12)}
+.l3{background:rgba(168,102,60,.12)}  .l4{background:rgba(43,42,36,.20)}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.pillar{border-top:2px solid var(--ink);padding:10px 2px 0}
+.pillar h3{font-family:var(--serif);font-size:17px;font-weight:700;margin-bottom:4px}
+.pillar p{font-size:12.5px;color:var(--indigo)}
+.pillar .n{font-family:var(--serif);font-size:26px;font-weight:700;display:block}
+
+/* ===== 场景：四时色卡 ===== */
+.seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.seas{border:1px solid var(--ink);padding:12px 12px 10px;background:#F5F2E8}
+.seas h3{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:baseline}
+.seas h3 small{font-family:var(--sans);font-size:11.5px;font-weight:400;color:var(--indigo)}
+.sw{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}
+.sw i{width:26px;height:26px;border-radius:2px;border:1px solid rgba(43,42,36,.25)}
+.seas .cap{font-size:12px;color:var(--ink);opacity:.75;margin-bottom:6px}
+.seas p{font-size:12.5px;color:var(--indigo)}
+.winter .sw i{filter:saturate(.35) brightness(1.04)}
+.winter .sw i.warm{filter:none;border:1.5px solid var(--ink)}
+.winter .sw.raw i{filter:none}
+.winter .sw.raw i.warm{border:1px solid rgba(43,42,36,.25)}
+.warmmark{font-size:11.5px}
+.warmmark::before{content:"● ";color:var(--cinnabar)}
+.wtoggle{margin-top:8px;font-size:12.5px;border:1px solid var(--ink);padding:1px 10px;background:var(--paper)}
+.places{margin-top:24px;border:1px solid var(--grid);padding:16px;columns:2;column-gap:34px;font-size:14px}
+.places h4{font-family:var(--serif);font-size:16px;margin:0 0 6px;break-after:avoid}
+.places ul{list-style:none;margin:0 0 14px;padding:0}
+.places li{padding:2.5px 0;break-inside:avoid}
+.places li em{font-style:normal;color:var(--indigo);font-size:12.5px}
+footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:var(--indigo)}
+
+@media (max-width:820px){
+  .sheet{grid-template-columns:repeat(3,1fr)}
+  .pillars,.seasons{grid-template-columns:repeat(2,1fr)}
+  .cal-ribbon{flex-wrap:wrap}.cal-ribbon .seg{flex:0 0 calc(100%/12)}
+  .layer-btn{grid-template-columns:96px 1fr}.layer .l-rule{display:none}
+  .places{columns:1}
+}
+@media (max-width:520px){
+  .sheet{grid-template-columns:repeat(2,1fr)}
+  .pillars,.seasons{grid-template-columns:1fr}
+  .cal-ribbon .seg{flex:0 0 calc(100%/8)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="colophon">
+    <div class="title-band">桃花源·设计板</div>
+    <div class="subtitle">
+      <div class="rule">16px 像素为体，水墨工笔为魂。</div>
+      <p>人物 · 物品 · 场景三卷审稿板。任何一张截图，3 秒内可辨识"中式田园"——这块板子本身也接受同一条验收。</p>
+      <div class="cinnabar-note">板面规矩：<b>朱砂只给"人情事件"</b>（礼·祭·年·婚）。与游戏内色彩宪法同文——本页所有红色皆候选/人情标记，别无他用。</div>
+      <div class="docs">上游：art-style-guide · character-roster · character-style · world-layers · gathering-almanac · production-scope · cuisine-45 · outbound-kinship（docs/ 二十一件套）</div>
+    </div>
+  </div>
+  <div class="ribbon-head">
+    <div class="t">一年历法带 · 段 5 天 × 24</div>
+    <div class="h">点一段，看这一段的村子（采集 · 微物候 · 节事）</div>
+  </div>
+  <div class="cal-ribbon" role="group" aria-label="二十四节气年带">
+    <button class="seg s1" style="--d:0" data-term="立春" aria-pressed="false"><i>春</i><span>立春</span></button>
+    <button class="seg s1" style="--d:1" data-term="雨水" aria-pressed="false"><span>雨水</span></button>
+    <button class="seg s1" style="--d:2" data-term="惊蛰" aria-pressed="false"><span>惊蛰</span></button>
+    <button class="seg s1" style="--d:3" data-term="春分" aria-pressed="false"><span>春分</span></button>
+    <button class="seg s1" style="--d:4" data-term="清明" aria-pressed="false"><span>清明</span></button>
+    <button class="seg s1" style="--d:5" data-term="谷雨" aria-pressed="false"><span>谷雨</span></button>
+    <button class="seg s2" style="--d:6" data-term="立夏" aria-pressed="false"><i>夏</i><span>立夏</span></button>
+    <button class="seg s2" style="--d:7" data-term="小满" aria-pressed="false"><span>小满</span></button>
+    <button class="seg s2" style="--d:8" data-term="芒种" aria-pressed="false"><span>芒种</span></button>
+    <button class="seg s2" style="--d:9" data-term="夏至" aria-pressed="false"><span>夏至</span></button>
+    <button class="seg s2" style="--d:10" data-term="小暑" aria-pressed="false"><span>小暑</span></button>
+    <button class="seg s2" style="--d:11" data-term="大暑" aria-pressed="false"><span>大暑</span></button>
+    <button class="seg s3" style="--d:12" data-term="立秋" aria-pressed="false"><i>秋</i><span>立秋</span></button>
+    <button class="seg s3" style="--d:13" data-term="处暑" aria-pressed="false"><span>处暑</span></button>
+    <button class="seg s3" style="--d:14" data-term="白露" aria-pressed="false"><span>白露</span></button>
+    <button class="seg s3" style="--d:15" data-term="秋分" aria-pressed="false"><span>秋分</span></button>
+    <button class="seg s3" style="--d:16" data-term="寒露" aria-pressed="false"><span>寒露</span></button>
+    <button class="seg s3" style="--d:17" data-term="霜降" aria-pressed="false"><span>霜降</span></button>
+    <button class="seg s4" style="--d:18" data-term="立冬" aria-pressed="false"><i>冬</i><span>立冬</span></button>
+    <button class="seg s4" style="--d:19" data-term="小雪" aria-pressed="false"><span>小雪</span></button>
+    <button class="seg s4" style="--d:20" data-term="大雪" aria-pressed="false"><span>大雪</span></button>
+    <button class="seg s4" style="--d:21" data-term="冬至" aria-pressed="false"><span>冬至</span></button>
+    <button class="seg s4" style="--d:22" data-term="小寒" aria-pressed="false"><span>小寒</span></button>
+    <button class="seg s4" style="--d:23" data-term="大寒" aria-pressed="false"><span>大寒</span></button>
+  </div>
+  <div class="term-panel" id="termPanel" aria-live="polite">
+    <div class="tp-hint">历法带是本作唯一的时间轴：一段 5 天、一段一物、一段一微物候（全档唯一、不可卖）。点任意一节，看它在册子里对应的那一格。</div>
+  </div>
+</header>
+
+<!-- ============ 人物卷 ============ -->
+<section id="people" aria-labelledby="t-people">
+  <div class="term-head">
+    <span class="term-plaque">立夏</span>
+    <h2 id="t-people">人物 · 年集同屏测试</h2>
+    <span class="en">18 NPC · 剪影区分度优先于配色</span>
+  </div>
+  <p class="lede">年集 18 人同屏不混——远景只认轮廓。<b>朱圈 = 恋爱候选</b>（12 人，男女主镜像各 6）；格内单字为该角色的<b>剪影特征件</b>速记（习字帖口径，非成品图形）。</p>
+  <div class="filterbar" role="group" aria-label="人物筛选">
+    <span class="fb-lab">筛：</span>
+    <button class="fbtn" data-f="all" aria-pressed="true">全部</button>
+    <button class="fbtn" data-f="full" aria-pressed="false">满线 12</button>
+    <button class="fbtn" data-f="half" aria-pressed="false">半线 6</button>
+    <button class="fbtn cand" data-f="cand" aria-pressed="false">候选 12</button>
+    <span class="fcount" id="fcount">显示 18 / 18</span>
+  </div>
+  <div class="sheet" id="sheet">
+    <div class="cell" data-g="full"><span class="glyph">杖</span><span class="nm">黄德厚</span><span class="role">族长·满线</span><span class="sil">幞头+拐杖</span></div>
+    <div class="cell" data-g="full"><span class="glyph">磨</span><span class="nm">王桂珍·黄婶</span><span class="role">老豆腐坊遗孀·满线</span><span class="sil">围裙+袖套</span></div>
+    <div class="cell" data-g="full"><span class="glyph">担</span><span class="nm">吴大山</span><span class="role">佃山户·满线</span><span class="sil">扁担+草帽</span></div>
+    <div class="cell candidate" data-g="full"><span class="glyph">辫</span><span class="nm">黄小满</span><span class="role">16 岁·未入谱</span><span class="sil">双辫+书包</span></div>
+    <div class="cell candidate" data-g="full"><span class="glyph">篙</span><span class="nm">黄承律·阿松</span><span class="role">渔船家·满线</span><span class="sil">船篙+背带</span></div>
+    <div class="cell candidate" data-g="full"><span class="glyph">篓</span><span class="nm">江客</span><span class="role">游方药农·无大名</span><span class="sil">药篓+揉膝微驼</span></div>
+    <div class="cell" data-g="full"><span class="glyph">卷</span><span class="nm">黄茂训</span><span class="role">老秀才·百藏注家</span><span class="sil">长衫+书卷</span></div>
+    <div class="cell" data-g="full"><span class="glyph">面</span><span class="nm">罗建国</span><span class="role">社火头人</span><span class="sil">社火巾+铜锣</span></div>
+    <div class="cell candidate" data-g="full"><span class="glyph">墨</span><span class="nm">吴雅琴</span><span class="role">木匠</span><span class="sil">墨斗缠腰</span></div>
+    <div class="cell candidate" data-g="full"><span class="glyph">包</span><span class="nm">黄承野</span><span class="role">民宿主·返乡</span><span class="sil">双肩包+运动鞋</span></div>
+    <div class="cell candidate" data-g="full"><span class="glyph">粉</span><span class="nm">顾小鹿</span><span class="role">支教老师</span><span class="sil">粉笔灰袖口</span></div>
+    <div class="cell" data-g="full"><span class="glyph">桶</span><span class="nm">罗春香</span><span class="role">豆腐坊独女</span><span class="sil">木桶+高嗓门站姿</span></div>
+    <div class="cell candidate" data-g="half"><span class="glyph">棹</span><span class="nm">周满</span><span class="role">临水镇码头·半线</span><span class="sil">船棹+卷裤脚</span></div>
+    <div class="cell candidate" data-g="half"><span class="glyph">表</span><span class="nm">何知青</span><span class="role">返镇青年·半线</span><span class="sil">腕上旧手表</span></div>
+    <div class="cell candidate" data-g="half"><span class="glyph">秤</span><span class="nm">陈桂芳</span><span class="role">铺面账房·半线</span><span class="sil">戥秤+算盘珠袖</span></div>
+    <div class="cell candidate" data-g="half"><span class="glyph">珠</span><span class="nm">方阿婆</span><span class="role">城隍庙香火·半线</span><span class="sil">念珠+帕子</span></div>
+    <div class="cell candidate" data-g="half"><span class="glyph">机</span><span class="nm">刘铁生</span><span class="role">跑镇司机·半线</span><span class="sil">唯一经手手机者</span></div>
+    <div class="cell candidate" data-g="half"><span class="glyph">麦</span><span class="nm">谭慧</span><span class="role">镇播主播·半线</span><span class="sil">线麦+大喇叭</span></div>
+  </div>
+  <div class="sheet-legend">
+    <span><span class="dot"></span>恋爱候选 12（满 6 · 半 6，一夫一妻）</span>
+    <span>编外位不入格：货郎江四海（挑担+电动三轮）、猎户罗守山（猎夹+山货篓）</span>
+    <span>主角男女两套，灶前剪影统一演出</span>
+  </div>
+  <div class="rules">
+    <ul>
+      <li class="pos">剪影区分度优先于配色——远景只认轮廓（斗笠/幞头/围裙/背带）</li>
+      <li class="pos">除祟"怪物"影物化：水墨晕染体、纸形，无实体怪物设计</li>
+      <li>禁 3D 预渲染精灵——像素厚描边弱，同屏不混靠轮廓</li>
+      <li>禁 AI 生成图直接入管线；参考图须审稿单声明来源</li>
+      <li>禁明清官式符号堆砌（不要皇城感）、禁动森式圆润高饱和、禁仙侠金光；QA 必查"会被读成日本乡村吗"</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 物品卷 ============ -->
+<section id="things" aria-labelledby="t-things">
+  <div class="term-head">
+    <span class="term-plaque">白露</span>
+    <h2 id="t-things">物品 · 千年地层</h2>
+    <span class="en">拾获概率 &lt;2%/次整田 · 是时间的碎屑，不是经济来源</span>
+  </div>
+  <p class="lede">向下即向古——百藏四层原生剖面即图鉴排布。越深越稀：<b>汉唐器物全游戏 ≤12 枚</b>（梦层钥匙），秦物两件剧情绑定、不可卖。<b>点任意层，展开该层的纪律。</b></p>
+  <div class="strata" id="strata">
+    <div class="layer l1">
+      <button class="layer-btn" aria-expanded="false">
+        <div class="l-depth">六—七层<small>表土 · 民国—厂期</small><span class="tw">展开 ▾</span></div>
+        <div class="l-items"><span class="chip">民国铜仙</span><span class="chip">三线厂厂徽</span><span class="chip">搪瓷件</span>常见 · 低价值</div>
+        <div class="l-rule">杂记"百藏"栏补全<br>江客药铺以旧铁器换药</div>
+      </button>
+      <div class="l-more">纪律：常见档，<b>风味而非经济</b>——厂徽与搪瓷件是七波编年的器物组语法（每波 ≤3 口传 + 1 器物组，无闪回），挖到即多一段可讲的村史。</div>
+    </div>
+    <div class="layer l2">
+      <button class="layer-btn" aria-expanded="false">
+        <div class="l-depth">四—五层<small>宋元</small><span class="tw">展开 ▾</span></div>
+        <div class="l-items"><span class="chip">宋元铜钱</span><span class="chip">残瓷片</span>限量</div>
+        <div class="l-rule">程工鉴定线索物<br>镇大集"古玩挑"暗市</div>
+      </button>
+      <div class="l-more">纪律：限量。<b>古玩挑=赶集新增一类摊</b>——暗市只走物不走话，程工从你的筐里认出什么，是他的台词不是 UI。</div>
+    </div>
+    <div class="layer l3">
+      <button class="layer-btn" aria-expanded="false">
+        <div class="l-depth">二—三层<small>汉唐</small><span class="tw">展开 ▾</span></div>
+        <div class="l-items"><span class="chip">汉五铢</span><span class="chip">唐铜镜背范</span><b>≤12 枚 · 图鉴级稀缺</b></div>
+        <div class="l-rule">志怪梦层钥匙物<br>持镜入梦＝深一层</div>
+      </button>
+      <div class="l-more">纪律：<b>声景本身即地层</b>——不带钥匙物则永远听不到深梦轨（土鼓与无腔吟）。梦层乐器梯度：水磨腔碎片→筑→土鼓，越深越古。</div>
+    </div>
+    <div class="layer l4">
+      <button class="layer-btn" aria-expanded="false">
+        <div class="l-depth">一层<small>秦 · 建始</small><span class="tw">展开 ▾</span></div>
+        <div class="l-items"><span class="chip bind">秦半两 ×1</span><span class="chip bind">秦矛镦 ×1</span>集齐＝听见门内一声应</div>
+        <div class="l-rule">不可卖 · 结局关联<br>深梦轨钥匙</div>
+      </button>
+      <div class="l-more">纪律：竹门只可"听见门内一声应"——集齐后靠近即触发，<b>全程一次性、无提示、地图不标记</b>；隐结局承接此声。双解释通道保留：老秀才说那是"心理的祖坟"。</div>
+    </div>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><h3>常采</h3><span class="n">51 物</span><p>二十四节气段各刷其物，一段一物；微物候 24 全档唯一、不可卖</p></div>
+    <div class="pillar"><h3>菜谱</h3><span class="n">45 道</span><p>春 9 夏 10 秋 10 冬 8 节令 8；菜品不出售——灶台买机制与社交位</p></div>
+    <div class="pillar"><h3>加工</h3><span class="n">四线</span><p>豆 · 茶 · 腌腊 · 药膳；发酵缸坛与灶台抢加工位</p></div>
+    <div class="pillar"><h3>人情信物</h3><span class="n" style="color:var(--cinnabar)">12 件</span><p>恋爱候选各 1 件专属信物贴图，送礼/求婚复用——外包清单最高优先级</p></div>
+  </div>
+</section>
+
+<!-- ============ 场景卷 ============ -->
+<section id="places" aria-labelledby="t-places">
+  <div class="term-head">
+    <span class="term-plaque">大雪</span>
+    <h2 id="t-places">场景 · 四时色卡</h2>
+    <span class="en">每季 tileset 限 12 色（外包合同语言）</span>
+  </div>
+  <p class="lede">五溪村全物料即圣经：溪田—村—老宅—晒谷场—后山五区，冬段整图去饱和至 60%，<b>腌腊缸与灯笼为全村唯二暖色源</b>（冬卡演示）。</p>
+  <div class="seasons">
+    <div class="seas"><h3>春 <small>苔青</small></h3>
+      <div class="sw"><i style="background:#6F8B6A"></i><i style="background:#8AA47F"></i><i style="background:#A9BC99"></i><i style="background:#DCE3CE"></i><i style="background:#4E6B54"></i><i style="background:#7C6A52"></i><i style="background:#31475F"></i><i style="background:#C9D4BB"></i></div>
+      <div class="cap">绵雨免浇 · 春笋 · 梦链载体</div><p>溪田返青，水田反光留白</p></div>
+    <div class="seas"><h3>夏 <small>荷碧</small></h3>
+      <div class="sw"><i style="background:#4C7C72"></i><i style="background:#6E9B90"></i><i style="background:#94BDB2"></i><i style="background:#D8E4DA"></i><i style="background:#35605A"></i><i style="background:#8A7A5C"></i><i style="background:#5E6E8E"></i><i style="background:#BCD2C6"></i></div>
+      <div class="cap">雷骤涨半格 · 莲池扩展</div><p>高绿压顶，蝉噪可视作景深</p></div>
+    <div class="seas"><h3>秋 <small>橘赭</small></h3>
+      <div class="sw"><i style="background:#A8663C"></i><i style="background:#C58A54"></i><i style="background:#DDB487"></i><i style="background:#E9DCC2"></i><i style="background:#7A4A2E"></i><i style="background:#6F8B6A"></i><i style="background:#4C7C72"></i><i style="background:#B58F63"></i></div>
+      <div class="cap">连雨大集移廊下 · 霜晨一层白</div><p>晒谷场满色，志怪区隙态 ×1.5</p></div>
+    <div class="seas winter"><h3>冬 <small>墨灰留白</small></h3>
+      <div class="sw" id="winterSw"><i style="background:#71757A"></i><i style="background:#8D9297"></i><i style="background:#AEB2B3"></i><i style="background:#D6D6D0"></i><i style="background:#E8E6DE"></i><i style="background:#5A5E63"></i><i class="warm" style="background:#9A3B2B" title="腌腊缸——暖色源之一"></i><i class="warm" style="background:#C8862E" title="灯笼年集——暖色源之二"></i></div>
+      <div class="cap warmmark">去饱和 60%：暖色只剩两处——缸与灯</div><p>冬季=加工年仓季，种地是下策</p>
+      <button class="wtoggle" id="wtoggle" aria-pressed="true">还原全饱和对照</button></div>
+  </div>
+  <div class="places">
+    <h4>五溪村（切片交付）</h4>
+    <ul>
+      <li>溪田 <em>可耕地 · 单屏起步 → 45 格</em></li>
+      <li>五溪村 <em>8 户民居+祠堂+小卖部 · 6–8 可入建筑</em></li>
+      <li>老宅 <em>灶房教学场 · 3 屏内 · 地板下茶谱</em></li>
+      <li>晒谷场 <em>赶集日专属经济 · 半屏</em></li>
+      <li>后山小径 <em>采集+志怪入口 · 2 屏无战斗 · 老樟树隙态</em></li>
+      <li>入谷亡者祭坛 <em>荒废小祠正名——非祠堂，供"没谱的人"</em></li>
+    </ul>
+    <h4>临水镇（EA 外观级）</h4>
+    <ul>
+      <li>镇口 · 主街 <em>8 铺面可看不入 · 门帘贴画暗示</em></li>
+      <li>码头 <em>秋季大集入口 · 回水路</em></li>
+      <li>城隍庙前广场 <em>EA 唯一可玩镇内空间 · 春节庙会场地</em></li>
+      <li>建筑形制 <em>穿斗/抬梁混合檐口 · 马头墙剪影 · 飞廊</em></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>桃花源（Tarcadia）设计板 v0.2 · 交互版 · 2026-10-03 · 与 docs/ 二十一件套同权审稿基准</span>
+  <span>记忆点验收：3 秒辨识中式田园 · 年集 18 人不混 · 朱砂=人情事件条件反射</span>
+</footer>
+
+</div>
+
+<script>
+/* ===== 历法带：本段数据（取数 gathering-almanac / cuisine-45 / production-scope） ===== */
+const TERMS={
+  "立春":{g:1,n:1,d:"d1–5",pick:["野韭","枯枝"],no:["水仙球（不可采）"],micro:["头刀韭","新开年第一刀韭——爷爷册子里夹着饺馅来历页"]},
+  "雨水":{g:1,n:2,d:"d6–10",pick:["蕨","荠菜"],micro:["起死蕨","出户人家孩子出门前领一支（江客认得它）"]},
+  "惊蛰":{g:1,n:3,d:"d11–15",pick:["水芹"],micro:["雷初笋","首雷当天后山必刷一片；全村都来看你田埂上的笋壳"],note:"除祟梦境区开（惊蛰段—春末）"},
+  "春分":{g:1,n:4,d:"d16–20",pick:["柳条","芦苇芽"],micro:["新燕泥","衔泥落点定在谁家梁＝当年吉谚"]},
+  "清明":{g:1,n:5,d:"d21–25",pick:["葛粉根","桑葚"],micro:["明前野茶一枪","野生头芽；老爷子只喝你送的那杯"]},
+  "谷雨":{g:1,n:6,d:"d26–30",pick:["春笋","艾","螺"],micro:["佛照石","货郎带来'谷日食螺，佛光普照'的外头说法"],note:"谷雨粿末三天可制（艾+米粉）"},
+  "立夏":{g:2,n:7,d:"d31–35",pick:["莼菜","野苋"],micro:["称蛋苇","能竖住蛋的第一根苇芯"],note:"立夏称人短曲（一次性）；蛙鸣声景开"},
+  "小满":{g:2,n:8,d:"d36–40",pick:["杨梅"],micro:["杨梅火","最早红的一簇；小满爬树梗——她的弧不用玩家参与"]},
+  "芒种":{g:2,n:9,d:"d41–45",pick:["萱草花"],micro:["枇杷骨","首熟一枚供入谷亡者祭坛"],note:"萱草须开瓣去芯才入菜（教在村民评说里）"},
+  "夏至":{g:2,n:10,d:"d46–50",pick:["枇杷","荷叶/莲蓬"],micro:["长影子线","正午老樟树底一条细影缝——老秀才讲秦人测影"]},
+  "小暑":{g:2,n:11,d:"d51–55",pick:["紫苏","薄荷"],micro:["金蝉壳","首具完蝉衣，江客入药；全村捕蝉季开"]},
+  "大暑":{g:2,n:12,d:"d56–60",pick:["蝉蜕","竹叶"],micro:["雷落木","全存档唯一；木匠惦记它半生"],note:"雷骤免浇+溪田涨半格；粽叶季"},
+  "立秋":{g:3,n:13,d:"d61–65",pick:["青头菌"],micro:["戴青一围","'绕开三朵留种'教学信物"],note:"咬秋瓜（立秋日切掷点瓜）"},
+  "处暑":{g:3,n:14,d:"d66–70",pick:["毛竹笋干","落风栗"],micro:["开口栗","第一颗自裂的栗子；孩子抢、大人装没看见"],note:"风暴后落风栗必刷——风暴是收获事件"},
+  "白露":{g:3,n:15,d:"d71–75",pick:["桂花","菱角"],micro:["一捻金","首穗桂花扎上，秋酿引子"]},
+  "秋分":{g:3,n:16,d:"d76–80",pick:["芦花","山药"],micro:["银甲","塘边首尾回塘鱼，供秋席——阿松家渔船线的荣誉位"],note:"除祟水荡区（秋）；连雨大集移祠堂廊下"},
+  "寒露":{g:3,n:17,d:"d81–85",pick:["松茸","野枣","荸荠"],micro:["泣露草","老秀才：'忘外年的人会替外头哭'"],note:"松茸=采集价顶，江客辨菌前置"},
+  "霜降":{g:3,n:18,d:"d86–90",pick:["晚冬笋","涩柿","野山楂"],micro:["初霜鞭","老爷子：'霜和甜是一对'"],note:"晚稻霜损 −30% 触发体"},
+  "立冬":{g:4,n:19,d:"d91–95",pick:["霜留菜","黄精"],micro:["留禾一茎","田里故意不割净的最后一茎稻——还田礼"],note:"冬段整图去饱和 60% 起"},
+  "小雪":{g:4,n:20,d:"d96–100",pick:["雪压枯枝"],micro:["玄玉耳","雪后首木耳；柴与耳同篮，腊味季开场"]},
+  "大雪":{g:4,n:21,d:"d101–105",pick:["黑木耳","冰耳","冬笋"],micro:["破雪鞭","药膳料包隐藏加味——只进菜谱不进经济"],note:"冰耳仅雪后可见"},
+  "冬至":{g:4,n:22,d:"d106–110",pick:["松塔"],micro:["一阳萌","暖石上一茎新绿；老秀才注'谷知道自己时令'"],note:"冬至圆：全家同吃一碗的硬事件"},
+  "小寒":{g:4,n:23,d:"d111–115",pick:["竹筒水"],micro:["竹中髓","竹节冰水一筒，江客药引"],note:"祭灶 d115：灶糖粘嘴"},
+  "大寒":{g:4,n:24,d:"d116–120",pick:["松脂","晒金橘皮","冬藕","梅花"],micro:["旧雪滴","冰凌初融头一滴'换年水'，除夕换井引子"],note:"除夕 d118 饺子+年火松烟；年集 d119–120"}
+};
+const panel=document.getElementById('termPanel');
+const segs=[...document.querySelectorAll('.cal-ribbon .seg')];
+const SEASON=['春','夏','秋','冬'];
+segs.forEach(s=>s.addEventListener('click',()=>{
+  const t=TERMS[s.dataset.term];if(!t)return;
+  segs.forEach(x=>x.setAttribute('aria-pressed',String(x===s)));
+  panel.innerHTML=
+    '<div class="tp-left"><div class="tp-name">'+s.dataset.term+'</div><div class="tp-meta">'+SEASON[t.g-1]+' · 第 '+t.n+' 段 · '+t.d+'</div></div>'+
+    '<div class="tp-mid"><div class="lab">当段之采</div>'+t.pick.map(p=>'<span class="chip">'+p+'</span>').join('')+(t.no||[]).map(p=>'<span class="chip no">'+p+'</span>').join('')+'</div>'+
+    '<div class="tp-right"><div class="lab">微物候 · 全档唯一</div><div class="micro">'+t.micro[0]+'</div><div class="quote">'+t.micro[1]+'</div>'+(t.note?'<div class="note">'+t.note+'</div>':'')+'</div>';
+}));
+
+/* ===== 人物筛选 ===== */
+const cells=[...document.querySelectorAll('#sheet .cell')];
+const fcount=document.getElementById('fcount');
+document.querySelectorAll('.fbtn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.fbtn').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+  const f=b.dataset.f;let n=0;
+  cells.forEach(c=>{
+    const show=f==='all'||(f==='full'&&c.dataset.g==='full')||(f==='half'&&c.dataset.g==='half')||(f==='cand'&&c.classList.contains('candidate'));
+    c.hidden=!show;if(show)n++;
+  });
+  fcount.textContent='显示 '+n+' / 18';
+}));
+
+/* ===== 地层展开 ===== */
+document.querySelectorAll('#strata .layer-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  const layer=btn.closest('.layer');
+  const open=layer.classList.toggle('open');
+  btn.setAttribute('aria-expanded',String(open));
+  btn.querySelector('.tw').textContent=open?'收起 ▴':'展开 ▾';
+}));
+
+/* ===== 冬卡饱和对照 ===== */
+const wt=document.getElementById('wtoggle'),ws=document.getElementById('winterSw');
+wt.addEventListener('click',()=>{
+  const off=wt.getAttribute('aria-pressed')==='true';
+  wt.setAttribute('aria-pressed',String(!off));
+  ws.classList.toggle('raw',off);
+  wt.textContent=off?'恢复去饱和 60%':'还原全饱和对照';
+});
+</script>
+</body>
+</html>
