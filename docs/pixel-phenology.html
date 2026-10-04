@@ -56,6 +56,7 @@ section{margin-top:56px}
 .plaque{writing-mode:vertical-rl;font-family:var(--serif);background:#8A7A5C;border:2px solid #6E6046;box-shadow:3px 3px 0 rgba(43,42,36,.18);padding:16px 12px 10px;color:#EFEBDD;display:flex;gap:12px;align-items:flex-start}
 .pq-term{font-size:30px;font-weight:700;letter-spacing:.3em}
 .pq-icon{writing-mode:horizontal-tb;padding-top:4px}
+.pq-paper{background:#F5F2E8;border:1px solid rgba(43,42,36,.45);padding:5px;margin:0 auto;width:max-content}
 .pq-icon small{display:block;font-size:10px;letter-spacing:.1em;opacity:.85;font-family:var(--sans);margin-top:4px;text-align:center}
 .pq-micro{font-size:12.5px;letter-spacing:.14em;opacity:.92;padding-top:6px}
 .plaque-note{max-width:400px;border:1px solid var(--grid);border-left:3px solid var(--indigo);padding:12px 16px;font-size:13.5px;color:var(--indigo)}
@@ -76,7 +77,7 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
       <div class="spec">
         <span>16×16 ×24 段全册</span><span>键 ∈ 当季 12 色板</span><span>留白＝宣纸</span><span>一牌一物一题名</span><span>朱砂零 · 靛零</span><span>檐牌/历法环/签筒/加载图</span>
       </div>
-      <div class="docs">上游：art-style-guide.md §2/§3（魂层与色彩） · presentation-ux.md §2.1（小令＝每段 icon＋一句话＋一件采集物） · quest-scene-style.md §12（icon 层与「截图猜节气」） · production-scope.md §5（24 格罗盘常驻） · design-board.html TERMS（选题正典） · slice-calendar.md §1（檐牌载体）</div>
+      <div class="docs">上游：art-style-guide.md §2/§3（魂层与色彩） · presentation-ux.md §2.1（小令＝每段 icon＋一句话＋一件采集物） · quest-scene-style.md §12（icon 层与「截图猜节气」） · production-scope.md §2（24 格罗盘常驻） · design-board.html TERMS（选题正典） · slice-calendar.md §1（檐牌载体）</div>
     </div>
   </div>
   <div class="toolbar" role="toolbar" aria-label="审稿开关">
@@ -115,34 +116,34 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="hang">
       <div class="plaque" style="background:#8A7A5C;border-color:#6E6046">
         <div class="pq-term">立春</div>
-        <div class="pq-icon"><canvas id="pq0"></canvas><small>×3 牌面</small></div>
-        <div class="pq-micro">头刀韭 · 新开年第一刀</div>
+        <div class="pq-icon"><div class="pq-paper"><canvas id="pq0"></canvas></div><small>×3 牌面</small></div>
+        <div class="pq-micro">头刀韭 · 开年第一刀</div>
       </div>
     </div>
     <div class="hang">
       <div class="plaque" style="background:#9C8A62;border-color:#7A6848">
         <div class="pq-term">立夏</div>
-        <div class="pq-icon"><canvas id="pq1"></canvas><small>×3 牌面</small></div>
-        <div class="pq-micro">称蛋苇 · 竖得住的苇芯</div>
+        <div class="pq-icon"><div class="pq-paper"><canvas id="pq1"></canvas></div><small>×3 牌面</small></div>
+        <div class="pq-micro">称蛋苇 · 第一根苇芯</div>
       </div>
     </div>
     <div class="hang">
       <div class="plaque" style="background:#9C7A4C;border-color:#785A34">
         <div class="pq-term">立秋</div>
-        <div class="pq-icon"><canvas id="pq2"></canvas><small>×3 牌面</small></div>
-        <div class="pq-micro">戴青一围 · 绕开三朵留种</div>
+        <div class="pq-icon"><div class="pq-paper"><canvas id="pq2"></canvas></div><small>×3 牌面</small></div>
+        <div class="pq-micro">戴青一围 · 三朵留种</div>
       </div>
     </div>
     <div class="hang">
       <div class="plaque" style="background:#7E7666;border-color:#605A4A;color:#F4F2EA">
         <div class="pq-term">立冬</div>
-        <div class="pq-icon"><canvas id="pq3"></canvas><small>×3 牌面</small></div>
+        <div class="pq-icon"><div class="pq-paper"><canvas id="pq3"></canvas></div><small>×3 牌面</small></div>
         <div class="pq-micro">留禾一茎 · 故意不割净</div>
       </div>
     </div>
     <div class="plaque-note">
-      <p><b>载体账：</b>檐牌（四季变体＝四立牌，换日翻面、换季换木色）· 历法环 24 格常驻、当前段高亮（production-scope §5，<b>v0.5 罗盘节兑现，见下</b>）· 签筒（市象签说书人）· 加载图。</p>
-      <p><b>配色账：</b>牌体木料＝各季 12 色板内 e/t（土），字＝当季 W——icon 依旧 12 键内，载体本身不许引入第 13 色。</p>
+      <p><b>载体账：</b>檐牌（四季变体＝四立牌，换日翻面、换季换木色）· 历法环 24 格常驻、当前段高亮（production-scope §2，<b>v0.5 罗盘节兑现，见下</b>）· 签筒（市象签说书人）· 加载图。</p>
+      <p><b>配色账：</b>牌体木料＝各季 12 色板内 e/t（土），字＝当季 W；icon 垫<b>宣纸签</b>（#F5F2E8）——木底与 icon 同用 e 键会恒等隐没，纸签隔开载体与画，icon 依旧 12 键内，载体本身不许引入第 13 色。</p>
       <p><b>文案账：</b>牌面一句物候话取 TERMS micro 出处句，不写系统语（「节气：谷雨」这类 UI 腔禁入）。</p>
     </div>
   </div>
@@ -204,13 +205,13 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <h2 id="t-ring">廿四格罗盘历法环 · 收官节</h2>
     <span class="en">solar-term ring · the only resident HUD</span>
   </div>
-  <p class="lede">主界面唯一常驻图形 UI（presentation-ux §4.1 已锁；production-scope §5 常驻账）：<b>立春正东起、顺时针行</b>，一段十五日一格；<b>春东 · 夏南 · 秋西 · 冬北</b>四象限（四时五行方位）。当前段高亮＝<b>三重证法</b>——格证（墨框格）＋针证（罗盘针）＋心证（天心镜整段重绘）；稿板定格 2026-10-04，今行秋分。高亮不用朱砂：物候牌永不红。</p>
+  <p class="lede">主界面唯一常驻图形 UI（presentation-ux §4.1 已锁；production-scope §2 常驻账）：<b>立春正东起、顺时针行</b>，一段一格（量产历法一段五日——production-scope §2 重标定；环格对段不对日）；<b>春东 · 夏南 · 秋西 · 冬北</b>四象限（四时五行方位）。当前段高亮＝<b>三重证法</b>——格证（墨框格）＋针证（罗盘针）＋心证（天心镜整段重绘）；稿板定格 2026-10-04，今行秋分。高亮不用朱砂：物候牌永不红。</p>
   <div class="ringwrap"><canvas id="cpCv"></canvas></div>
   <div class="rules">
     <ul>
-      <li class="pos">常驻与高亮（production-scope §5）：24 格常驻＝icon＋段名，认形先于读文；当前段三重证法，换段只动针与镜</li>
-      <li class="pos">四象限＝四时五行方位：立春正东、立夏正南、立秋正西、立冬正北，顺时针一段十五日</li>
-      <li class="pos">icon 永远本季色板、永远正立——环动格不动；四季对照即四条象限弧带（各季 j 色）</li>
+      <li class="pos">常驻与高亮（production-scope §2）：24 格常驻＝icon＋段名，认形先于读文；当前段三重证法，换段只动针与镜</li>
+      <li class="pos">四象限＝四时五行方位：立春正东、立夏正南、立秋正西、立冬正北，顺时针一段一格</li>
+      <li class="pos">icon 永远本季色板、永远正立——环动格不动；四季对照即四条象限弧带（板名色键：春苔青 j · 夏荷碧 m · 秋橘赭 e · 冬墨灰 N）</li>
       <li>禁旋转/透视像素：罗盘是历法器物，不是转盘玩具——斜置 icon 即破像素纯净</li>
       <li>禁第 13 色：结构色＝纸/墨/靛青字＋四季板原色；高亮靠墨不靠红（朱砂只给人情事件）</li>
       <li>禁弹窗腔：高亮是「牌位亮」，不是 toast——无弹窗播报纪律（presentation-ux §1.2）</li>
@@ -496,7 +497,17 @@ function drawAt(rows,x0,y0,scale,pal,sil){
     cctx.fillRect(x0+x*scale,y0+y*scale,scale,scale);
   }
 }
-function wrapZh(s,n){const out=[];for(let i=0;i<s.length;i+=n)out.push(s.slice(i,i+n));return out;}
+function wrapZh(s,n){ /* 先按「 · 」分词再定宽兜底，行首不留孤立分隔符 */
+  const out=[];let cur='';
+  s.split(' · ').forEach(seg=>{
+    while(seg.length>n){if(cur){out.push(cur);cur='';}out.push(seg.slice(0,n));seg=seg.slice(n);}
+    if(!cur)cur=seg;
+    else if((cur+' · '+seg).length<=n)cur+=' · '+seg;
+    else{out.push(cur);cur=seg;}
+  });
+  if(cur)out.push(cur);
+  return out;
+}
 function drawRing(){
   cpCv.width=1640;cpCv.height=1640;cpCv.style.width='820px';cpCv.style.height='820px';
   cctx.setTransform(2,0,0,2,0,0);cctx.clearRect(0,0,820,820);
@@ -506,9 +517,9 @@ function drawRing(){
   cctx.beginPath();cctx.arc(CPX,CPY,350,0,7);cctx.stroke();
   cctx.strokeStyle='rgba(43,42,36,.28)';cctx.lineWidth=1;
   cctx.beginPath();cctx.arc(CPX,CPY,238,0,7);cctx.stroke();
-  /* 四季象限弧带（各季 j 色，两端让开分离线 2°） */
-  ['spring','summer','autumn','winter'].forEach((s,q)=>{
-    cctx.strokeStyle=SEASON_PALS[s].j;cctx.globalAlpha=.7;cctx.lineWidth=9;
+  /* 四季象限弧带（板名色键：春苔青 j／夏荷碧 m／秋橘赭 e／冬墨灰 N，两端让开分离线 2°） */
+  [['spring','j'],['summer','m'],['autumn','e'],['winter','N']].forEach(([s,k],q)=>{
+    cctx.strokeStyle=SEASON_PALS[s][k];cctx.globalAlpha=.75;cctx.lineWidth=9;
     cctx.beginPath();cctx.arc(CPX,CPY,361,(q*90+2)*Math.PI/180,(q*90+88)*Math.PI/180);cctx.stroke();
     cctx.globalAlpha=1;
   });
