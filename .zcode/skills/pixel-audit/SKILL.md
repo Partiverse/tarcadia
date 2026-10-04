@@ -1,6 +1,6 @@
 # Pixel Audit — tarcadia 像素稿板验证链
 
-改 `docs/pixel-characters.html`、`docs/pixel-world.html`（或按同制式新建的稿板）后**必跑**四步验证链。历史战绩：此链抓出过全页渲染中断雷（WALK2 缺行）、道具 K 线违规、宽 17/行数 31 等 20+ 处缺陷——不跑就 push 等于盲飞。
+改 `docs/pixel-characters.html`、`docs/pixel-world.html`、`docs/pixel-phenology.html`（或按同制式新建的稿板）后**必跑**四步验证链。历史战绩：此链抓出过全页渲染中断雷（WALK2 缺行）、道具 K 线违规、宽 17/行数 31 等 20+ 处缺陷——不跑就 push 等于盲飞。
 
 ## 何时触发
 
@@ -13,6 +13,7 @@
 - 稿板＝单文件 HTML，全部精灵为 `<script>` 内手排字符矩阵（字符=色键），零依赖零生图（美术宪法）
 - 人物稿板：16 宽 × 16/32 行数组＋WALK2（29 行腿段）＋SIDE_OPEN 腿段（6/6/5 行）＋overlay 叠加层
 - world 稿板：16/32/48 宽；地块 16×16 全填充，建筑 32×32 或 48×32，四季色板键名同构
+- 物候牌稿板：icon 全 16×16，'.'＝留白透宣纸（剪影下留白即透纸，主体形应可猜）；每候固定本季 SEASON_PALS
 - 色键未定义会渲染成洋红 `#F0F` 兜底——这就是步骤 3 洋红计数的原理
 
 ## 步骤 1 — 宽度/色键/行数审计
@@ -20,6 +21,7 @@
 ```bash
 node .zcode/skills/pixel-audit/scripts/audit.cjs characters   # 人物稿板
 node .zcode/skills/pixel-audit/scripts/audit.cjs world        # world 稿板
+node .zcode/skills/pixel-audit/scripts/audit.cjs phenology    # 物候牌稿板
 ```
 
 输出 `PASS`/`FAIL+清单`/`SYNTAX`。FAIL 逐条修复后重跑直到 PASS。审计器只认既有特例（WALK2、SIDE_OPEN_*）；若稿板新增了非标准行数的结构化数组（如新腿段），先改脚本里的 profile 再跑，别绕过。
@@ -82,4 +84,4 @@ sed 's/const state={sil:false,/const state={sil:true,/' docs/<board>.html > /tmp
 
 ## 全绿后的收尾
 
-稿板版本号按 HANDOFF 变更协议（人物稿板：批次不升 minor；world 稿板：新节气节升 minor）→ 更新 HANDOFF 状态 → git commit（信息含验证结论）→ push。
+稿板版本号按 HANDOFF 变更协议（人物稿板：批次不升 minor；world 稿板：新节气节升 minor；物候牌稿板：每季批 +0.1、罗盘收官 v0.5）→ 更新 HANDOFF 状态 → git commit（信息含验证结论）→ push。

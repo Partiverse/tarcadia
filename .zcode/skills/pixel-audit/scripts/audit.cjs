@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* pixel-audit 审计器：宽度/行数/色键/语法，按 profile 参数化。
-   用法：node audit.cjs characters|world  （在 tarcadia 仓根执行） */
+   用法：node audit.cjs characters|world|phenology  （在 tarcadia 仓根执行） */
 const fs = require('fs');
 const path = require('path');
 
@@ -28,12 +28,18 @@ const PROFILES = {
     width: null, /* 宽=首行长度，须 ∈{16,32,48} */
     palKeys: `const PALSET=new Set(Object.keys(SEASON_PALS.spring).filter(k=>k!=='name'));`,
   },
+  phenology: {
+    file: 'docs/pixel-phenology.html',
+    wantRows: (nm, h, w) => h === 16 ? null : ('icon 应 16 行，实际 ' + h),
+    width: 16,
+    palKeys: `const PALSET=new Set(Object.keys(SEASON_PALS.spring).filter(k=>k!=='name'));`,
+  },
 };
 
 const profileName = process.argv[2];
 const prof = PROFILES[profileName];
 if (!prof) {
-  console.log('用法: node audit.cjs characters|world');
+  console.log('用法: node audit.cjs characters|world|phenology');
   process.exit(2);
 }
 const file = path.join(ROOT, prof.file);
