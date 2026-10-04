@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 物候牌稿板 v0.2</title>
+<title>桃花源 · 物候牌稿板 v0.3</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -71,9 +71,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">物候牌稿</div>
     <div class="subtitle">
       <div class="rule">一年二十四段，一段一候一牌：节气的脸面先于文字抵达。</div>
-      <p>魂层稿板第一件（art-style-guide §2 音画绑定：<b>物候 icon 24 枚</b>，用于历法环、檐牌、签筒与加载图，<b>同一手笔</b>为外包合同条款——本页手排矩阵即示范件）。v0.1 立春起：<b>春六候</b>（头刀韭/起死蕨/雷初笋/新燕泥/明前野茶一枪/佛照石）＋<b>檐牌样张</b>一张（diegetic 载体验证）；v0.2 增<b>夏六候</b>（称蛋苇/杨梅火/枇杷骨/长影子线/金蝉壳/雷落木——杨梅熟果以 K 近墨写「乌梅近墨」，朱砂仍零）。选题正典＝design-board TERMS 每段 micro，全档唯一、零新设定；色板与 pixel-world SEASON_PALS <b>同源复制</b>（键名色值零改动，每季 12 色纪律直接继承）；'.'＝留白透宣纸——16px 内做水墨工笔近似：主体居中偏下、留白过半、墨线勾形、当季色点染。秋 6、冬 6 与廿四格罗盘随批 v0.3–v0.5 收官。</p>
+      <p>魂层稿板第一件（art-style-guide §2 音画绑定：<b>物候 icon 24 枚</b>，用于历法环、檐牌、签筒与加载图，<b>同一手笔</b>为外包合同条款——本页手排矩阵即示范件）。v0.1 立春起：<b>春六候</b>（头刀韭/起死蕨/雷初笋/新燕泥/明前野茶一枪/佛照石）＋<b>檐牌样张</b>一张（diegetic 载体验证）；v0.2 增<b>夏六候</b>（称蛋苇/杨梅火/枇杷骨/长影子线/金蝉壳/雷落木——杨梅熟果以 K 近墨写「乌梅近墨」，朱砂仍零）；v0.3 增<b>秋六候</b>（戴青一围/开口栗/一捻金/银甲/泣露草/初霜鞭——银甲以 B/m 青灰写银，非靛；熟柿 e/t 不动朱砂）。选题正典＝design-board TERMS 每段 micro，全档唯一、零新设定；色板与 pixel-world SEASON_PALS <b>同源复制</b>（键名色值零改动，每季 12 色纪律直接继承）；'.'＝留白透宣纸——16px 内做水墨工笔近似：主体居中偏下、留白过半、墨线勾形、当季色点染。冬 6 与廿四格罗盘随批 v0.4–v0.5 收官。</p>
       <div class="spec">
-        <span>16×16 ×24 段（春 6＋夏 6）</span><span>键 ∈ 当季 12 色板</span><span>留白＝宣纸</span><span>一牌一物一题名</span><span>朱砂零 · 靛零</span><span>檐牌/历法环/签筒/加载图</span>
+        <span>16×16 ×24 段（春夏 12＋秋 6）</span><span>键 ∈ 当季 12 色板</span><span>留白＝宣纸</span><span>一牌一物一题名</span><span>朱砂零 · 靛零</span><span>檐牌/历法环/签筒/加载图</span>
       </div>
       <div class="docs">上游：art-style-guide.md §2/§3（魂层与色彩） · presentation-ux.md §2.1（小令＝每段 icon＋一句话＋一件采集物） · quest-scene-style.md §12（icon 层与「截图猜节气」） · production-scope.md §5（24 格罗盘常驻） · design-board.html TERMS（选题正典） · slice-calendar.md §1（檐牌载体）</div>
     </div>
@@ -142,9 +142,26 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     </ul>
   </div>
 </section>
+<section aria-labelledby="t-autumn">
+  <div class="term-head">
+    <span class="term-plaque">立秋</span>
+    <h2 id="t-autumn">秋六候 · 收敛之相</h2>
+    <span class="en">autumn six · harvest &amp; first frost</span>
+  </div>
+  <p class="lede">秋段六候全册：<b>立秋戴青一围</b>（青头菌青盖如冠）、<b>处暑开口栗</b>（刺苞自裂露仁）、<b>白露一捻金</b>（桂簇两撮入酿）、<b>秋分银甲</b>（回塘鱼以 B/m 青灰写银——银不等于蓝，靛仍禁）、<b>寒露泣露草</b>（三茎两滴，m 珠在剪影下仍是墨点不消失）、<b>霜降初霜鞭</b>（霜柿 N 灰敷顶，熟色 e/t 不越朱砂）。秋物皆收相，故每枚收在地面线上——不腾空、不铺张。</p>
+  <div class="grid" id="icons3"></div>
+  <div class="rules">
+    <ul>
+      <li class="pos">秋板纪律同前：键 ∈ 秋 12 色板（橘赭系），'.' 留白过半，先剪影后点染</li>
+      <li class="pos">「银」的写法＝B/m/g 青灰三阶，禁借靛蓝染鱼——色板语义优先于直觉配色</li>
+      <li class="pos">霜＝N 灰敷于果顶受霜面，不给整果换色（霜是事件不是材质）</li>
+      <li>禁果簇重形：杨梅火（夏）＝簇内大小果、开口栗（秋）＝单球开口、一捻金（秋）＝枝上碎簇——三果三解</li>
+    </ul>
+  </div>
+</section>
 <footer>
-  <span>桃花源（Tarcadia）物候牌稿板 v0.2 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span><b>验收链：</b>选题出自 TERMS micro · 春夏 12 枚 · 键 ∈ 本季 12 色板 · 留白过半 · 朱砂零 · 剪影可猜</span>
+  <span>桃花源（Tarcadia）物候牌稿板 v0.3 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span><b>验收链：</b>选题出自 TERMS micro · 春夏秋 18 枚 · 键 ∈ 本季 12 色板 · 留白过半 · 朱砂零 · 剪影可猜</span>
 </footer>
 </div>
 <script>
@@ -242,6 +259,46 @@ const I_DASHU=[
 '.....eeKtt......','.....eeeKt......','.....eeeKt......',
 '.....eeeKt......','.....eeeet......','....ttttttt.....',
 '................'];
+/* ===== 秋六候 16×16（'.'＝留白透宣纸，键 ∈ 秋 12 色板） ===== */
+const I_LIQIU=[
+'................','................','................','................',
+'....GGGGGG......','...GGjjjjGG.....','..GGjjjjjjGG....','..GGGGGGGGGG....',
+'...NNNNNNNN.....','......ee........','......ee........','......ee........',
+'......ee........','.....eee........','....KKKKK.......','................'];
+const I_CHUSHU=[
+'................','................','................',
+'.......tt.......','......teet......','.....tteett.....',
+'....tttttttt....','.K.ttttttttt.K..','..ttttttttttt...',
+'.K.ttttttttt.K..','....tttttttt....','.....K..K.......',
+'................','................','................',
+'................'];
+const I_BAILU=[
+'................','................','............t...',
+'...........t....','..........t.....','.........t.GG...',
+'........t.GG....','.......t.ee.....','......t.eje.....',
+'.....t..........','....t..GG.......','...t...ee.......',
+'..t...j.........','................','................',
+'................'];
+const I_QIUFEN=[
+'................','................','................','................',
+'.......gg.......','.....BmmmmB.....','....BmKmmmmB.B..',
+'...BmmmmmmmmBB..','....BmmmmmmB.B..','.....BmmmmB.....',
+'................','................','..m..m..m..m....',
+'................','................','................'];
+const I_HANLU=[
+'................','....m...........','................',
+'.....j..........','.....d..m.......','.....d..j.......',
+'.....d..d.......','.....d..d..G....','.....d..d..G....',
+'.....d..d..G....','.....d..d..G....','.....d..d..G....',
+'.....d..d..G....','....dddddd......','....KKKKKKK.....',
+'................'];
+const I_SHUANGJIANG=[
+'................','................','.......t........',
+'......ttt.dd....','.....ttttt......','....NeeeeeN.....',
+'...NeeeeeeeN....','...NeeeeeeeN....','...eeeeeeeee....',
+'...eeeeeeeee....','...teeeeeeee....','...teeeeeeee....',
+'....teeee.......','.....KKKK.......','................',
+'................'];
 const ICONS=[
 {rows:I_LICHUN,term:'立春',nm:'头刀韭',season:'spring',micro:'新开年第一刀韭——爷爷册子里夹着饺馅来历页',pal:'韭簇四刃 j/d · e/t 土能 · K 地线',sil:'四直刃一横土'},
 {rows:I_YUSHUI,term:'雨水',nm:'起死蕨',season:'spring',micro:'出户人家孩子出门前领一支（江客认得它）',pal:'拳卷蕨芽 d/j · 枯叶 t/e',sil:'粗圈卷头曲茎一横枯'},
@@ -254,7 +311,13 @@ const ICONS=[
 {rows:I_MANGZHONG,term:'芒种',nm:'枇杷骨',season:'summer',micro:'首熟一枚供入谷亡者祭坛',pal:'首熟 e · 未熟 d · 叶 G · 梗 t',sil:'双果垂枝一大一小'},
 {rows:I_XIAZHI,term:'夏至',nm:'长影子线',season:'summer',micro:'正午老樟树底一条细影缝——老秀才讲秦人测影',pal:'樟冠 G/j · 独干 t · 场 e · 影 K',sil:'圆冠独干一短线'},
 {rows:I_XIAOSHU,term:'小暑',nm:'金蝉壳',season:'summer',micro:'首具完蝉衣，江客入药；全村捕蝉季开',pal:'横枝 t · 壳 e · 目 K · 裂 t',sil:'横枝垂壳六足'},
-{rows:I_DASHU,term:'大暑',nm:'雷落木',season:'summer',micro:'全存档唯一；木匠惦记它半生',pal:'枯桩 e/t · 雷痕 K 锯齿下贯',sil:'断顶桩身一长裂'}
+{rows:I_DASHU,term:'大暑',nm:'雷落木',season:'summer',micro:'全存档唯一；木匠惦记它半生',pal:'枯桩 e/t · 雷痕 K 锯齿下贯',sil:'断顶桩身一长裂'},
+{rows:I_LIQIU,term:'立秋',nm:'戴青一围',season:'autumn',micro:'「绕开三朵留种」教学信物',pal:'青盖 G/j · 褶 N · 柄 e · 地线 K',sil:'圆盖伞一柄'},
+{rows:I_CHUSHU,term:'处暑',nm:'开口栗',season:'autumn',micro:'第一颗自裂的栗子；孩子抢、大人装没看见',pal:'刺苞 t · 露仁 e · 苞刺 K',sil:'刺球开口见仁'},
+{rows:I_BAILU,term:'白露',nm:'一捻金',season:'autumn',micro:'首穗桂花扎上，秋酿引子',pal:'斜枝 t · 叶 G · 桂簇 e/j',sil:'斜枝两簇金'},
+{rows:I_QIUFEN,term:'秋分',nm:'银甲',season:'autumn',micro:'塘边首尾回塘鱼，供秋席——阿松家渔船线的荣誉位',pal:'银身 B/m · 背鳍 g · 目 K · 水线 m',sil:'鱼身叉尾一线水'},
+{rows:I_HANLU,term:'寒露',nm:'泣露草',season:'autumn',micro:'老秀才：「忘外年的人会替外头哭」',pal:'草叶 d/G/j · 露珠 m · 地线 K',sil:'三茎两滴露'},
+{rows:I_SHUANGJIANG,term:'霜降',nm:'初霜鞭',season:'autumn',micro:'老爷子：「霜和甜是一对」',pal:'柿 e · 星蒂 t · 霜痕 N · 叶 d',sil:'圆果星蒂一短梗'}
 ];
 /* ===== 渲染器（简版：'.' 跳过、sil/grid/pal；fullRender 唯一重绘入口） ===== */
 const state={sil:false,grid:false};
@@ -284,6 +347,8 @@ function usedColors(rows,pal){
 }
 const iconsEl=document.getElementById('icons');
 const icons2El=document.getElementById('icons2');
+const icons3El=document.getElementById('icons3');
+const GRIDS={spring:iconsEl,summer:icons2El,autumn:icons3El};
 ICONS.forEach(t=>{
   const spal=SEASON_PALS[t.season];
   const card=document.createElement('div');card.className='card';
@@ -297,7 +362,7 @@ ICONS.forEach(t=>{
   const mi=document.createElement('div');mi.className='micro';mi.textContent=t.micro;card.appendChild(mi);
   const ch=document.createElement('div');ch.className='chips';ch.innerHTML=usedColors(t.rows,spal);card.appendChild(ch);
   const pn=document.createElement('div');pn.className='micro';pn.textContent='剪影：'+t.sil;card.appendChild(pn);
-  (t.season==='spring'?iconsEl:icons2El).appendChild(card);
+  (GRIDS[t.season]||iconsEl).appendChild(card);
   t.cv=cv;t.mcv=m;
 });
 const pqCv=document.getElementById('pqCv');
