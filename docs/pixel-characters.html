@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 像素人物稿板 v0.5</title>
+<title>桃花源 · 像素人物稿板 v0.6</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --cinnabar:#9A3B2B;
@@ -105,9 +105,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素人物稿</div>
     <div class="subtitle">
       <div class="rule">每一个点都是手排的：本页全部精灵为代码内像素矩阵，零生图。</div>
-      <p>v0.3 据调研重排：<b>帧格 16×20→16×32</b>（对齐星露谷宽1tile高2tile硬规格），<b>工笔多色线</b>（全局黑描边废除，每料取本色暗一档为线），<b>三色阶衣料</b>（亮/中/影各角色主衣三档），<b>发色双重编码</b>（八人发块不再同色同形），<b>女性不挂粉</b>（小满桃夭降为滚边，主衣改靛青）。<b>v0.4 补调研欠账</b>：<b>肤色五档</b>（白净q/常肤S/赭晒b/黝黑x/髹漆同x——星露谷被骂"全员一肤"才扩到 24 档，我们第一版就拉开），<b>发色四族落位</b>（玄H·褐f·霜N·雪W，帽下露发即年龄语言），<b>表情补 7 型</b>（女主 3 型 + NPC 方言 4 型：德厚怒＝胡子翘、黄婶喜＝笑眼眯、大山倦＝日头眯眼、小满赧＝红晕辫梢）。<b>v0.5 补最大硬欠账</b>：<b>工具五类×3 帧</b>——壶／镰／斧／竿 12 帧新排（木柄 n·铁首 z·水线 B·浮标 Y，禁 K 一色），芒种节 15 格齐；同时修 v0.4 三处道具层旧伤（锄 A 行宽溢 1px、锄 B 缺 1 行、锄头 K 线违规改 yOOy）。</p>
+      <p>v0.3 据调研重排：<b>帧格 16×20→16×32</b>（对齐星露谷宽1tile高2tile硬规格），<b>工笔多色线</b>（全局黑描边废除，每料取本色暗一档为线），<b>三色阶衣料</b>（亮/中/影各角色主衣三档），<b>发色双重编码</b>（八人发块不再同色同形），<b>女性不挂粉</b>（小满桃夭降为滚边，主衣改靛青）。<b>v0.4 补调研欠账</b>：<b>肤色五档</b>（白净q/常肤S/赭晒b/黝黑x/髹漆同x——星露谷被骂"全员一肤"才扩到 24 档，我们第一版就拉开），<b>发色四族落位</b>（玄H·褐f·霜N·雪W，帽下露发即年龄语言），<b>表情补 7 型</b>（女主 3 型 + NPC 方言 4 型：德厚怒＝胡子翘、黄婶喜＝笑眼眯、大山倦＝日头眯眼、小满赧＝红晕辫梢）。<b>v0.5 补最大硬欠账</b>：<b>工具五类×3 帧</b>——壶／镰／斧／竿 12 帧新排（木柄 n·铁首 z·水线 B·浮标 Y，禁 K 一色），芒种节 15 格齐；同时修 v0.4 三处道具层旧伤（锄 A 行宽溢 1px、锄 B 缺 1 行、锄头 K 线违规改 yOOy）。<b>v0.6 立绘清账</b>：<b>NPC 立绘四型全量 15→28</b>——德厚补常/喜/悲（髯顺垂/八字开/湿塌）、黄婶补常/怒/悲（方眼平嘴/眉压抿嘴/垂眉单泪）、大山补常/喜/怒（笠影方眼/张口/瞪眼）、小满补常/喜/悲（辫梢跳/垂眉泪）、江客补常型（眼开眉平）。</p>
       <div class="spec">
-        <span>16×32 × 四方向</span><span>待机 2 + 行走 4 + 工具 5×3</span><span>肤色 5 档 · 发色 4 族</span><span>表情 15 型（男5 女3 江客3 方言4）</span><span>每角色 ≤12 色</span><span>朱砂只给人情事件</span><span>禁 3D 预渲染</span>
+        <span>16×32 × 四方向</span><span>待机 2 + 行走 4 + 工具 5×3</span><span>肤色 5 档 · 发色 4 族</span><span>表情 28 型（男5 女3 江客4 NPC16）</span><span>每角色 ≤12 色</span><span>朱砂只给人情事件</span><span>禁 3D 预渲染</span>
       </div>
       <div class="docs">上游：research-stardew-characters.md · art-style-guide §2/§4 · character-roster · design-board v0.2</div>
     </div>
@@ -183,11 +183,14 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <h2 id="t-faces">表情 · 对话特写帧 16×16</h2>
     <span class="en">主角 5 型起步 · NPC 走表情方言</span>
   </div>
-  <p class="lede">16px 脸上表情只有<b>眉、眼形、嘴、汗/泪/红晕</b>五个可动件——特写帧（对话框头像位）才放表情，行走图不带脸。星露谷每 NPC 4 型表情立绘，我们主角备 5 型、NPC 走表情方言。</p>
+  <p class="lede">16px 脸上表情只有<b>眉、眼形、嘴、汗/泪/红晕</b>五个可动件——特写帧（对话框头像位）才放表情，行走图不带脸。星露谷每 NPC 4 型表情立绘，我们主角备 5 型、<b>五名 NPC 各 4 型全量（v0.6 清账）</b>——每 NPC 留一个"表情器官"方言：德厚＝髯、黄婶＝笑眼、大山＝笠影里的眼、小满＝辫梢红晕、江客＝眼神开阖。</p>
   <div class="face-group"><h3>主角 · 男 · 五型</h3><div class="faces" id="facesM"></div></div>
-  <div class="face-group"><h3>江客 · 三型（候选的极简语法）</h3><div class="faces" id="facesJ"></div></div>
   <div class="face-group"><h3>主角 · 女 · 三型</h3><div class="faces" id="facesF"></div></div>
-  <div class="face-group"><h3>NPC 表情方言 · 四型样本（一人一个可动件）</h3><div class="faces" id="facesN"></div></div>
+  <div class="face-group"><h3>江客 · 四型（眼神开阖即方言）</h3><div class="faces" id="facesJ"></div></div>
+  <div class="face-group"><h3>黄德厚 · 四型（髯即表情器官）</h3><div class="faces" id="facesD"></div></div>
+  <div class="face-group"><h3>王桂珍 · 黄婶 · 四型</h3><div class="faces" id="facesG"></div></div>
+  <div class="face-group"><h3>吴大山 · 四型（笠影里的眼）</h3><div class="faces" id="facesDS"></div></div>
+  <div class="face-group"><h3>黄小满 · 四型（辫梢与红晕）</h3><div class="faces" id="facesX"></div></div>
 </section>
 <section aria-labelledby="t-dist">
   <div class="term-head">
@@ -221,8 +224,8 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="cinnabar-note">色彩语义账：玩家在第 40 小时看到红绦掉出来的瞬间就该心跳半拍——这是 80 小时只喂四次朱砂换来的条件反射。外包审稿单第一条：这个红是不是人情事件？不是，换掉。</div>
 </section>
 <footer>
-  <span>桃花源（Tarcadia）像素人物稿板 v0.5 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：剪影可辨 · 四方向齐 · 工具五类三帧 · 表情五型 · ×1 远景可辨 · 年集换色不混 · 朱砂=人情事件</span>
+  <span>桃花源（Tarcadia）像素人物稿板 v0.6 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：剪影可辨 · 四方向齐 · 工具五类三帧 · 表情 28 型 · ×1 远景可辨 · 年集换色不混 · 朱砂=人情事件</span>
 </footer>
 </div>
 <script>
@@ -1340,6 +1343,228 @@ const F_X_SHY=[
 '..KxxxxxxxxxxxxK',
 '...KsxxxxxxxxsK.',
 '....KKKKKKKK....'];
+/* ===== v0.6 立绘补全 13 张：德厚常/喜/悲 · 黄婶常/怒/悲 · 大山常/喜/怒 · 小满常/喜/悲 · 江客常 ===== */
+const F_D_CALM=[
+'..KKKKKKKKKKKK..',
+'..KKKKKKKKKKKK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KqqqqqqqqqqqqK',
+'..KqqKKqqqqKKqqK',
+'..KqqKKqqqqKKqqK',
+'..KqqqqqqqqqqqqK',
+'..KsqqqqqqqqqqsK',
+'W.KqqqqqqqqqqqqK',
+'..KqqqqqqqqqqqqK',
+'..KqqWWKKKKWWqqK',
+'..KqqWWWWWWWWqqK',
+'...KsqWWWWWWqsK.',
+'....KWWWWWWK....'];
+const F_D_JOY=[
+'..KKKKKKKKKKKK..',
+'..KKKKKKKKKKKK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KqqqqqqqqqqqqK',
+'..KqqKKqqqqKKqqK',
+'..KqqqqqqqqqqqqK',
+'..KqqqqqqqqqqqqK',
+'..KsqqqqqqqqqqsK',
+'W.KqqqqqqqqqqqqK',
+'..KqqqqKKKKqqqqK',
+'..KqWWKqqqqKWWqK',
+'..KqqWWWWWWWWqqK',
+'...KsqWWWWWWqsK.',
+'...KWWKKKKWWK...'];
+const F_D_SAD=[
+'..KKKKKKKKKKKK..',
+'..KKKKKKKKKKKK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KqqKKqqqqKKqqK',
+'..KqKKqqqqqqKKqK',
+'..KqqKKqqqqKKqqK',
+'..KqqqqqqqqqqqqK',
+'..KsqqWqqqqqWqsK',
+'W.KqqqqqqqqqqqqK',
+'..KqqqqqqqqqqqqK',
+'..KqqWWKKKKWWqqK',
+'..KqqWWWWWWWWqqK',
+'..KsqWWWWWWWWqsK',
+'..KWWWWWWWWWWK..'];
+const F_G_CALM=[
+'......KKKK......',
+'.....KNNNNK.....',
+'....KNNNNNNK....',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KbbbbbbbbbbbK.',
+'..KbbbbbbbbbbbbK',
+'..KbbKKbbbKKbbK.',
+'..KbbKKbbbKKbbK.',
+'..KsbbbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbKKKbbbbbK',
+'..KbbbbbbbbbbbK.',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_G_ANG=[
+'......KKKK......',
+'.....KNNNNK.....',
+'....KNNNNNNK....',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KbbKKbbbKKbbK.',
+'..KbKKbbbbbKKbK.',
+'..KbbKKbbbKKbbK.',
+'..KbbbbbbbbbbbbK',
+'..KsbbbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbbbbbbbbK',
+'..KbbbKKKKKbbbK.',
+'..KbbbbbbbbbbbK.',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_G_SAD=[
+'......KKKK......',
+'.....KNNNNK.....',
+'....KNNNNNNK....',
+'..KNNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'..KbbKKbbbKKbbK.',
+'..KbKKbbbbbKKbK.',
+'..KbbKKbbbKKbbK.',
+'..KbbKKbbbKKbbK.',
+'..KsbWbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbbbbbbbbK',
+'..KbbKbbbbbKbbK.',
+'..KbbbbbbbbbbbK.',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_DS_CALM=[
+'....KYYYYYYK....',
+'...KYYYYYYYYK...',
+'..KYYYYYYYYYYK..',
+'.KYYYYYYYYYYYYK.',
+'..KHHHHHHHHHHK..',
+'..KbbbbbbbbbbbK.',
+'..KbbbbbbbbbbbbK',
+'..KbbKKbbbKKbbK.',
+'..KbbKKbbbKKbbK.',
+'..KsbbbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbKKbbbbbK',
+'..KbbbbbbbbbbbbK',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_DS_JOY=[
+'....KYYYYYYK....',
+'...KYYYYYYYYK...',
+'..KYYYYYYYYYYK..',
+'.KYYYYYYYYYYYYK.',
+'..KHHHHHHHHHHK..',
+'..KbbbbbbbbbbbK.',
+'..KbbKKKbbKKKbbK',
+'..KbbbbbbbbbbbbK',
+'..KsbbbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbKKbbbbbK',
+'..KbbbbKKKKbbbbK',
+'..KbbbbbbbbbbbbK',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_DS_ANG=[
+'....KYYYYYYK....',
+'...KYYYYYYYYK...',
+'..KYYYYYYYYYYK..',
+'.KYYYYYYYYYYYYK.',
+'..KHHHHHHHHHHK..',
+'..KbbbbbbbbbbbK.',
+'..KbKKbbbbbKKbK.',
+'..KbbKKbbbKKbbK.',
+'..KbbKKbbbKKbbK.',
+'..KsbbbbbbbbbbsK',
+'..KbbbbbbbbbbbbK',
+'..KbbbbbbbbbbbbK',
+'..KbbbKKKKKbbbK.',
+'..KbbbbbbbbbbbbK',
+'...KsbbbbbbbbsK.',
+'....KKKKKKKK....'];
+const F_X_CALM=[
+'...KKKKKKKKKK...',
+'..KHHHHHHHHHHK..',
+'.HKHHHHHHHHHHKH.',
+'.HKHHHHHHHHHHKH.',
+'.HKHHHHHHHHHHKH.',
+'..KxxxxxxxxxxxK.',
+'..KxxKKxxxKKxxK.',
+'..KxxKKxxxKKxxK.',
+'..KxxxxxxxxxxxxK',
+'..KsxxxxxxxxxxsK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxxKxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'...KsxxxxxxxxsK.',
+'....KKKKKKKK....'];
+const F_X_JOY=[
+'...KKKKKKKKKK...',
+'..KHHHHHHHHHHK..',
+'.HKHHHHHHHHHHKH.',
+'HHKHHHHHHHHHHKHH',
+'.HKHHHHHHHHHHKH.',
+'..KxxxxxxxxxxxK.',
+'..KxxKKxxxKKxxK.',
+'..KxxxxxxxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'..KsxxxxxxxxxxsK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxKKKKxxxxK',
+'..KxxxxxxxxxxxxK',
+'...KsxxxxxxxxsK.',
+'....KKKKKKKK....'];
+const F_X_SAD=[
+'...KKKKKKKKKK...',
+'..KHHHHHHHHHHK..',
+'.HKHHHHHHHHHHKH.',
+'.HKHHHHHHHHHHKH.',
+'.HKHHHHHHHHHHKH.',
+'..KxxKKxxxKKxxK.',
+'..KxKKxxxxxKKxK.',
+'..KxxKKxxxKKxxK.',
+'..KxWxxxxxxxxxxK',
+'..KsxxxxxxxxxxsK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'..KxxxxKKxxxxxxK',
+'..KxxxxxxxxxxxxK',
+'...KsxxxxxxxxsK.',
+'....KKKKKKKK....'];
+const F_J_CALM=[
+'.....KKKKKKK....',
+'....KNNNNNNNK...',
+'...KNNNNNNNNNK..',
+'..KNNNNNNNNNNK..',
+'.....KSSSSSSSSK.',
+'.....KSKSSKSSSK.',
+'.....KSKSSKSSSK.',
+'......KSSSSSSK..',
+'......KsSSSSsK..',
+'......KSSSSSSK..',
+'......KSSSSSSK..',
+'......KSSSSSSK..',
+'......KSKKKKSK..',
+'......KSSSSSSK..',
+'.......KsSSK....',
+'........KK......'];
 /* ===== 物件 16×16 ===== */
 const HONGTAO=[
 '................','......KKKK......','.....KRRRRK.....','....KRKRRKRK....',
@@ -1380,6 +1605,7 @@ const FACES_M=[
  {rows:F_M_SHY,  cap:'赧 · 闭眼双晕'}
 ];
 const FACES_J=[
+ {rows:F_J_CALM, cap:'常 · 眼开眉平'},
  {rows:F_J_BASE, cap:'倦 · 眼半阖'},
  {rows:F_J_SMILE,cap:'悦 · 眼缝开半格'},
  {rows:F_J_STERN,cap:'肃 · 眉线一刀'}
@@ -1389,11 +1615,29 @@ const FACES_F=[
  {rows:F_F_JOY,  cap:'喜 · 张口见齿'},
  {rows:F_F_ANG,  cap:'嗔 · 眉压眼缝'}
 ];
-const FACES_N=[
- {rows:F_D_ANG,  cap:'德厚 · 怒＝胡子翘（髯即表情器官）'},
- {rows:F_G_JOY,  cap:'黄婶 · 喜＝笑眼眯'},
- {rows:F_DS_TIRED,cap:'大山 · 倦＝日头眯眼'},
- {rows:F_X_SHY,  cap:'小满 · 赧＝红晕双辫'}
+const FACES_D=[
+ {rows:F_D_CALM,cap:'德厚 · 常＝髯顺垂'},
+ {rows:F_D_JOY, cap:'德厚 · 喜＝髯八字开'},
+ {rows:F_D_SAD, cap:'德厚 · 悲＝髯湿塌'},
+ {rows:F_D_ANG, cap:'德厚 · 怒＝髯翘'}
+];
+const FACES_G=[
+ {rows:F_G_CALM,cap:'黄婶 · 常＝方眼平嘴'},
+ {rows:F_G_JOY, cap:'黄婶 · 喜＝笑眼眯'},
+ {rows:F_G_SAD, cap:'黄婶 · 悲＝垂眉单泪'},
+ {rows:F_G_ANG, cap:'黄婶 · 怒＝眉压嘴抿'}
+];
+const FACES_DS=[
+ {rows:F_DS_CALM, cap:'大山 · 常＝笠影方眼'},
+ {rows:F_DS_JOY,  cap:'大山 · 喜＝张口'},
+ {rows:F_DS_ANG,  cap:'大山 · 怒＝瞪眼抿嘴'},
+ {rows:F_DS_TIRED,cap:'大山 · 倦＝日头眯眼'}
+];
+const FACES_X=[
+ {rows:F_X_CALM,cap:'小满 · 常＝方眼'},
+ {rows:F_X_JOY, cap:'小满 · 喜＝辫梢跳'},
+ {rows:F_X_SAD, cap:'小满 · 悲＝垂眉泪'},
+ {rows:F_X_SHY, cap:'小满 · 赧＝红晕双辫'}
 ];
 const ITEMS=[
  {rows:HONGTAO,nm:'定亲红绦',cap:'江客线最深里程碑 · 全页唯一朱砂',red:true},
@@ -1527,7 +1771,10 @@ function faceInto(el,list,scale){
 faceInto(document.getElementById('facesM'),FACES_M,10);
 faceInto(document.getElementById('facesJ'),FACES_J,10);
 faceInto(document.getElementById('facesF'),FACES_F,10);
-faceInto(document.getElementById('facesN'),FACES_N,10);
+faceInto(document.getElementById('facesD'),FACES_D,10);
+faceInto(document.getElementById('facesG'),FACES_G,10);
+faceInto(document.getElementById('facesDS'),FACES_DS,10);
+faceInto(document.getElementById('facesX'),FACES_X,10);
 const distEl=document.getElementById('distWrap');
 const DIST=[];
 CAST.slice(2).forEach(p=>{
@@ -1571,7 +1818,7 @@ function fullRender(){
   TOOLS.forEach(f=>{draw(f.cv,MALE,6,opts());overlay(f.cv,f.ovl,6,{sil:state.sil});});
   CAST.forEach(p=>draw(p.cv,p.rows,6,opts()));
   DIR_CELLS.forEach(d=>draw(d.cv,d.rows,5,opts()));
-  FACES_M.concat(FACES_J,FACES_F,FACES_N).forEach(f=>draw(f.cv,f.rows,f.scale,opts()));
+  FACES_M.concat(FACES_J,FACES_F,FACES_D,FACES_G,FACES_DS,FACES_X).forEach(f=>draw(f.cv,f.rows,f.scale,opts()));
   DIST.forEach(d=>draw(d.cv,d.rows,d.s,{sil:state.sil}));
   e_fair();
   ITEMS.forEach(it=>draw(it.cv,it.rows,8,opts()));
