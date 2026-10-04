@@ -142,10 +142,10 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
 <section aria-labelledby="t-cast">
   <div class="term-head">
     <span class="term-plaque">立夏</span>
-    <h2 id="t-cast">人物稿 · 切片八人＋量产五人 · 一人一色谱</h2>
+    <h2 id="t-cast">人物稿 · 十八人全册 · 一人一色谱</h2>
     <span class="en">靛 · 苔绿 · 墨灰 · 月白 · 苎麻 · 靛青 · 荷碧 · 烟灰</span>
   </div>
-  <p class="lede">十三张卡（切片 8 人＋量产批 2 的 5 人）：色谱各不重复（卡下色卡条即账），体型各走极端，格内挂一个<b>剪影特征件</b>。<b>开剪影模式再过一遍</b>：全黑之后还能叫出名字，这张卡才算过。</p>
+  <p class="lede">十八张卡（切片 8 人＋量产批 2/3 各 5 人）＝<b>全册齐</b>：色谱各不重复（卡下色卡条即账），体型各走极端，格内挂一个<b>剪影特征件</b>。<b>开剪影模式再过一遍</b>：全黑之后还能叫出名字，这张卡才算过。</p>
   <div class="grid" id="cast"></div>
   <div class="rules">
     <ul>
@@ -205,6 +205,11 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="face-group"><h3>吴雅琴 · 丫头 · 四型（眼即方言：直视）</h3><div class="faces" id="facesYQ"></div></div>
   <div class="face-group"><h3>黄承野 · 民宿主 · 四型（营业眉↔独处眉）</h3><div class="faces" id="facesCY"></div></div>
   <div class="face-group"><h3>顾小鹿 · 支教 · 四型（眼镜即方言）</h3><div class="faces" id="facesXL"></div></div>
+  <div class="face-group"><h3>罗春香 · 豆腐坊 · 四型（嘴即方言：嗓门）</h3><div class="faces" id="facesCX"></div></div>
+  <div class="face-group"><h3>江四海 · 货郎 · 四型（生意眉）</h3><div class="faces" id="facesHS"></div></div>
+  <div class="face-group"><h3>罗守山 · 猎户 · 四型（眼即方言：锐看）</h3><div class="faces" id="facesSHS"></div></div>
+  <div class="face-group"><h3>周满 · 镇播 · 四型（耳机＋播报口型）</h3><div class="faces" id="facesZM"></div></div>
+  <div class="face-group"><h3>刘铁生 · 修理匠 · 四型（专注单眉）</h3><div class="faces" id="facesTS"></div></div>
 </section>
 <section aria-labelledby="t-dist">
   <div class="term-head">
@@ -238,7 +243,7 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="cinnabar-note">色彩语义账：玩家在第 40 小时看到红绦掉出来的瞬间就该心跳半拍——这是 80 小时只喂四次朱砂换来的条件反射。外包审稿单第一条：这个红是不是人情事件？不是，换掉。</div>
 </section>
 <footer>
-  <span>桃花源（Tarcadia）像素人物稿板 v0.7 批 2 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>桃花源（Tarcadia）像素人物稿板 v0.7 批 3 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
   <span>验收链：剪影可辨 · 四方向齐 · 工具五类三帧 · 表情 28 型 · 行走独立三套 · ×1 远景可辨 · 年集换色不混 · 朱砂=人情事件</span>
 </footer>
 </div>
@@ -1204,6 +1209,111 @@ const XIAOLU_BACK=[
 '..KqYYYYYYYYqK..','..KsYYYYYYYYsK..','..KsYYYYYYYYsK..','..KsYYYYYYYYsK..','..KsYYYYYYYYsK..',
 '..KeeeeeeeeeeK..','..KeeeKKKKeeeK..','....KeK..eK.....','....KeK..eK.....','....KFK..FK.....',
 '...KFFK..KFFK...','...KKK....KKK...','................','................','................'];
+/* ===== v0.7 批 3 · 量产 5 人（roster #12＋编外 2＋半线拣 2）：豆腐坊/货郎/猎户/主播/修理匠 ===== */
+const CHUNXIANG=[
+'................','................','................','................','................','................',
+'....KKKKKKKK....','...KffffffffK...','..KffffffffffK..','..KffSSSSSSffK..','..KfSKSSSSKSfK..',
+'..KfSSSSSSSSsK..','...KsSSSSSSsK...','....KkSSSSkK....','...KkWOWWOWkK...','..KSWWWOWWOWSK..',
+'..KsWWWOWWOWsK..','..KsWWWWWWWWSK..','..KkWWWWWWWWkK..','..KkWWWWWWWWkK..','..KkWWKKWWWWkK..',
+'...KkWWWWWWkK...','...KkWWKKWWkK...','....KkWWWWkK....','....KkWW..WkK...','....KkWW..WkK...',
+'....KkFF..FkK...','...KkFFF..FFkK..','....KKK....KK...','................','................','................'];
+const CHUNXIANG_SIDE=[
+'................','................','................','................','................','................','................','................','................','................',
+'....KKKKKK......','...KffffffK.....','..KffffffffK....','..KfffSSSSK.WW..','..KffKSSSSKnWWn.',
+'..KffSSSSSK.Y...','..KfsSSSsK..Y...','...KKSSKK..Y....','...KkWWK........','..KSkWWOK.......',
+'..KskWWWWK......','..KskWWWWWK.....','...KkWWK........','...KkWWK........','....KkW.........',
+'....KkW.........','....KkF.........','...KkFFK........','...KKKK.........','................','................','................'];
+const CHUNXIANG_BACK=[
+'................','................','................','................','................','................',
+'....KKKKKKKK....','...KffffffffK...','..KffffffffffK..','..KffffffffffK..','..KffffffffffK..',
+'..KffffOOffffK..','..KffffOfffK....','....KffOOfK.....','.....KKKK.......','...KkWWWWWWkK...',
+'..KSWWWWWWWWSK..','..KsWWWWWWWWSK..','..KsWWWWWWWWSK..','..KkOOOOOOOOkK..','..KkWWWWWWWWkK..',
+'..KkWWWWWWWWkK..','..KkWWKKKKWWkK..','...KkWK..KWkK...','...KkFK..FkK....','..KkFFK..KFFkK..',
+'..KKKK....KKKK..','................','................','................','................','................'];
+const HUOLANG=[
+'................','................','................','................','................','................','................',
+'....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHbbbbbbHK...','...KHbKbbKbHK...',
+'...KHbbbbbbHK...','....KkbbbbkK....','...KbbKKKKbbK...','..KZZZZZZZZZZK..','..KbZZWWZZZZbK..',
+'..KsZZWWZZZZsK..','..KkZZZZZZZZkK..','..KZZZZZZZZZZK..','...KteeeeeetK...','...KteeeeeetK...',
+'...KteeKKeetK...','....Kte..etK....','....Kte..etK....','....Kte..etK....','....KtF..FtK....',
+'...KtFF..FFtK...','....KKK..KKK....','................','................','................'];
+const HUOLANG_SIDE=[
+'................','................','................','................','................','................','................','................','................',
+'....KKKKKK......','...KHHHHHHK.....','...KHHHHHHK.....','...KHHHbbbbK....','...KHHKbbbbK....',
+'...KHHbbbbbK....','...KsbbbbsK.....','....KkbbbkK.....','....KZZK.WWW....','...KbZZKWWWWW...',
+'...KsZZKWWWWW...','...KsZZK.WWW....','....KkkK........','....KteK........','....KteK........',
+'....KteK........','....KteK........','....KtFK........','...KtFFK........','...KKKK.........',
+'................','................','................'];
+const HUOLANG_BACK=[
+'................','................','................','................','................','................','................',
+'....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHHHHHHHHK...','....KHHHHHHK....','.....KKKKKK.....','...KZZZZZZZZK...','..KWZZZZZZZZWK..',
+'..KsZZWWZZZZsK..','..KsZZWWZZZZsK..','...KkkkkkkkkK...','...KteeeeeetK...','...KteeeeeetK...',
+'...KteeKKeetK...','....Kte..etK....','....Kte..etK....','....Kte..etK....','....KtF..FtK....',
+'...KtFF..FFtK...','....KKK..KKK....','................','................','................'];
+const LIEHU=[
+'................','................','................','................','................','................','................',
+'....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHxxxxxxHK...','...KHxKxxKxHK...',
+'...KHxxxxxxHK...','....KkxxxxkK....','...KddddddddK...','..KxddddddddxK..','..KSdFFddFFdSK..',
+'..KsdFFddFFdsK..','..KsddddddddsK..','..KgddddddddgK..','..KkddddddddkK..','...KteeeeeetK...',
+'...KteeKKeetK...','....Kte..etK....','....Kte..etK....','....Kte..etK....','....KtF..FtK....',
+'...KtFF..FFtK...','....KKK..KKK....','................','................','................'];
+const LIEHU_SIDE=[
+'................','................','................','................','................','................','................','................','................',
+'....KKKKKK......','...KHHHHHHK.....','...KHHHHHHK.....','...KHHHxxxxK....','...KHHKxxxxK....',
+'...KHHxxxxxK....','...KsxxxxsK.....','....KkxxkK......','....KddK...K....','...KsddK..K.....',
+'...KsddK..K.....','....KkkK..K.....','....KteK.K......','....KteK........','....KteK........',
+'....KteK........','....KteK........','....KtFK........','...KtFFK........','...KKKK.........',
+'................','................','................'];
+const LIEHU_BACK=[
+'................','................','................','................','................','................','................',
+'....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHHHHHHHHK...','....KHHHHHHK....','.....KKKKKK.....','..KYKddddddKYK..','..KsddnnndddsK..',
+'..KsddnYYnddsK..','..KsddnnnnddsK..','...KkkkkkkkkK...','...KteeeeeetK...','...KteeeeeetK...',
+'...KteeKKeetK...','....Kte..etK....','....Kte..etK....','....Kte..etK....','....KtF..FtK....',
+'...KtFF..FFtK...','....KKK..KKK....','................','................','................'];
+const ZHOUMAN=[
+'................','................','................','................','................','................',
+'....KKKKKKKK....','...KKHHHHHHKK...','..KHHHHHHHHHHK..','..KHHqqqqqqHHK..','..KKHKqqqqKHKK..',
+'..KKHqqqqqqHKK..','..KHqqqqqqqqsK..','..KsqqqqqqqqsK..','....KkqqqqkK....','...KvvWWWWvvK...',
+'..KqvvWWWWvvqK..','..KsvvWWWWvvsK..','..KsvvvvvvvvsK..','..Kwvvvvvvvvwk..','..KkvvvvvvvvkK..',
+'..KkvvKKvvvvkK..','...KkvvvvvvkK...','...KkvvKKvvkK...','....KkvvvvkK....','....Kkvv..vkK...',
+'....Kkvv..vkK...','....KkFF..FkK...','...KkFFF..FFkK..','....KKK....KK...','................','................'];
+const ZHOUMAN_SIDE=[
+'................','................','................','................','................','................','................','................','................',
+'....KKKKKK......','...KKHHHHKK.....','..KHHHHHHHHK....','..KHHqqqqKK.....','..KKHKqqqK......',
+'..KKHqqqqqK.....','..KHsqqqqsK.....','..KsqqqqqK......','...KKqqKK.......','...KvvWK........',
+'..KqvvWWK.......','..KsvvWWK.......','..KsvvvvvK......','...KkvvK........','...KkvvK........',
+'....Kkv.........','....Kkv.........','....Kkv.........','....KkF.........','...KkFFK........',
+'...KKKK.........','................','................'];
+const ZHOUMAN_BACK=[
+'................','................','................','................','................','................',
+'....KKKKKKKK....','...KKHHHHHHKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KKHHHHHHHKKK..',
+'..KKHHHHHHHKKK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','...KHHHHHHHHK...','...KvvvvvvvvK...','..KqvWWWWWWvqK..','..KsvvWWWWvvsK..',
+'..KsvvvvvvvvsK..','..KsvvvvvvvvsK..','..Kwvvvvvvvvwk..','..KkvvvvvvvvkK..','..KkvvKKKKvvkK..',
+'...KkvK..KvkK...','...KkFK..FkK....','..KkFFK..KFFkK..','..KKKK....KKKK..','................','................'];
+const TIESHENG=[
+'................','................','................','................','................','................',
+'....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHZHHHHHHK...','..KHHSSSSSSHHK..',
+'..KHSKSSSSKSHK..','..KHSSSSSSSSsK..','...KsSSSSSSsK...','....KkSSSSkK....','...KcWWWWWWcK...',
+'..KSOccWWccOSK..','..KsOccWWccOsK..','..KscccWWcccSK..','..KkcczcczcckK..','...KccccccccK...',
+'...KccccccccK...','...KcccKKcccK...','....Kcc..ccK....','....Kcc..ccK....','....Kcc..ccK....',
+'....KcF..FcK....','...KcFF..FFcK...','....KKK..KKK....','................','................','................'];
+const TIESHENG_SIDE=[
+'................','................','................','................','................','................','................','................','................',
+'....KKKKKK......','...KHHHHHHK.....','...KHHHHHHK.....','...KHHHSSSSK....','...KHHKSSSSK....',
+'...KHHSSSSSK....','...KsSSSSsK.....','....KkSSkK......','....KccK..O.....','...KScWWKOO.....',
+'...KscWWK.O.....','...KscccK.......','....KkkK........','....KccK........','....KccK........',
+'....KccK........','....KccK........','....KcFK........','...KcFFK........','...KKKK.........',
+'................','................','................'];
+const TIESHENG_BACK=[
+'................','................','................','................','................','................',
+'....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHHHHHHHHK...','...KHHHHHHHHK...','....KHHHHHHK....','.....KKKKKK.....','...KccccccccK...',
+'..KSccccccccSK..','..KscOOccOOcsK..','..KscOOccOOcsK..','..KsccccccccsK..','..KkcccccccckK..',
+'...KccccccccK...','...KccccccccK...','...KcccKKcccK...','....Kcc..ccK....','....Kcc..ccK....',
+'....KcF..FcK....','...KcFF..FFcK...','....KKK..KKK....','................','................','................'];
 /* ===== 工具层（锄三帧 16×32） ===== */
 const HOE_A=[
 '..............YO','.............YYO','.............YO.','.............YO.','.............YO.',
@@ -1810,6 +1920,107 @@ const F_XL_ANG=[
 '..KfqKKqqKKqfK..','..KfqKKqqKKqfK..','..KfqqKqqKqqfK..','..KfqqqqqqqqfK..',
 '..KsqqqqqqqqsK..','..KqqqKKKKqqqK..','..KqYWWYYWWYqK..','..KqYYYYYYYYqK..',
 '..KsYYYYYYYYsK..','...KsYYYYYYsK...','....KsYYYYsK....','....KKKKKKKK....'];
+/* ===== v0.7 批 3 · 立绘 5 人×4 型 ===== */
+const F_CX_CALM=[
+'......KKKK......','...KffffffffK...','..KffffffffffK..','..KffffffffffK..',
+'..KffSSSSSSffK..','..KfSKSSSSKSfK..','..KfSSSSSSSSsK..','...KsSSSSSSsK...',
+'..KWWWOWWOWWWK..','..KsWWWOWWOWsK..','..KsSSKKKKSSsK..','..KsSSSSSSSSsK..',
+'..KsSSSSSSSSsK..','...KsSSSSSSsK...','....KsWWWWsK....','....KKKKKKKK....'];
+const F_CX_JOY=[
+'......KKKK......','...KffffffffK...','..KffffffffffK..','..KffffffffffK..',
+'..KffSSSSSSffK..','..KfSKSSSSKSfK..','..KfSSSSSSSSsK..','...KsSSSSSSsK...',
+'..KWWWOWWOWWWK..','..KsWWWOWWOWsK..','..KsSKKKKKKSSK..','..KsSKWKKWKSSK..',
+'..KsSSSSSSSSsK..','...KsSSSSSSsK...','....KsWWWWsK....','....KKKKKKKK....'];
+const F_CX_SAD=[
+'......KKKK......','...KffffffffK...','..KffffffffffK..','..KffffffffffK..',
+'..KffSSSSSSffK..','..KfKKSSSSKKfK..','..KfSKSSSSKSfK..','...KsSSSSSSsK...',
+'..KWWWOWWOWWWK..','..KsSWWOWWOWsK..','..KsSSSSKSSSSK..','..KsSSSSSSSSsK..',
+'..KsSSSSSSSSsK..','...KsSSSSSSsK...','....KsWWWWsK....','....KKKKKKKK....'];
+const F_CX_ANG=[
+'......KKKK......','...KffffffffK...','..KffffffffffK..','..KffffffffffK..',
+'..KffSSSSSSffK..','..KfKKSSSSKKfK..','..KfSKSSSSKSfK..','...KsSSSSSSsK...',
+'..KWWWOWWOWWWK..','..KsWWWOWWOWsK..','..KsSKOOOOKSSK..','..KsSKKKKKKSSK..',
+'..KsSSSSSSSSsK..','...KsSSSSSSsK...','....KsWWWWsK....','....KKKKKKKK....'];
+const F_HS_CALM=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHbbbbbbHK...','...KHbbbbbbHK...','...KHbKbbKbHK...','...KHbKbbKbHK...',
+'...KHbbbbbbHK...','...KsbbbbbbssK..','...KHbbbbbbHK...','...KbbKKKKbbK...',
+'...KbbbKKKbbK...','...KsbbbbbbsK...','....KsbbbbsK....','....KKKKKKKK....'];
+const F_HS_JOY=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHbbbbbbHK...','...KHbbbbbbHK...','...KHKKbbKKHK...','...KHbbbbbbHK...',
+'...KHbbbbbbHK...','...KsbbbbbbssK..','...KHbbbbbbHK...','...KbbKKKKbbK...',
+'...KbbKKKKbbK...','...KbbKWWKbbK...','....KsbbbbsK....','....KKKKKKKK....'];
+const F_HS_SAD=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHbbbbbbHK...','...KHKKbbKKHK...','...KbKKbbKKbK...','...KHbKbbKbHK...',
+'...KHbbbbbbHK...','...KsbWbbbbssK..','...KHbbbbbbHK...','...KbbKKKKbbK...',
+'...KbbbbbbbbK...','...KsbbbbbbsK...','....KsbbbbsK....','....KKKKKKKK....'];
+const F_HS_ANG=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHbbbbbbHK...','...KbKKbbKKbK...','...KHbKbbKbHK...','...KHbKbbKbHK...',
+'...KHbbbbbbHK...','...KsbbbbbbssK..','...KHbbbbbbHK...','...KbbKKKKbbK...',
+'...KbbKKKKbbK...','...KsbbbbbbsK...','....KsbbbbsK....','....KKKKKKKK....'];
+const F_SHS_CALM=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHxxxxxxHK...','...KHxxxxxxHK...','...KHxKxxKxHK...','...KHxKxxKxHK...',
+'...KHxxxxxxHK...','...KsxxxxxxssK..','...KHxxxxxxHK...','...KxxKKKKxxK...',
+'...KxxxKxxKxK...','...KsxxxxxxsK...','....KsxxxxsK....','....KKKKKKKK....'];
+const F_SHS_JOY=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHxxxxxxHK...','...KHxxxxxxHK...','...KHKKxxKKHK...','...KHxxxxxxHK...',
+'...KHxxxxxxHK...','...KsxxxxxxssK..','...KHxxxxxxHK...','...KxxKKKKxxK...',
+'...KxxxKKKxxK...','...KxxKWWKxxK...','....KsxxxxsK....','....KKKKKKKK....'];
+const F_SHS_SAD=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHxxxxxxHK...','...KHKKxxKKHK...','...KxKKxxKKxK...','...KHxKxxKxHK...',
+'...KHxxxxxxHK...','...KsxWxxxxssK..','...KHxxxxxxHK...','...KxxKKKKxxK...',
+'...KxxxKxxxxK...','...KsxxxxxxsK...','....KsxxxxsK....','....KKKKKKKK....'];
+const F_SHS_ANG=[
+'................','....KKKKKKKK....','...KHHHHHHHHK...','...KHHHHHHHHK...',
+'...KHxxxxxxHK...','...KxKKxxKKxK...','...KHxKxxKxHK...','...KHxKxxKxHK...',
+'...KHxxxxxxHK...','...KsxxxxxxssK..','...KHxxxxxxHK...','...KxxKKKKxxK...',
+'...KxxxKKKxxK...','...KsxxxxxxsK...','....KsxxxxsK....','....KKKKKKKK....'];
+const F_ZM_CALM=[
+'....KKKKKKKK....','...KKHHHHHHKK...','..KHHHHHHHHHHK..','..KHHqqqqqqHHK..',
+'..KKHKqqqqKHKK..','..KKHqqqqqqHKK..','..KHqqqqqqqqsK..','..KsqqqqqqqqsK..',
+'..KqqqqKKqqqqK..','..KqvvWWWWvvqK..','..KqvvWWWWvvqK..','..KsvvWWWWvvsK..',
+'..KsvvvvvvvvsK..','...KsvvvvvvsK...','....KsvvvvsK....','....KKKKKKKK....'];
+const F_ZM_JOY=[
+'....KKKKKKKK....','...KKHHHHHHKK...','..KHHHHHHHHHHK..','..KHHqqqqqqHHK..',
+'..KKHKqqqqKHKK..','..KKHqqqqqqHKK..','..KHqqqqqqqqsK..','..KsqqqqqqqqsK..',
+'..KqqqKKKKqqqK..','..KqvvWWWWvvqK..','..KqvvWWWWvvqK..','..KsvvWWWWvvsK..',
+'..KsvvvvvvvvsK..','...KsvvvvvvsK...','....KsvvvvsK....','....KKKKKKKK....'];
+const F_ZM_SAD=[
+'....KKKKKKKK....','...KKHHHHHHKK...','..KHHHHHHHHHHK..','..KHHqqqqqqHHK..',
+'..KKHKqqqqKHKK..','..KKHqqqqqqHKK..','..KHqKKqqKKqsK..','..KsqqqqqqqqsK..',
+'..KsqqWqqqqqsK..','..KqvvWWWWvvqK..','..KqvvWWWWvvqK..','..KsvvWWWWvvsK..',
+'..KsvvvvvvvvsK..','...KsvvvvvvsK...','....KsvvvvsK....','....KKKKKKKK....'];
+const F_ZM_ANG=[
+'....KKKKKKKK....','...KKHHHHHHKK...','..KHHHHHHHHHHK..','..KHHqqqqqqHHK..',
+'..KKHKqqqqKHKK..','..KKHqKKqqKHKK..','..KHqqKqqKqqsK..','..KsqqqqqqqqsK..',
+'..KqqqKKKKqqqK..','..KqvvWWWWvvqK..','..KqvvWWWWvvqK..','..KsvvWWWWvvsK..',
+'..KsvvvvvvvvsK..','...KsvvvvvvsK...','....KsvvvvsK....','....KKKKKKKK....'];
+const F_TS_CALM=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSSKKSSSSKKSSK','..KSSKKSSSSKKSSK','..KSSSSSSSSSSSSK',
+'..KsSSSSSSSSSSsK','..KccWWWWccSSK..','..KccccccccccK..','..KcccKKKKcccK..',
+'..KsccccccccsK..','...KsccccccsK...','....KsccccscK...','....KKKKKKKK....'];
+const F_TS_JOY=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSSSSSSSSSSSK.','..KSSKKSSSSKKSSK','..KSSKKSSSSKKSSK',
+'..KsSSSSSSSSSSsK','..KccWWWWccSSK..','..KccccccccccK..','..KcccKKKKcccK..',
+'..KcccKWWKcccK..','...KsccccccsK...','....KsccccscK...','....KKKKKKKK....'];
+const F_TS_SAD=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSSKKSSSSKKSSK','..KSKKSSSSKKSSK.','..KSSSSSSSSSSSSK',
+'..KSuSSSSSSSSSSK','..KsSSWSSSSSSsK.','..KccWWWWccSSK..','..KccccccccccK..',
+'..KccccKKKcccK..','...KsccccccsK...','....KsccccscK...','....KKKKKKKK....'];
+const F_TS_ANG=[
+'...KKKKKKKKKK...','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..','..KHHHHHHHHHHK..',
+'..KHHHHHHHHHHK..','..KSKKSSSSKKSKK.','..KSSKKSSKKSSSSK','..KSSKKSSSSKKSSK',
+'..KsSSSSSSSSSSsK','..KccWWWWccSSK..','..KccccccccccK..','..KcccKKKKcccK..',
+'..KcccKWKKcccK..','...KsccccccsK...','....KsccccscK...','....KKKKKKKK....'];
 /* ===== 物件 16×16 ===== */
 const HONGTAO=[
 '................','......KKKK......','.....KRRRRK.....','....KRKRRKRK....',
@@ -1845,7 +2056,12 @@ const CAST=[
  {rows:SHEHUO,  nm:'罗建国 · 社火头人', sil:'宽肩+胸挂傩面',     pal:'肤b 赭晒 · 发H 玄 · 赭衣O',  side:SHEHUO_SIDE,  back:SHEHUO_BACK},
  {rows:YAQIN,   nm:'吴雅琴 · 丫头',  sil:'短发+围裙+腰挂墨斗', pal:'肤S 常 · 发H 玄 · 罩衫h',    side:YAQIN_SIDE,   back:YAQIN_BACK},
  {rows:CHENGYE, nm:'黄承野 · 民宿主', sil:'翻领夹克+钥匙串',    pal:'肤S 常 · 发H 玄 · 夹克z',    side:CHENGYE_SIDE, back:CHENGYE_BACK},
- {rows:XIAOLU,  nm:'顾小鹿 · 支教',  sil:'眼镜+黄衬衫+齐肩发', pal:'肤q 白净 · 发f 褐 · 衬衫Y',  side:XIAOLU_SIDE,  back:XIAOLU_BACK}
+ {rows:XIAOLU,  nm:'顾小鹿 · 支教',  sil:'眼镜+黄衬衫+齐肩发', pal:'肤q 白净 · 发f 褐 · 衬衫Y',  side:XIAOLU_SIDE,  back:XIAOLU_BACK},
+ {rows:CHUNXIANG, nm:'罗春香 · 豆腐坊', sil:'独辫O绳+月白衣+挑豆腐板', pal:'肤S 常 · 发f 褐 · 主衣W滚边O', side:CHUNXIANG_SIDE, back:CHUNXIANG_BACK},
+ {rows:HUOLANG,  nm:'江四海 · 货郎',  sil:'褡裢+皂褐短打',      pal:'肤b 赭晒 · 发H 玄 · 短打Z',  side:HUOLANG_SIDE,  back:HUOLANG_BACK},
+ {rows:LIEHU,    nm:'罗守山 · 猎户',  sil:'背弓+箭壶+皮护胸',    pal:'肤x 黝黑 · 发H 玄 · 猎装d',  side:LIEHU_SIDE,    back:LIEHU_BACK},
+ {rows:ZHOUMAN,  nm:'周满 · 镇播',    sil:'头戴耳机+马尾',       pal:'肤q 白净 · 发H 玄 · 外套v',  side:ZHOUMAN_SIDE,  back:ZHOUMAN_BACK},
+ {rows:TIESHENG, nm:'刘铁生 · 修理匠', sil:'斜挎工具包+工具腰带', pal:'肤S 常 · 发H 玄 · 工装c',    side:TIESHENG_SIDE, back:TIESHENG_BACK}
 ];
 const FACES_M=[
  {rows:F_M_BASE, cap:'常 · 平眼直嘴'},
@@ -1918,6 +2134,36 @@ const FACES_XL=[
  {rows:F_XL_JOY,  cap:'小鹿 · 喜＝镜后眼弯'},
  {rows:F_XL_SAD,  cap:'小鹿 · 悲＝垂镜单泪'},
  {rows:F_XL_ANG,  cap:'小鹿 · 怒＝推镜瞪'}
+];
+const FACES_CX=[
+ {rows:F_CX_CALM, cap:'春香 · 常＝咧口笑'},
+ {rows:F_CX_JOY,  cap:'春香 · 喜＝大笑见齿'},
+ {rows:F_CX_SAD,  cap:'春香 · 悲＝瘪嘴垂眉'},
+ {rows:F_CX_ANG,  cap:'春香 · 怒＝嗓门大张口'}
+];
+const FACES_HS=[
+ {rows:F_HS_CALM, cap:'四海 · 常＝生意眉笑'},
+ {rows:F_HS_JOY,  cap:'四海 · 喜＝咧口见齿'},
+ {rows:F_HS_SAD,  cap:'四海 · 悲＝垂眉'},
+ {rows:F_HS_ANG,  cap:'四海 · 怒＝眉压'}
+];
+const FACES_SHS=[
+ {rows:F_SHS_CALM, cap:'守山 · 常＝锐眼细看'},
+ {rows:F_SHS_JOY,  cap:'守山 · 喜＝眯眼'},
+ {rows:F_SHS_SAD,  cap:'守山 · 悲＝垂眉'},
+ {rows:F_SHS_ANG,  cap:'守山 · 怒＝瞪眼'}
+];
+const FACES_ZM=[
+ {rows:F_ZM_CALM, cap:'周满 · 常＝播报口型'},
+ {rows:F_ZM_JOY,  cap:'周满 · 喜＝眼弯'},
+ {rows:F_ZM_SAD,  cap:'周满 · 悲＝垂眉泪'},
+ {rows:F_ZM_ANG,  cap:'周满 · 怒＝推耳机瞪'}
+];
+const FACES_TS=[
+ {rows:F_TS_CALM, cap:'铁生 · 常＝专注单眉'},
+ {rows:F_TS_JOY,  cap:'铁生 · 喜＝张口'},
+ {rows:F_TS_SAD,  cap:'铁生 · 悲＝垂眉'},
+ {rows:F_TS_ANG,  cap:'铁生 · 怒＝眉压'}
 ];
 const ITEMS=[
  {rows:HONGTAO,nm:'定亲红绦',cap:'江客线最深里程碑 · 全页唯一朱砂',red:true},
@@ -2093,6 +2339,11 @@ faceInto(document.getElementById('facesSHE'),FACES_SHE,10);
 faceInto(document.getElementById('facesYQ'),FACES_YQ,10);
 faceInto(document.getElementById('facesCY'),FACES_CY,10);
 faceInto(document.getElementById('facesXL'),FACES_XL,10);
+faceInto(document.getElementById('facesCX'),FACES_CX,10);
+faceInto(document.getElementById('facesHS'),FACES_HS,10);
+faceInto(document.getElementById('facesSHS'),FACES_SHS,10);
+faceInto(document.getElementById('facesZM'),FACES_ZM,10);
+faceInto(document.getElementById('facesTS'),FACES_TS,10);
 const distEl=document.getElementById('distWrap');
 const DIST=[];
 CAST.slice(2).forEach(p=>{
@@ -2137,7 +2388,7 @@ function fullRender(){
   CAST.forEach(p=>draw(p.cv,p.rows,6,opts()));
   DIR_CELLS.forEach(d=>draw(d.cv,d.rows,5,opts()));
   WALK_CELLS.forEach(d=>draw(d.cv,d.rows,5,opts()));
-  FACES_M.concat(FACES_J,FACES_F,FACES_D,FACES_G,FACES_DS,FACES_X,FACES_XC,FACES_SHE,FACES_YQ,FACES_CY,FACES_XL).forEach(f=>draw(f.cv,f.rows,f.scale,opts()));
+  FACES_M.concat(FACES_J,FACES_F,FACES_D,FACES_G,FACES_DS,FACES_X,FACES_XC,FACES_SHE,FACES_YQ,FACES_CY,FACES_XL,FACES_CX,FACES_HS,FACES_SHS,FACES_ZM,FACES_TS).forEach(f=>draw(f.cv,f.rows,f.scale,opts()));
   DIST.forEach(d=>draw(d.cv,d.rows,d.s,{sil:state.sil}));
   e_fair();
   ITEMS.forEach(it=>draw(it.cv,it.rows,8,opts()));
