@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 物候牌稿板 v0.1</title>
+<title>桃花源 · 物候牌稿板 v0.2</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -71,9 +71,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">物候牌稿</div>
     <div class="subtitle">
       <div class="rule">一年二十四段，一段一候一牌：节气的脸面先于文字抵达。</div>
-      <p>魂层稿板第一件（art-style-guide §2 音画绑定：<b>物候 icon 24 枚</b>，用于历法环、檐牌、签筒与加载图，<b>同一手笔</b>为外包合同条款——本页手排矩阵即示范件）。v0.1 立春起：<b>春六候</b>（头刀韭/起死蕨/雷初笋/新燕泥/明前野茶一枪/佛照石）＋<b>檐牌样张</b>一张（diegetic 载体验证）。选题正典＝design-board TERMS 每段 micro，全档唯一、零新设定；色板与 pixel-world SEASON_PALS <b>同源复制</b>（键名色值零改动，每季 12 色纪律直接继承）；'.'＝留白透宣纸——16px 内做水墨工笔近似：主体居中偏下、留白过半、墨线勾形、当季色点染。夏秋冬各 6 枚与廿四格罗盘（当前段高亮）随批 v0.2–v0.5 收官。</p>
+      <p>魂层稿板第一件（art-style-guide §2 音画绑定：<b>物候 icon 24 枚</b>，用于历法环、檐牌、签筒与加载图，<b>同一手笔</b>为外包合同条款——本页手排矩阵即示范件）。v0.1 立春起：<b>春六候</b>（头刀韭/起死蕨/雷初笋/新燕泥/明前野茶一枪/佛照石）＋<b>檐牌样张</b>一张（diegetic 载体验证）；v0.2 增<b>夏六候</b>（称蛋苇/杨梅火/枇杷骨/长影子线/金蝉壳/雷落木——杨梅熟果以 K 近墨写「乌梅近墨」，朱砂仍零）。选题正典＝design-board TERMS 每段 micro，全档唯一、零新设定；色板与 pixel-world SEASON_PALS <b>同源复制</b>（键名色值零改动，每季 12 色纪律直接继承）；'.'＝留白透宣纸——16px 内做水墨工笔近似：主体居中偏下、留白过半、墨线勾形、当季色点染。秋 6、冬 6 与廿四格罗盘随批 v0.3–v0.5 收官。</p>
       <div class="spec">
-        <span>16×16 ×24 段（v0.1 春 6）</span><span>键 ∈ 当季 12 色板</span><span>留白＝宣纸</span><span>一牌一物一题名</span><span>朱砂零 · 靛零</span><span>檐牌/历法环/签筒/加载图</span>
+        <span>16×16 ×24 段（春 6＋夏 6）</span><span>键 ∈ 当季 12 色板</span><span>留白＝宣纸</span><span>一牌一物一题名</span><span>朱砂零 · 靛零</span><span>檐牌/历法环/签筒/加载图</span>
       </div>
       <div class="docs">上游：art-style-guide.md §2/§3（魂层与色彩） · presentation-ux.md §2.1（小令＝每段 icon＋一句话＋一件采集物） · quest-scene-style.md §12（icon 层与「截图猜节气」） · production-scope.md §5（24 格罗盘常驻） · design-board.html TERMS（选题正典） · slice-calendar.md §1（檐牌载体）</div>
     </div>
@@ -125,9 +125,26 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     </div>
   </div>
 </section>
+<section aria-labelledby="t-summer">
+  <div class="term-head">
+    <span class="term-plaque">立夏</span>
+    <h2 id="t-summer">夏六候 · 繁物候世相</h2>
+    <span class="en">summer six · abundance &amp; omen</span>
+  </div>
+  <p class="lede">夏段六候全册：<b>立夏称蛋苇</b>（竖蛋与苇芯）、<b>小满杨梅火</b>（熟果近墨 K，不动朱砂——乌梅近墨，红意留白让）、<b>芒种枇杷骨</b>（首熟一枚供祭坛）、<b>夏至长影子线</b>（正午樟影一线，夏至影最短的节气点兑现）、<b>小暑金蝉壳</b>（蝉蜕垂枝，入药线钩子）、<b>大暑雷落木</b>（雷劈枯桩，断顶锯痕全档唯一）。夏物繁，故每枚仍守一主体——繁的是世相，不是像素密度。</p>
+  <div class="grid" id="icons2"></div>
+  <div class="rules">
+    <ul>
+      <li class="pos">夏板纪律同春：键 ∈ 夏 12 色板（荷碧系），'.' 留白过半，主体 8–10px 级、先剪影后点染</li>
+      <li class="pos">果熟写法：熟者近墨（K）、生者绿（d/j）——色板无红即不硬造红，语义交给明度差</li>
+      <li>禁把「雷」画两次抢戏：惊蛰雷是天上一抹，大暑雷是桩上一痕——同元素两段两解，不许重形</li>
+      <li>禁影线加粗：夏至影是「细影缝」，1px 线在 ×1 下恰好可察，加粗即失「测影」意</li>
+    </ul>
+  </div>
+</section>
 <footer>
-  <span>桃花源（Tarcadia）物候牌稿板 v0.1 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span><b>验收链：</b>选题出自 TERMS micro · 春 6 枚 · 键 ∈ 春 12 色板 · 留白过半 · 朱砂零 · 剪影可猜</span>
+  <span>桃花源（Tarcadia）物候牌稿板 v0.2 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span><b>验收链：</b>选题出自 TERMS micro · 春夏 12 枚 · 键 ∈ 本季 12 色板 · 留白过半 · 朱砂零 · 剪影可猜</span>
 </footer>
 </div>
 <script>
@@ -182,13 +199,62 @@ const I_GUYU=[
 '..K.Keeee.ee....','..eeeeeeeee.....','....eeeeeee.....',
 '....KKKKKK......','...m..m..m......','................',
 '................'];
+/* ===== 夏六候 16×16（'.'＝留白透宣纸，键 ∈ 夏 12 色板） ===== */
+const I_LIXIA=[
+'................',
+'..........jj....','.........jjdd...','.........jjdd...',
+'..........jd....','...........d....','...........d....',
+'...........d....','......e....d....','.....eee...d....',
+'.....eeet..d....','.....eeet..d....','.....eeet..d....',
+'......et...d....','....ttttttttt...','................'];
+const I_XIAOMAN=[
+'................','................','................',
+'....t...........','.....t..........','.....G.GG.......',
+'....Gddddd......','.....dddjKKK....','.....dddjKKKK...',
+'......ddjKKK....','......ddKKK.....','.......ddKK.....',
+'.......tdt......','................','................',
+'................'];
+const I_MANGZHONG=[
+'................','................','................',
+'...t............','...t............','..GGGG..........',
+'..GGGG..e.......','.....t..eee.....','..ddd.eeee......',
+'..ddddeeee......','..ddddeete......','...dddeete......',
+'....dd.ee.......','................','................',
+'................'];
+const I_XIAZHI=[
+'................','................','....GGGGG.......',
+'...GGjjjGG......','..GGjjjjGGG.....','...GGjjGGG......',
+'....GGGG........','.......tt.......','.......tt.......',
+'.......tt.......','.......tt.......','.......tt.......',
+'....eeeeee......','........KKKKK...','................',
+'................'];
+const I_XIAOSHU=[
+'................','................','...tttttttttt...',
+'......tt........','.....KeeK.......','..e.eeeee.e.....',
+'..e.eeeee.e.....','....eeeee.......','.....eteee......',
+'......tee.......','......ee........','................',
+'................','................','................',
+'................'];
+const I_DASHU=[
+'................','................','.........t......',
+'.......t.t......','.....t.t.t......','.....eeeet......',
+'.....eeeKtt.....','.....eeeKt......','.....eeKtt......',
+'.....eeKtt......','.....eeeKt......','.....eeeKt......',
+'.....eeeKt......','.....eeeet......','....ttttttt.....',
+'................'];
 const ICONS=[
 {rows:I_LICHUN,term:'立春',nm:'头刀韭',season:'spring',micro:'新开年第一刀韭——爷爷册子里夹着饺馅来历页',pal:'韭簇四刃 j/d · e/t 土能 · K 地线',sil:'四直刃一横土'},
 {rows:I_YUSHUI,term:'雨水',nm:'起死蕨',season:'spring',micro:'出户人家孩子出门前领一支（江客认得它）',pal:'拳卷蕨芽 d/j · 枯叶 t/e',sil:'粗圈卷头曲茎一横枯'},
 {rows:I_JINGZHE,term:'惊蛰',nm:'雷初笋',season:'spring',micro:'首雷当天后山必刷一片；全村都来看你田埂上的笋壳',pal:'雷线 K · 笋体 d/j · 土 e/t',sil:'高笋为王一抹雷'},
 {rows:I_CHUNFEN,term:'春分',nm:'新燕泥',season:'spring',micro:'衔泥落点定在谁家梁＝当年吉谚',pal:'墨燕 K · 泥丸 e/t',sil:'双翅叉尾一点泥'},
 {rows:I_QINGMING,term:'清明',nm:'明前野茶一枪',season:'spring',micro:'野生头芽；老爷子只喝你送的那杯',pal:'枪芽 d/j · 旗叶 d · 基 e/K',sil:'长矛一旗斜茎'},
-{rows:I_GUYU,term:'谷雨',nm:'佛照石',season:'spring',micro:'货郎带来「谷日食螺，佛光普照」的外头说法',pal:'螺壳 e · 螺旋 t/K · 水线 m',sil:'大圆螺双角一横水'}
+{rows:I_GUYU,term:'谷雨',nm:'佛照石',season:'spring',micro:'货郎带来「谷日食螺，佛光普照」的外头说法',pal:'螺壳 e · 螺旋 t/K · 水线 m',sil:'大圆螺双角一横水'},
+{rows:I_LIXIA,term:'立夏',nm:'称蛋苇',season:'summer',micro:'能竖住蛋的第一根苇芯',pal:'立蛋 e/t · 苇穗 d/j · 地线 t',sil:'竖卵一根穗茎'},
+{rows:I_XIAOMAN,term:'小满',nm:'杨梅火',season:'summer',micro:'最早红的一簇；小满爬树梗——她的弧不用玩家参与',pal:'熟梅 K 近墨 · 生梅 d/j · 叶 G',sil:'大果领小果一叶'},
+{rows:I_MANGZHONG,term:'芒种',nm:'枇杷骨',season:'summer',micro:'首熟一枚供入谷亡者祭坛',pal:'首熟 e · 未熟 d · 叶 G · 梗 t',sil:'双果垂枝一大一小'},
+{rows:I_XIAZHI,term:'夏至',nm:'长影子线',season:'summer',micro:'正午老樟树底一条细影缝——老秀才讲秦人测影',pal:'樟冠 G/j · 独干 t · 场 e · 影 K',sil:'圆冠独干一短线'},
+{rows:I_XIAOSHU,term:'小暑',nm:'金蝉壳',season:'summer',micro:'首具完蝉衣，江客入药；全村捕蝉季开',pal:'横枝 t · 壳 e · 目 K · 裂 t',sil:'横枝垂壳六足'},
+{rows:I_DASHU,term:'大暑',nm:'雷落木',season:'summer',micro:'全存档唯一；木匠惦记它半生',pal:'枯桩 e/t · 雷痕 K 锯齿下贯',sil:'断顶桩身一长裂'}
 ];
 /* ===== 渲染器（简版：'.' 跳过、sil/grid/pal；fullRender 唯一重绘入口） ===== */
 const state={sil:false,grid:false};
@@ -217,6 +283,7 @@ function usedColors(rows,pal){
   return seen.map(k=>'<span class="chip" title="'+k+'" style="background:'+pal[k]+'"></span>').join('');
 }
 const iconsEl=document.getElementById('icons');
+const icons2El=document.getElementById('icons2');
 ICONS.forEach(t=>{
   const spal=SEASON_PALS[t.season];
   const card=document.createElement('div');card.className='card';
@@ -230,7 +297,7 @@ ICONS.forEach(t=>{
   const mi=document.createElement('div');mi.className='micro';mi.textContent=t.micro;card.appendChild(mi);
   const ch=document.createElement('div');ch.className='chips';ch.innerHTML=usedColors(t.rows,spal);card.appendChild(ch);
   const pn=document.createElement('div');pn.className='micro';pn.textContent='剪影：'+t.sil;card.appendChild(pn);
-  iconsEl.appendChild(card);
+  (t.season==='spring'?iconsEl:icons2El).appendChild(card);
   t.cv=cv;t.mcv=m;
 });
 const pqCv=document.getElementById('pqCv');
