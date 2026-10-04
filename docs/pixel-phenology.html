@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 物候牌稿板 v0.3</title>
+<title>桃花源 · 物候牌稿板 v0.4</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -71,9 +71,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">物候牌稿</div>
     <div class="subtitle">
       <div class="rule">一年二十四段，一段一候一牌：节气的脸面先于文字抵达。</div>
-      <p>魂层稿板第一件（art-style-guide §2 音画绑定：<b>物候 icon 24 枚</b>，用于历法环、檐牌、签筒与加载图，<b>同一手笔</b>为外包合同条款——本页手排矩阵即示范件）。v0.1 立春起：<b>春六候</b>（头刀韭/起死蕨/雷初笋/新燕泥/明前野茶一枪/佛照石）＋<b>檐牌样张</b>一张（diegetic 载体验证）；v0.2 增<b>夏六候</b>（称蛋苇/杨梅火/枇杷骨/长影子线/金蝉壳/雷落木——杨梅熟果以 K 近墨写「乌梅近墨」，朱砂仍零）；v0.3 增<b>秋六候</b>（戴青一围/开口栗/一捻金/银甲/泣露草/初霜鞭——银甲以 B/m 青灰写银，非靛；熟柿 e/t 不动朱砂）。选题正典＝design-board TERMS 每段 micro，全档唯一、零新设定；色板与 pixel-world SEASON_PALS <b>同源复制</b>（键名色值零改动，每季 12 色纪律直接继承）；'.'＝留白透宣纸——16px 内做水墨工笔近似：主体居中偏下、留白过半、墨线勾形、当季色点染。冬 6 与廿四格罗盘随批 v0.4–v0.5 收官。</p>
+      <p>魂层稿板第一件（art-style-guide §2 音画绑定：<b>物候 icon 24 枚</b>，用于历法环、檐牌、签筒与加载图，<b>同一手笔</b>为外包合同条款——本页手排矩阵即示范件）。v0.1 立春起：<b>春六候</b>（头刀韭/起死蕨/雷初笋/新燕泥/明前野茶一枪/佛照石）＋<b>檐牌样张</b>一张（diegetic 载体验证）；v0.2 增<b>夏六候</b>（称蛋苇/杨梅火/枇杷骨/长影子线/金蝉壳/雷落木——杨梅熟果以 K 近墨写「乌梅近墨」，朱砂仍零）；v0.3 增<b>秋六候</b>（戴青一围/开口栗/一捻金/银甲/泣露草/初霜鞭——银甲以 B/m 青灰写银，非靛；熟柿 e/t 不动朱砂）；v0.4 增<b>冬六候</b>（留禾一茎/玄玉耳/破雪鞭/一阳萌/竹中髓/旧雪滴）——<b>四季 24 枚全册</b>。冬板墨灰留白系：雪＝z 勾边 W 填芯（雪靠影不靠白）、冰＝m/B 灰青、去饱和内建。选题正典＝design-board TERMS 每段 micro，全档唯一、零新设定；色板与 pixel-world SEASON_PALS <b>同源复制</b>（键名色值零改动，每季 12 色纪律直接继承）；'.'＝留白透宣纸——16px 内做水墨工笔近似：主体居中偏下、留白过半、墨线勾形、当季色点染。廿四格罗盘（当前段高亮）v0.5 收官。</p>
       <div class="spec">
-        <span>16×16 ×24 段（春夏 12＋秋 6）</span><span>键 ∈ 当季 12 色板</span><span>留白＝宣纸</span><span>一牌一物一题名</span><span>朱砂零 · 靛零</span><span>檐牌/历法环/签筒/加载图</span>
+        <span>16×16 ×24 段全册</span><span>键 ∈ 当季 12 色板</span><span>留白＝宣纸</span><span>一牌一物一题名</span><span>朱砂零 · 靛零</span><span>檐牌/历法环/签筒/加载图</span>
       </div>
       <div class="docs">上游：art-style-guide.md §2/§3（魂层与色彩） · presentation-ux.md §2.1（小令＝每段 icon＋一句话＋一件采集物） · quest-scene-style.md §12（icon 层与「截图猜节气」） · production-scope.md §5（24 格罗盘常驻） · design-board.html TERMS（选题正典） · slice-calendar.md §1（檐牌载体）</div>
     </div>
@@ -159,9 +159,26 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     </ul>
   </div>
 </section>
+<section aria-labelledby="t-winter">
+  <div class="term-head">
+    <span class="term-plaque">立冬</span>
+    <h2 id="t-winter">冬六候 · 墨灰留白</h2>
+    <span class="en">winter six · ink-grey &amp; snow-white</span>
+  </div>
+  <p class="lede">冬段六候全册，至此<b>四季 24 枚齐</b>：<b>立冬留禾一茎</b>（还田礼的独穗）、<b>小雪玄玉耳</b>（雪后首木耳卧柴）、<b>大雪破雪鞭</b>（笋尖破雪被）、<b>冬至一阳萌</b>（暖石独芽——阴极阳生）、<b>小寒竹中髓</b>（竹节冰水一洼）、<b>大寒旧雪滴</b>（檐冰初融孤滴「换年水」）。冬板的雪不靠白：W 贴纸底近隐形，<b>雪靠 z 影勾出</b>——留白季的画法本身就是去饱和的注脚。</p>
+  <div class="grid" id="icons4"></div>
+  <div class="rules">
+    <ul>
+      <li class="pos">冬板纪律同前：键 ∈ 冬 12 色板（墨灰留白系），'.' 留白过半，先剪影后点染</li>
+      <li class="pos">雪的写法＝z 勾边＋W 填芯＋z 雪影点（W 单用即消失——雪靠影不靠白）；冰＝m/B 灰青，不造透明感</li>
+      <li class="pos">冬板绿皆灰绿（G/g/j 本去饱和），不为提亮越板借色——「一阳萌」的亮只来自对比，不来自新键</li>
+      <li>禁雪填满：雪只占受雪面（柴顶/地面/檐上），主体物不被雪埋——物候牌要认物，不是认天气</li>
+    </ul>
+  </div>
+</section>
 <footer>
-  <span>桃花源（Tarcadia）物候牌稿板 v0.3 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span><b>验收链：</b>选题出自 TERMS micro · 春夏秋 18 枚 · 键 ∈ 本季 12 色板 · 留白过半 · 朱砂零 · 剪影可猜</span>
+  <span>桃花源（Tarcadia）物候牌稿板 v0.4 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span><b>验收链：</b>选题出自 TERMS micro · 四季 24 枚全册 · 键 ∈ 本季 12 色板 · 留白过半 · 朱砂零 · 剪影可猜</span>
 </footer>
 </div>
 <script>
@@ -299,6 +316,47 @@ const I_SHUANGJIANG=[
 '...eeeeeeeee....','...teeeeeeee....','...teeeeeeee....',
 '....teeee.......','.....KKKK.......','................',
 '................'];
+/* ===== 冬六候 16×16（'.'＝留白透宣纸，键 ∈ 冬 12 色板；雪＝z 勾边 W 填芯） ===== */
+const I_LIDONG=[
+'................','......gd........','.....dgd........',
+'......dgd.......','.......dd.......','........d.......',
+'........d.......','........d.......','........d.......',
+'........d.......','........d.......','........d.......',
+'........d.......','..t..t....t..t..','..zzzzzzzzzzzz..',
+'................'];
+const I_XIAOXUE=[
+'................','................','................','................',
+'....KK..........','...KKKK.........','...KKdKK........','...KKdKK........',
+'...KKK..zWzWzWz.','....ttttttttttt.','....tttzttttt...','....ttttttttt...',
+'....tttttttttt..','................','................','................'];
+const I_DAXUE=[
+'................','................','................',
+'.......dd.......','......ddd.......','......djd.......',
+'.....ddjd.......','....zzWdWzz.....','...zWWWWWWWz....',
+'...zWWzWWWWz....','..zWWWWWWWWWz...','..zWWzWWWWWWz...',
+'.zWWWWWWWWWWWz..','.zzzzzzzzzzzzzz.','................',
+'................'];
+const I_DONGZHI=[
+'................','................','................',
+'.......j........','.......j........','.....G.j.G......',
+'......GjG.......','.......j........','.....NNNNNN.....',
+'....NNNNNNNN....','....NNNNNNNNz...','....NNNNNNNNz...',
+'...zNNNNNNNNz...','....zzzzzzzz....','................',
+'................'];
+const I_XIAOHAN=[
+'................','................',
+'......mm........','.....dmmd.......','.....dGGd.......',
+'.....dGGd.......','.....dGGd.......','.....dddd.......',
+'.....dGGd.......','.....dGGd.......','.....dGGd.......',
+'.....dGGd.......','.....dddd.......','.....dGGd.......',
+'....zzzzzz......','................'];
+const I_DAHAN=[
+'................','................',
+'...WzWzWzW......','...KKKKKKKK.....','.....BBmm.......',
+'......Bm........','......Bm........','.......m........',
+'.......m........','................','.......m........',
+'................','................','................',
+'................','................'];
 const ICONS=[
 {rows:I_LICHUN,term:'立春',nm:'头刀韭',season:'spring',micro:'新开年第一刀韭——爷爷册子里夹着饺馅来历页',pal:'韭簇四刃 j/d · e/t 土能 · K 地线',sil:'四直刃一横土'},
 {rows:I_YUSHUI,term:'雨水',nm:'起死蕨',season:'spring',micro:'出户人家孩子出门前领一支（江客认得它）',pal:'拳卷蕨芽 d/j · 枯叶 t/e',sil:'粗圈卷头曲茎一横枯'},
@@ -317,7 +375,13 @@ const ICONS=[
 {rows:I_BAILU,term:'白露',nm:'一捻金',season:'autumn',micro:'首穗桂花扎上，秋酿引子',pal:'斜枝 t · 叶 G · 桂簇 e/j',sil:'斜枝两簇金'},
 {rows:I_QIUFEN,term:'秋分',nm:'银甲',season:'autumn',micro:'塘边首尾回塘鱼，供秋席——阿松家渔船线的荣誉位',pal:'银身 B/m · 背鳍 g · 目 K · 水线 m',sil:'鱼身叉尾一线水'},
 {rows:I_HANLU,term:'寒露',nm:'泣露草',season:'autumn',micro:'老秀才：「忘外年的人会替外头哭」',pal:'草叶 d/G/j · 露珠 m · 地线 K',sil:'三茎两滴露'},
-{rows:I_SHUANGJIANG,term:'霜降',nm:'初霜鞭',season:'autumn',micro:'老爷子：「霜和甜是一对」',pal:'柿 e · 星蒂 t · 霜痕 N · 叶 d',sil:'圆果星蒂一短梗'}
+{rows:I_SHUANGJIANG,term:'霜降',nm:'初霜鞭',season:'autumn',micro:'老爷子：「霜和甜是一对」',pal:'柿 e · 星蒂 t · 霜痕 N · 叶 d',sil:'圆果星蒂一短梗'},
+{rows:I_LIDONG,term:'立冬',nm:'留禾一茎',season:'winter',micro:'田里故意不割净的最后一茎稻——还田礼',pal:'垂穗 d/g · 残茬 t · 地线 z',sil:'垂头独穗一横茬'},
+{rows:I_XIAOXUE,term:'小雪',nm:'玄玉耳',season:'winter',micro:'雪后首木耳；柴与耳同篮，腊味季开场',pal:'木耳 K/d · 柴 t · 柴顶雪 z/W',sil:'墨耳卧柴雪一线'},
+{rows:I_DAXUE,term:'大雪',nm:'破雪鞭',season:'winter',micro:'药膳料包隐藏加味——只进菜谱不进经济',pal:'笋尖 d/j · 雪被 z 勾 W 填',sil:'雪包出一尖'},
+{rows:I_DONGZHI,term:'冬至',nm:'一阳萌',season:'winter',micro:'暖石上一茎新绿；老秀才注「谷知道自己时令」',pal:'暖石 N/z · 新芽 j/G',sil:'圆石独芽'},
+{rows:I_XIAOHAN,term:'小寒',nm:'竹中髓',season:'winter',micro:'竹节冰水一筒，江客药引',pal:'竹壁 G/d · 节 d · 冰水 m · 基 z',sil:'竹柱两节顶一洼'},
+{rows:I_DAHAN,term:'大寒',nm:'旧雪滴',season:'winter',micro:'冰凌初融头一滴「换年水」，除夕换井引子',pal:'檐 K · 残雪 W/z · 冰凌 B/m · 滴 m',sil:'横檐垂锥孤一点'}
 ];
 /* ===== 渲染器（简版：'.' 跳过、sil/grid/pal；fullRender 唯一重绘入口） ===== */
 const state={sil:false,grid:false};
@@ -348,7 +412,8 @@ function usedColors(rows,pal){
 const iconsEl=document.getElementById('icons');
 const icons2El=document.getElementById('icons2');
 const icons3El=document.getElementById('icons3');
-const GRIDS={spring:iconsEl,summer:icons2El,autumn:icons3El};
+const icons4El=document.getElementById('icons4');
+const GRIDS={spring:iconsEl,summer:icons2El,autumn:icons3El,winter:icons4El};
 ICONS.forEach(t=>{
   const spal=SEASON_PALS[t.season];
   const card=document.createElement('div');card.className='card';
