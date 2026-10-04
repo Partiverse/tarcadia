@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 水墨 UI 稿板 v0.2</title>
+<title>桃花源 · 水墨 UI 稿板 v0.3</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A; --cinnabar:#A8402F;
@@ -72,11 +72,11 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">水墨UI稿</div>
     <div class="subtitle">
       <div class="rule">界面前先见物：控件是纸墨做的，不是浮层做的。</div>
-      <p>魂层稿板第三件（art-style-guide §2：魂层＝过场卡、物候牌、<b>历法环 UI</b>、年集供单；物候牌已由 pixel-phenology 收官，本板立 <b>UI_PAL</b> 与控件基元）。正典全部引 presentation-ux §4.1 diegetic 表：<b>罗盘</b>（主界面唯一常驻图形 UI——本板不重画，只引 pixel-phenology.html v0.5「周天」节）、<b>挑担</b>（前九位随身挂扁担两端，超出回筐）、<b>安置</b>（存档＝入夜上炕，退出＝灯熄了）、<b>名款签条</b>（人立在那里，签条从画外入说完收走）。v0.1 内容：控件基元四件（面板底／按钮两态／签条／墨点分隔线）＋三控件骨架（挑担／安置／罗盘接口预留）＋<b>语义色样张</b>两组（朱砂信使·靛青杂记——本板存在的核心理由）＋水墨过场两帧（聚拢／散开）。<b>v0.2 增量</b>：过场卡扩量 <b>×6 景</b>（浸种／移栽／称人／净界／年集／初晴——场景全部取自 slice-calendar 逐日锚点与 presentation-ux §2.1/vertical-slice-design §7 正典实文，不自创场景；候选方向中的「双抢」「秋收入仓」正典无实文故不取）＋<b>杂记图鉴骨架</b>（presentation-ux §4.1 图鉴行兑现：祖父旧册《杂记》双页册＋五栏签条＋条目三态——杂记是知识类，朱砂零进入、只有靛合法）。UI_PAL 八键封顶十二；<b>朱砂 C=#A8402F 系本板首定</b>——正典只锁「朱砂只给人情事件」的语义、未锁色值，主会话 2026-10-04 目测复签确认（砖红不刺眼、语义差分成立），可下游引用。文字一律 HTML 叠加不进矩阵（宋体、汉字小写数字纪律在实现层执行）。</p>
+      <p>魂层稿板第三件（art-style-guide §2：魂层＝过场卡、物候牌、<b>历法环 UI</b>、年集供单；物候牌已由 pixel-phenology 收官，本板立 <b>UI_PAL</b> 与控件基元）。正典全部引 presentation-ux §4.1 diegetic 表：<b>罗盘</b>（主界面唯一常驻图形 UI——本板不重画，只引 pixel-phenology.html v0.5「周天」节）、<b>挑担</b>（前九位随身挂扁担两端，超出回筐）、<b>安置</b>（存档＝入夜上炕，退出＝灯熄了）、<b>名款签条</b>（人立在那里，签条从画外入说完收走）。v0.1 内容：控件基元四件（面板底／按钮两态／签条／墨点分隔线）＋三控件骨架（挑担／安置／罗盘接口预留）＋<b>语义色样张</b>两组（朱砂信使·靛青杂记——本板存在的核心理由）＋水墨过场两帧（聚拢／散开）。<b>v0.2 增量</b>：过场卡扩量 <b>×6 景</b>（浸种／移栽／称人／净界／年集／初晴——场景全部取自 slice-calendar 逐日锚点与 presentation-ux §2.1/vertical-slice-design §7 正典实文，不自创场景；候选方向中的「双抢」「秋收入仓」正典无实文故不取）＋<b>杂记图鉴骨架</b>（presentation-ux §4.1 图鉴行兑现：祖父旧册《杂记》双页册＋五栏签条＋条目三态——杂记是知识类，朱砂零进入、只有靛合法）。UI_PAL 八键封顶十二；<b>朱砂 C=#A8402F 系本板首定</b>——正典只锁「朱砂只给人情事件」的语义、未锁色值，主会话 2026-10-04 目测复签确认（砖红不刺眼、语义差分成立），可下游引用。文字一律 HTML 叠加不进矩阵（宋体、汉字小写数字纪律在实现层执行）。<b>v0.3 增量</b>：年集三件（production-scope §5 年货庙会 d115–120 · presentation-ux §2.1/§4.2）——<b>供单版式 ×3 态</b>（art-style §2 魂层点名「年集供单」至此落板：<b>朱砂在 UI 板第一次做主体语义</b>，题头带 C 为画面主体而非角标；常张墨钉挂／新供角标闪／已供题头褪 z＋「讫」位墨点，三态差分只动语义元素、机核 15/349px）＋<b>年集摊位骨架 112×64</b>（布篷檐口线＋案板＋货品槽位虚框 ×4＋立招空位——歇山属官式形制不取，取舍见本节 rules）＋<b>红布结 16×16 两帧</b>（§4.2 第三件朱砂物，与信使／杂记同款最小差分）＋立「<b>三件朱砂物语义分工表</b>」（信使＝有人找／供单＝年集有约／红布＝人情在途）。<b>魂层四件套（过场卡·物候牌·历法环·年集供单）至此四件全部落板，魂层收官。</b></p>
       <div class="spec">
-        <span>UI_PAL 8/12 键</span><span class="c">朱砂 C=#A8402F 已确认</span><span>无弹窗 · diegetic 优先</span><span>过场 ≤20 张/局</span><span>过场六景样张</span><span>杂记五栏三态</span><span>宽 ∈ 16 倍数集</span><span>文字不进矩阵</span>
+        <span>UI_PAL 8/12 键</span><span class="c">朱砂 C=#A8402F 已确认</span><span>无弹窗 · diegetic 优先</span><span>过场 ≤20 张/局</span><span>过场六景样张</span><span>杂记五栏三态</span><span class="c">魂层四件套收官</span><span>供单三态 · 朱砂主体首例</span><span>宽 ∈ 16 倍数集</span><span>文字不进矩阵</span>
       </div>
-      <div class="docs">上游：presentation-ux.md §1.2/§2.1/§4.1/§4.2（无弹窗／节令演出／diegetic 表／措辞色彩纪律） · art-style-guide.md §2/§3/§4（魂层与色彩语义／影物化） · slice-calendar.md §1/§2（雨后春笋／逐日锚点） · vertical-slice-design.md §3/§7（节气历／志怪线） · process-log.md §3/§4（质检九条／画法通则） · 正典引用：pixel-phenology.html v0.5（罗盘历法环）</div>
+      <div class="docs">上游：presentation-ux.md §1.2/§2.1/§4.1/§4.2（无弹窗／节令演出／diegetic 表／措辞色彩纪律） · art-style-guide.md §2/§3/§4（魂层与色彩语义／影物化） · slice-calendar.md §1/§2（雨后春笋／逐日锚点） · vertical-slice-design.md §3/§7（节气历／志怪线） · process-log.md §3/§4（质检九条／画法通则） · production-scope.md §4/§5（年货线／年集庙会 d115–120） · community-ops.md §2（红布／春联入画） · 正典引用：pixel-phenology.html v0.5（罗盘历法环）</div>
     </div>
   </div>
   <div class="toolbar" role="toolbar" aria-label="审稿开关">
@@ -407,9 +407,68 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     </ul>
   </div>
 </section>
+<section id="sec-offer" aria-labelledby="t-offer">
+  <div class="term-head">
+    <span class="term-plaque">年集</span>
+    <h2 id="t-offer">年集三件 · 供单三态／摊位骨架／红布结</h2>
+    <span class="en">new-year fair · offer slip ×3 states, stall skeleton, cloth knot ×2</span>
+  </div>
+  <p class="lede"><b>朱砂在 UI 板第一次做主体语义</b>：供单版式三态，题头带 C 是画面主体不是角标——<b>玩家见朱砂＝年集有事等他</b>（presentation-ux §4.2 朱砂三件套第二件；art-style §2 魂层点名「年集供单」；production-scope §5 年集 d119–120）。摊位骨架循挑担例：槽位全虚框＝容器不占语义色，立招空板只留字位（招牌文字 HTML 层）；红布结是三件套第三件，与信使／杂记同款最小差分。墨钉、篷柱、招柱全是画内物（diegetic，§4.1）——钉挂纸、柱张篷，不做浮层。<b>魂层四件套至此收官</b>：过场卡（本板「过场」节）· 物候牌（pixel-phenology v0.5）· 历法环（同上正典）· 年集供单（本节）。</p>
+  <div class="grid">
+    <div class="card">
+      <div class="duo">
+        <div><div class="ovl-wrap"><canvas id="cvOffN"></canvas><span class="ovl" style="top:9px;left:0;right:0;height:30px;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.45em;text-indent:.45em;color:#F5F2E8">供单</span></div><small>常张 ×3（墨钉挂·题头 C）</small></div>
+        <div><canvas id="cvOffNew"></canvas><small>新供 ×3（角标闪 C）</small></div>
+        <div><div class="ovl-wrap"><canvas id="cvOffDone"></canvas><span class="ovl" style="top:170px;right:26px;font-size:13px">讫</span></div><small>已供 ×3（题头褪 z·讫点）</small></div>
+      </div>
+      <div class="sizes" style="margin-top:6px">
+        <div><canvas id="cvOffNM"></canvas><small>×1</small></div>
+        <div><canvas id="cvOffNewM"></canvas><small>×1</small></div>
+        <div><canvas id="cvOffDoneM"></canvas><small>×1</small></div>
+      </div>
+      <div class="nm">供单版式三态 · 48×72</div>
+      <div class="micro">竖排红纸笺：墨钉 2×2 挂（画内物）＋纸框 1px＋纸底 W＋题头带 C 通栏（「红纸笺」之红由题头承担，不整幅铺红）＋条目字位线竖排四列右起（2on2off、n 淡笔点缀、列尾错落）——条目文字全在 HTML 层，年集供单条目清单正典未锁定、矩阵不预设；三态差分只动语义元素：新供＝右上角标楔 15px（同信使两帧语法，实装隐/现交替）、已供＝题头 C→z 340px＋「讫」位墨点 9px</div>
+      <div class="chips"><span class="chip" style="background:#EFEBDD" title="W"></span><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#9A988F" title="n"></span><span class="chip" style="background:#A8402F" title="C"></span></div>
+      <div class="micro">剪影：一钉一纸、题头通栏实带（常张）／右出角标楔（新供）／题头灰带＋右下墨点（已供）</div>
+    </div>
+    <div class="card">
+      <div class="sizes" style="flex-direction:column;align-items:center">
+        <div><canvas id="cvStall"></canvas><small>×3 审稿</small></div>
+        <div><canvas id="cvStallM"></canvas><small>×1 实装</small></div>
+      </div>
+      <div class="nm">年集摊位骨架 · 112×64</div>
+      <div class="micro">布篷檐口线（上沿 K＋布面 z＋檐口线 K＋垂波 2on2off）＋篷柱两根＋案板（K 框 W 实底，画内物容器语义）＋货品槽位虚框 ×4（14×12，z 1on1off，坐在案板上）＋立招空位（K 框 W 底空板＋招柱——招牌文字 HTML 层不预设）。取布篷不取歇山：歇山属官式形制（art-style §2 民间山村禁官式堆砌），市篷归商队庙会泛形（production-scope §5「临水镇商队首次进村」外观级事件）</div>
+      <div class="chips"><span class="chip" style="background:#EFEBDD" title="W"></span><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span></div>
+      <div class="micro">剪影：一篷两柱一案、右起一座立招（案板／立招实底归容器语义；槽位虚框剪影近隐属设计内）</div>
+    </div>
+    <div class="card">
+      <div class="duo">
+        <div><canvas id="cvClothN"></canvas><small>常帧 ×5（布身灰）</small></div>
+        <div><canvas id="cvClothF"></canvas><small>闪帧 ×5（布身 C）</small></div>
+      </div>
+      <div class="sizes" style="margin-top:6px">
+        <div><canvas id="cvClothNM"></canvas><small>×1</small></div>
+        <div><canvas id="cvClothFM"></canvas><small>×1</small></div>
+      </div>
+      <div class="nm">红布结 · 16×16 两帧</div>
+      <div class="micro">盘扣结：外内双环 K 骨＋中芯横簪，布身双尾 z／C——K 骨常在（布结常挂），闪才转朱（人情在途）；与信使角标／杂记折角同款最小差分（24px z→C）</div>
+      <div class="chips"><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#A8402F" title="C"></span></div>
+      <div class="micro">剪影：实心结体双尾、外环内环</div>
+    </div>
+  </div>
+  <div class="rules">
+    <ul>
+      <li class="pos">三件朱砂物语义分工表（presentation-ux §4.2）：信使＝有人找（新信到，角标闪）；供单＝年集有约（d115–120 年集有事等他，题头带朱、新供角标闪）；红布＝人情在途（礼已出手、回礼在路上，布身转朱）——玩家见朱砂＝有人找／有事等</li>
+      <li class="pos">三件同源语法：K 骨不动、只动一个语义元素（信使角标／供单题头＋角标／红布布身）；事毕褪灰＝朱砂退场（供单题头褪 z＋「讫」位落墨点）——人情已了不再红</li>
+      <li class="pos">「红纸笺」之红由题头带承担、纸底 W：不整幅铺红是「每屏朱砂 ≤1 处」（§6 验收线）的面积账；新供帧题头 C＋角标 C 同幅——角标是事件闪标、题头是纸笺身份，实装同屏多朱砂物时由闪帧交替错峰（挂账实现层）</li>
+      <li class="pos">摊位取布篷不取歇山（art-style §2 禁官式符号堆砌、民间山村口径）；灯笼／春联／腌腊缸正典有实文（art-style §3、production-scope §4 年货线）但归年集地图场景语义，本骨架不画不自创——灯笼墨骨样张已立「过场」节 SCENE_FAIR</li>
+      <li>禁朱砂／靛入摊位结构色（骨架容器不占语义色，槽位全虚框）；禁红布整结常红（K 骨常在、闪才转朱）；禁招牌／条目自创文字进矩阵</li>
+    </ul>
+  </div>
+</section>
 <footer>
-  <span>桃花源（Tarcadia）水墨 UI 稿板 v0.2 · 2026-10-04 · 全部像素矩阵生成脚本拼装入码，零 AI 生图</span>
-  <span><b>验收链：</b>audit ui（宽 ∈ 16 倍数集 · 特例白名单 · 键 ∈ UI_PAL）→ 探针 fullRender 走完 → 洋红 #F0F 计数 0 → 剪影墨骨成立 · 文字不进矩阵 · 朱砂／靛仅语义样张 · 过场留白过半且六景异形 · 杂记朱砂零进入 · 罗盘只引正典</span>
+  <span>桃花源（Tarcadia）水墨 UI 稿板 v0.3 · 2026-10-04 · 全部像素矩阵生成脚本拼装入码，零 AI 生图</span>
+  <span><b>验收链：</b>audit ui（宽 ∈ 16 倍数集 · 特例白名单 · 键 ∈ UI_PAL）→ 探针 fullRender 走完 → 洋红 #F0F 计数 0 → 剪影墨骨成立 · 文字不进矩阵 · 朱砂／靛仅语义样张 · 过场留白过半且六景异形 · 杂记朱砂零进入 · 罗盘只引正典 · 供单三态差分只动语义元素（15/349px 机核）· 三件朱砂分工表 · 摊位骨架零语义色 · <b>魂层四件套收官</b></span>
 </footer>
 </div>
 <script>
@@ -1439,6 +1498,343 @@ const ENTRY_FULL=[
 'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'
 ];
 
+/* ===== v0.3 增量：年集三件（供单三态／摊位骨架／红布结）——魂层四件套收官 ===== */
+/* OFFER_NORM · 供单常张 48×72（生成脚本拼装 /tmp/gen_ui_v03.cjs）：墨钉 2×2 挂＋题头带 C 通栏＝年集有约常立；条目字位线竖排四列右起（字全 HTML 层） */
+const OFFER_NORM=[
+'.......................KK.......................',
+'.......................KK.......................',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......'
+];
+
+/* OFFER_NEW · 供单新供 48×72（生成脚本拼装 /tmp/gen_ui_v03.cjs）：与常张差分仅右上朱砂角标楔 15px（同信使两帧语法，实装角标隐/现交替）＝年集新有事等他 */
+const OFFER_NEW=[
+'.......................KK.................CCCCC.',
+'.......................KK..................CCCC.',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK..CCC.',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK...CC.',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK....C.',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK......',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......'
+];
+
+/* OFFER_DONE · 供单已供 48×72（生成脚本拼装 /tmp/gen_ui_v03.cjs）：题头 C→z 褪灰 340px＋右下「讫」位墨点 9px（字 HTML 层）＝人情已了、朱砂退场 */
+const OFFER_DONE=[
+'.......................KK.......................',
+'.......................KK.......................',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzK......',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWnnWWWWWWWWWWWWnnWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWWWWWWWWnnWWWWWWWWWWWK......',
+'......KWWWWWWWnnWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWzzWWWWWWWWWWWWzzWWWWK......',
+'......KWWWWWWWWWWWWWWzzWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWzzWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWzzWWWKKKWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWWWWWWKKKWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWKKKWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWzzWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK......',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK......'
+];
+
+/* STALL_FAIR · 年集摊位骨架 112×64（生成脚本拼装 /tmp/gen_ui_v03.cjs）：布篷檐口线＋篷柱＋案板实底＋货品槽位虚框×4＋立招空位——零语义色（骨架容器不占朱砂靛） */
+const STALL_FAIR=[
+'................................................................................................................',
+'................................................................................................................',
+'................................................................................................................',
+'................................................................................................................',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK........................',
+'......zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz........................',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK........................',
+'.......zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz..zz...........................',
+'..........KK......................................................................KK............................',
+'..........KK......................................................................KK............................',
+'..........KK......................................................................KK............................',
+'..........KK......................................................................KK............................',
+'..........KK......................................................................KK........KKKKKKKKKKKKKKKKK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK...z.z.z.z.z.z.zz...z.z.z.z.z.z.zz...z.z.z.z.z.z.zz...z.z.z.z.z.z.zz..KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK...z............z...z............z...z............z...z............z..KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK...z............z...z............z...z............z...z............z..KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK...z............z...z............z...z............z...z............z..KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK...z............z...z............z...z............z...z............z..KK........KWWWWWWWWWWWWWWWK...',
+'..........KK......................................................................KK........KWWWWWWWWWWWWWWWK...',
+'..........KK...z............z...z............z...z............z...z............z..KK........KWWWWWWWWWWWWWWWK...',
+'..........KK...z.z.z.z.z.z.z....z.z.z.z.z.z.z....z.z.z.z.z.z.z....z.z.z.z.z.z.z...KK........KWWWWWWWWWWWWWWWK...',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK....KWWWWWWWWWWWWWWWK...',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK....KWWWWWWWWWWWWWWWK...',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK....KWWWWWWWWWWWWWWWK...',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK....KWWWWWWWWWWWWWWWK...',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK....KWWWWWWWWWWWWWWWK...',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK....KWWWWWWWWWWWWWWWK...',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK....KKKKKKKKKKKKKKKKK...',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK...........KK...........',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK...........KK...........',
+'......KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK...........KK...........',
+'......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK...........KK...........',
+'..........KK......................................................................KK...............KK...........',
+'..........KK......................................................................KK...............KK...........',
+'..........KK......................................................................KK...............KK...........',
+'..........KK......................................................................KK...............KK...........',
+'..........KK......................................................................KK...............KK...........',
+'..........KK......................................................................KK...............KK...........',
+'..........KK......................................................................KK...............KK...........',
+'..........KK......................................................................KK...............KK...........',
+'................................................................................................................',
+'................................................................................................................',
+'................................................................................................................',
+'................................................................................................................',
+'................................................................................................................'
+];
+
+/* CLOTH_N · 红布结常帧 16×16（手排）：盘扣结外内双环 K 骨＋中芯横簪，布身双尾 z——布结常挂、无事 */
+const CLOTH_N=[
+'................',
+'.......KK.......',
+'......KzzK......',
+'.....KzKKzK.....',
+'....KzK..KzK....',
+'...KzK....KzK...',
+'..KzK..KK..KzK..',
+'..KzK..KK..KzK..',
+'...KzK....KzK...',
+'....KzK..KzK....',
+'.....KzKKzK.....',
+'......KzzK......',
+'.......KK.......',
+'......z..z......',
+'......z...z.....',
+'................'
+];
+
+/* CLOTH_F · 红布结闪帧 16×16（手排）：布身双尾 z→C＝人情在途；与信使角标/杂记折角同款最小差分（24px） */
+const CLOTH_F=[
+'................',
+'.......KK.......',
+'......KCCK......',
+'.....KCKKCK.....',
+'....KCK..KCK....',
+'...KCK....KCK...',
+'..KCK..KK..KCK..',
+'..KCK..KK..KCK..',
+'...KCK....KCK...',
+'....KCK..KCK....',
+'.....KCKKCK.....',
+'......KCCK......',
+'.......KK.......',
+'......C..C......',
+'......C...C.....',
+'................'
+];
+
 /* ===== 渲染器（仿物候板：draw 支持 sil/grid/pal；state；fullRender 唯一重绘入口） ===== */
 const state={sil:false,grid:false};
 const opts=()=>({sil:state.sil,grid:state.grid});
@@ -1480,14 +1876,19 @@ const RENDERS=[
   ['cvTab1',TAB_SLIP_ON,4],['cvTab2',TAB_SLIP,4],['cvTab3',TAB_SLIP,4],['cvTab4',TAB_SLIP,4],['cvTab5',TAB_SLIP,4],
   ['cvTabN',TAB_SLIP,4],['cvTabNM',TAB_SLIP,1],['cvTabO',TAB_SLIP_ON,4],['cvTabOM',TAB_SLIP_ON,1],
   ['cvEn0',ENTRY_EMPTY,4],['cvEn1',ENTRY_HALF,4],['cvEn2',ENTRY_FULL,4],
-  ['cvEn0M',ENTRY_EMPTY,1],['cvEn1M',ENTRY_HALF,1],['cvEn2M',ENTRY_FULL,1]
+  ['cvEn0M',ENTRY_EMPTY,1],['cvEn1M',ENTRY_HALF,1],['cvEn2M',ENTRY_FULL,1],
+  ['cvOffN',OFFER_NORM,3],['cvOffNM',OFFER_NORM,1],
+  ['cvOffNew',OFFER_NEW,3],['cvOffNewM',OFFER_NEW,1],
+  ['cvOffDone',OFFER_DONE,3],['cvOffDoneM',OFFER_DONE,1],
+  ['cvStall',STALL_FAIR,3],['cvStallM',STALL_FAIR,1],
+  ['cvClothN',CLOTH_N,5],['cvClothNM',CLOTH_N,1],['cvClothF',CLOTH_F,5],['cvClothFM',CLOTH_F,1]
 ];
 function fullRender(){
   RENDERS.forEach(r=>{const cv=document.getElementById(r[0]);if(cv)draw(cv,r[1],r[2],Object.assign({pal:UI_PAL},opts()));});
   document.body.classList.toggle('sil',state.sil);
   document.getElementById('btnSil').setAttribute('aria-pressed',String(state.sil));
   document.getElementById('btnGrid').setAttribute('aria-pressed',String(state.grid));
-  window.__UI={arrays:25,drawn:RENDERS.length};
+  window.__UI={arrays:31,drawn:RENDERS.length};
 }
 document.getElementById('btnSil').addEventListener('click',()=>{state.sil=!state.sil;fullRender();});
 document.getElementById('btnGrid').addEventListener('click',()=>{state.grid=!state.grid;fullRender();});
