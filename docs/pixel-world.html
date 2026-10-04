@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 像素世界稿板 v0.7</title>
+<title>桃花源 · 像素世界稿板 v0.8</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -73,9 +73,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素世界稿</div>
     <div class="subtitle">
       <div class="rule">土地先于人定居：地块是玩家每天踩八小时的东西。</div>
-      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）；v0.4 增<b>村内建筑层</b>四型（悬山民居/吊脚楼/祠堂正门/马头山墙侧视，32/48 帧）；v0.5 增<b>autotile 管线</b>（16 位掩码生成器，三系收边规则，任意形状含内角自动拼接）；批 2 <b>建筑扩量</b>：8 户民居变体＋小卖部＋飞廊，全部生成器流水线产出（悬山配方参数化＋镜像引擎化）；v0.6 <b>作物扩量</b>：夏 8＋秋 6 共 14 种×三态（直立/丛/匍/水生四株型生成器），莲兑现塘田水生格；v0.7 作物层收官：春余 4（蓝/芋/豌豆/苎麻）＋多年生树形四件双帧（橘梨栗茶，田外之田）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
+      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）；v0.4 增<b>村内建筑层</b>四型（悬山民居/吊脚楼/祠堂正门/马头山墙侧视，32/48 帧）；v0.5 增<b>autotile 管线</b>（16 位掩码生成器，三系收边规则，任意形状含内角自动拼接）；批 2 <b>建筑扩量</b>：8 户民居变体＋小卖部＋飞廊，全部生成器流水线产出（悬山配方参数化＋镜像引擎化）；v0.6 <b>作物扩量</b>：夏 8＋秋 6 共 14 种×三态（直立/丛/匍/水生四株型生成器），莲兑现塘田水生格；v0.7 作物层收官：春余 4（蓝/芋/豌豆/苎麻）＋多年生树形四件双帧（橘梨栗茶，田外之田）；v0.8 autotile 对角扩面（8 bit 256 掩码，内角 3×3 角块打磨）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
       <div class="spec">
-        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span><span>建筑四型 32/48</span><span>autotile 16 掩码</span><span>作物 21 种全册＋多年生 4</span>
+        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span><span>建筑四型 32/48</span><span>autotile 256 掩码</span><span>作物 21 种全册＋多年生 4</span>
       </div>
       <div class="docs">上游：world-layers.md（千年层积） · vertical-slice-design.md §2（五溪村与溪田规模） · art-style-guide.md §2/§3（分层与色彩） · production-scope.md §9（产能）</div>
     </div>
@@ -178,6 +178,13 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <canvas id="autoCv" class="checker" aria-label="autotile 任意形状拼接演示"></canvas>
     <p class="map-cap">▲ 8×6 任意形状 · 掩码引擎逐格选变体 · 内角（水湾右上）与外角（犁沟尖）均自动生成</p>
   </div>
+  <div class="face-group" style="margin-top:26px"><h3 style="font-family:var(--serif);font-size:18px">v0.8 · 对角扩展（8 bit＝256 掩码）· 内角打磨</h3>
+  <p style="font-size:13.5px;color:var(--indigo);margin:6px 0 14px">16 位掩码的死角：<b>两正邻同系、夹角对角异系</b>时，内角处漏收一个方块角。对角 4 bit（NE16/SE32/SW64/NW128）补 3×3 角块——孤岛四角自动打磨，角块用各系收边色（草 d／犁沟 N／水 g）。</p>
+  <div class="grid" id="autoCmp" style="grid-template-columns:repeat(4,1fr)"></div>
+  <div class="map" style="margin-top:16px">
+    <canvas id="autoCv2" class="checker" aria-label="对角扩展孤岛演示"></canvas>
+    <p class="map-cap">▲ 8×8 孤岛演示 · 犁沟岛与水岛的四角全部经对角 bit 打磨 · 对比 16 位版此处会留方块角</p>
+  </div></div>
 </section>
 <section aria-labelledby="t-blds">
   <div class="term-head">
@@ -207,8 +214,8 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="grid" id="trees" style="grid-template-columns:repeat(4,1fr)"></div>
 </section>
 <footer>
-  <span>桃花源（Tarcadia）像素世界稿板 v0.7 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物 21 种全册＋田外之田 · 24 格拼接可读 · 掩码拼接内角外角全自动 · 四季一眼可辨 · 建筑剪影先行的白墙黛瓦 · 朱砂不进门楣</span>
+  <span>桃花源（Tarcadia）像素世界稿板 v0.8 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物 21 种全册＋田外之田 · 24 格拼接可读 · 掩码拼接内角外角全自动（对角打磨） · 四季一眼可辨 · 建筑剪影先行的白墙黛瓦 · 朱砂不进门楣</span>
 </footer>
 </div>
 <script>
@@ -1299,31 +1306,65 @@ function autoTile(rows,mask,rules){
   return r.map(x=>x.join(''));
 }
 const EDGE_GRASS={
+  cornerCh:'d',
   up:r=>{for(let i=0;i<16;i++){r[0][i]='d';if(i%5===0)r[1][i]='j';r[1][i]=r[1][i]==='G'?'j':r[1][i];}},
   down:r=>{for(let i=0;i<16;i++){r[15][i]='d';r[14][i]=r[14][i]==='G'?'d':r[14][i];}},
   left:r=>{for(let j=0;j<16;j++){r[j][0]='d';r[j][1]=r[j][1]==='G'?'d':r[j][1];}},
   right:r=>{for(let j=0;j<16;j++){r[j][15]='d';r[j][14]=r[j][14]==='G'?'d':r[j][14];}}
 };
 const EDGE_TILLED={
+  cornerCh:'N',
   up:r=>{for(let i=0;i<16;i++){r[0][i]='N';r[1][i]='t';}},
   down:r=>{for(let i=0;i<16;i++){r[15][i]='t';}},
   left:r=>{for(let j=0;j<16;j++){r[j][0]='N';}},
   right:r=>{for(let j=0;j<16;j++){r[j][15]='N';}}
 };
 const EDGE_WATER={
+  cornerCh:'g',
   up:r=>{for(let i=0;i<16;i++){r[0][i]='g';r[1][i]=i%4===0?'m':'g';}},
   down:r=>{for(let i=0;i<16;i++){r[15][i]='g';}},
   left:r=>{for(let j=0;j<16;j++){r[j][0]='g';r[j][1]=r[j][1]==='B'?'m':r[j][1];}},
   right:r=>{for(let j=0;j<16;j++){r[j][15]='g';}}
 };
 const AUTO_BASES={G:{rows:T_GRASS,edge:EDGE_GRASS,nm:'草系'},T:{rows:T_TILLED,edge:EDGE_TILLED,nm:'犁沟系'},W:{rows:T_WATERC,edge:EDGE_WATER,nm:'水系'}};
-function autoFor(map,j,i){
+/* v0.8 · 对角 4 bit 扩展（NE16 SE32 SW64 NW128 → 8 bit 256 掩码）：
+   正交 4 bit 收边后，若两正邻同系而夹角对角异系，补 3×3 角块打磨内角——16 位版在此处会漏收一个方块角。 */
+function cornerBlock(r,j0,i0,ch){
+  for(let j=j0;j<j0+3;j++)for(let i=i0;i<i0+3;i++){
+    if(r[j]&&r[j][i]&&r[j][i]!=='.')r[j]=r[j].substring(0,i)+ch+r[j].substring(i+1);
+  }
+}
+function autoTile8(rows,mask,rules,ch){
+  const r=autoTile(rows,mask&15,rules).map(x=>x.split(''));
+  const put=(j0,i0)=>{for(let j=j0;j<j0+3;j++)for(let i=i0;i<i0+3;i++){const row=r[j];if(row&&row[i]&&row[i]!=='.')row[i]=ch;}};
+  if((mask&1)&&(mask&8)&&!(mask&16))put(0,13);   /* NE */
+  if((mask&2)&&(mask&8)&&!(mask&32))put(13,13);  /* SE */
+  if((mask&2)&&(mask&4)&&!(mask&64))put(13,0);   /* SW */
+  if((mask&1)&&(mask&4)&&!(mask&128))put(0,0);   /* NW */
+  return r.map(x=>x.join(''));
+}
+function autoFor(map,j,i,use8){
   const here=map[j][i], base=AUTO_BASES[here];
   if(!base)return null;
   const at=(y,x)=>(map[y]&&map[y][x]===here)?1:0;
-  const mask=(at(j-1,i)?1:0)|(at(j+1,i)?2:0)|(at(j,i-1)?4:0)|(at(j,i+1)?8:0);
+  let mask=(at(j-1,i)?1:0)|(at(j+1,i)?2:0)|(at(j,i-1)?4:0)|(at(j,i+1)?8:0);
+  if(use8){
+    if(at(j-1,i+1))mask|=16; if(at(j+1,i+1))mask|=32;
+    if(at(j+1,i-1))mask|=64; if(at(j-1,i-1))mask|=128;
+    return autoTile8(base.rows,mask,base.edge,base.edge.cornerCh||'d');
+  }
   return autoTile(base.rows,mask,base.edge);
 }
+const AUTO_DEMO2=[
+ 'GGGGGGGG',
+ 'GGGGGGGG',
+ 'GGTTTGGG',
+ 'GGTTTGGG',
+ 'GGGGGGGG',
+ 'GGWWWGGG',
+ 'GGGGGGGG',
+ 'GGGGGGGG'
+];
 const AUTO_DEMO=[
  'GGGGGGGG',
  'GGGTTGGG',
@@ -1332,6 +1373,20 @@ const AUTO_DEMO=[
  'GGGWWWGG',
  'GGWWWGGG'
 ];
+const autoCmpEl=document.getElementById('autoCmp');
+const AUTO_CMP=[
+ {cap:'16 位 · NE 漏收方块',mask:9,use8:false},
+ {cap:'256 位 · NE 角块打磨',mask:9,use8:true},
+ {cap:'16 位 · SW 漏收方块',mask:6,use8:false},
+ {cap:'256 位 · SW 角块打磨',mask:6,use8:true}
+];
+AUTO_CMP.forEach(c=>{
+  const card=document.createElement('div');card.className='card';
+  const cv=document.createElement('canvas');cv.className='checker';card.appendChild(cv);
+  const nm=document.createElement('div');nm.className='nm';nm.textContent=c.cap;
+  const pal=document.createElement('div');pal.className='pal';pal.textContent='mask '+c.mask.toString(2).padStart(4,'0')+(c.use8?'（8bit）':'（4bit）');
+  card.append(nm,pal);autoCmpEl.appendChild(card);c.cv=cv;
+});
 const autoEl=document.getElementById('auto16');
 const AUTO_CARDS=[];
 for(let m=0;m<16;m++){
@@ -1340,6 +1395,19 @@ for(let m=0;m<16;m++){
   const nm=document.createElement('div');nm.className='nm';nm.textContent='mask '+m.toString(2).padStart(4,'0');
   const pal=document.createElement('div');pal.className='pal';pal.textContent=['上','下','左','右'].filter((_,b)=>m&(1<<b)).join('')+' 邻异系收边';
   card.append(nm,pal);autoEl.appendChild(card);AUTO_CARDS.push({cv,m});
+}
+function e_auto2(){
+  AUTO_CMP.forEach(c=>{draw(c.cv,c.use8?autoTile8(T_GRASS,c.mask,EDGE_GRASS,'d'):autoTile(T_GRASS,c.mask,EDGE_GRASS),8,{sil:state.sil,pal:PAL});});
+  const cv=document.getElementById('autoCv2');
+  const sc=4;
+  cv.width=AUTO_DEMO2[0].length*16*sc;cv.height=AUTO_DEMO2.length*16*sc;
+  const x=cv.getContext('2d');
+  AUTO_DEMO2.forEach((row,j)=>[...row].forEach((ch,i)=>{
+    const rows=autoFor(AUTO_DEMO2,j,i,true)||TILES[7].rows;
+    const tmp=document.createElement('canvas');
+    draw(tmp,rows,sc,{sil:state.sil,pal:PAL});
+    x.drawImage(tmp,i*16*sc,j*16*sc);
+  }));
 }
 function e_auto(){
   AUTO_CARDS.forEach(c=>{draw(c.cv,autoTile(T_GRASS,c.m,EDGE_GRASS),8,{sil:state.sil,pal:PAL});});
@@ -1479,6 +1547,7 @@ function fullRender(){
   SEASON_ROWS.forEach(d=>draw(d.cv,d.rows,5,{sil:state.sil,pal:d.pal}));
   BUILDINGS.forEach(b=>draw(b.cv,b.rows,6,opts()));
   e_auto();
+  e_auto2();
   CROPS_SUMMER.concat(CROPS_AUTUMN,CROPS_SPRING2).forEach(c=>{draw(c.cv,TILES[c.base].rows,8,{sil:state.sil,pal:PAL});overlay(c.cv,c.rows,8,{sil:state.sil});});
   TREES.forEach(t=>{
     t.cv.width=160;t.cv.height=160;
