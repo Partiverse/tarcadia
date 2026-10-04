@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 像素世界稿板 v0.3</title>
+<title>桃花源 · 像素世界稿板 v0.4</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -73,9 +73,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素世界稿</div>
     <div class="subtitle">
       <div class="rule">土地先于人定居：地块是玩家每天踩八小时的东西。</div>
-      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
+      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）；v0.4 增<b>村内建筑层</b>四型（悬山民居/吊脚楼/祠堂正门/马头山墙侧视，32/48 帧）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
       <div class="spec">
-        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span>
+        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span><span>建筑四型 32/48</span>
       </div>
       <div class="docs">上游：world-layers.md（千年层积） · vertical-slice-design.md §2（五溪村与溪田规模） · art-style-guide.md §2/§3（分层与色彩） · production-scope.md §9（产能）</div>
     </div>
@@ -156,9 +156,18 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <p class="lede">换季＝换色板不换矩阵：<b>十二键名四季同构</b>（草3 土2 水3 石2 点线2），冬季 W 提亮为雪、全局去饱和 60%（world-layers"年仓季"视觉）。下表六块代表地块四季并排——玩家瞥一眼色温就知道自己在哪一季，<b>纹理疏密一字未动</b>，这就是量产管线：28 作物、全 tileset 换季只出四张色表。</p>
   <div class="map" id="seasons"></div>
 </section>
+<section aria-labelledby="t-blds">
+  <div class="term-head">
+    <span class="term-plaque">大雪</span>
+    <h2 id="t-blds">村内建筑 · 四型样张 · 民间不官式</h2>
+    <span class="en">houses + ancestral hall · 32/48 px · silhouette-first</span>
+  </div>
+  <p class="lede">建筑层纪律（art-style-guide §2）：<b>穿斗/抬梁混合檐口、马头墙剪影、飞廊点缀</b>——<b>禁明清官式符号集中堆砌</b>（要民间山村，不要皇城感）。四型样张：悬山双坡民居（基准）、临水吊脚（湘西地貌兑现）、祠堂正门 48 宽（全村唯一礼制建筑、除祟线锚点）、马头山墙侧视（两级跌落阶梯剪影——开剪影模式验收的就是它）。瓦不描金、墙不加彩：<b>白墙黛瓦木裙板</b>，暖色只留给门内灯。</p>
+  <div class="grid" id="blds" style="grid-template-columns:repeat(2,1fr)"></div>
+</section>
 <footer>
-  <span>桃花源（Tarcadia）像素世界稿板 v0.3 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 邻接无硬缝 · 四季一眼可辨 · 剪影可辨地形骨架</span>
+  <span>桃花源（Tarcadia）像素世界稿板 v0.4 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 邻接无硬缝 · 四季一眼可辨 · 建筑剪影先行的白墙黛瓦 · 朱砂不进门楣</span>
 </footer>
 </div>
 <script>
@@ -307,6 +316,75 @@ const ITEM_RC=[
 '....ee.ee.......','....ee.ee.......','...ee...ee......','...je...je......',
 '....j...j.......','.....G.G........','......G.........','......t.........',
 '......t.........','................','................','................'];
+/* ===== 村内建筑层（art-style-guide §2：穿斗/抬梁混合檐口、马头墙剪影、避官式堆砌） ===== */
+const B_HOUSE_A=[
+'................................','................................',
+'...KK......................KK...','...KzzKK................KKzzK...',
+'..KNNNNNK..............KNNNNNK..','..KNNzzNNK............KNNzzNNK..',
+'..KNzzzzNK............KNzzzzNK..','..KNzzzzzzNK........KNzzzzzzNK..',
+'..KNzzzzzzNK........KNzzzzzzNK..','..KNzzzzzzzNK......KNzzzzzzzNK..',
+'..KNNzzzzzzNK......KNzzzzzzNNK..','...KNNNzzzzzNK....KNzzzzzNNNK...',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK','..gggggggggggggggggggggggggggg..',
+'..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..','...tWWWKKWWWWWWWWWWWWWWKKWWWt...',
+'...tWWWKKWWWWWWWWWWWWWWKKWWWt...','...tWWWWWWWWWWKKKKWWWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKKKKKWWWWWWWWWt...',
+'..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..','...............z................',
+'................................','................................',
+'................................','................................',];
+const B_HOUSE_B=[
+'................................','................................',
+'.....KK..................KK.....','.....KK..................KK.....',
+'...KNNNNNK............KNNNNNK...','...KNNNNNK............KNNNNNK...',
+'..KNzzzzzzNK........KNzzzzzzNK..','..KNzzzzzzNK........KNzzzzzzNK..',
+'.KNzzzzzzzzNK......KNzzzzzzzzNK.','.KNzzzzzzzzNK......KNzzzzzzzzNK.',
+'..KNzzzzzzzzzzNK..KNzzzzzzzzNK..','.KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.',
+'.gggggggggggggggggggggggggggggg.','.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.',
+'.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.','.tWWWKKWWWWWWWWWWWWWWWWKKWWWWt..',
+'.tWWWKKWWWWWWWWWWWWWWWWKKWWWWt..','.tWWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'.tWWWWWWWWWWWWWWWWWWWWWWWWWWWt..','.tttttttttttttttttttttttttttttt.',
+'..tt......tt........tt......tt..','..tt......tt........tt......tt..',
+'..tt......tt........tt......tt..','..tt......tt........tt......tt..',
+'..tt......tt........tt......tt..','..tt......tt........tt......tt..',
+'................................','................................',
+'................................','................................',
+'................................','................................',];
+const B_HALL_F=[
+'................................................','................................................',
+'..................KK........KK..................','................................................',
+'...............KNNNNK......KNNNNK...............','................................................',
+'............KNzzzzzzzNK..KNzzzzzzzNK............','................................................',
+'..........KNzzzzzzzzzzzzzzzzzzzzzzzzNK..........','................................................',
+'.......KNzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzNK.......','................................................',
+'.....KNzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzNK.....','KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'.gggggggggggggggggggggggggggggggggggggggggggggg.','..tWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'................................................','....tWWWWWKKWWWWWWWWWWWWWWWWWWWWWWWWKKWWWWWt....',
+'................................................','....tWWWWWKKWWWWWWWWWWWWWWWWWWWWWWWWKKWWWWWt....',
+'................................................','....tWWWWWWWWWWWWWWWKKKKKKKKWWWWWWWWWWWWWWWt....',
+'................................................','..tWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'..tWWWWWWWWWWWWWWWWWKttttttKWWWWWWWWWWWWWWWWWt..','..tWWWWWWWWWWWWWWWWWKttttttKWWWWWWWWWWWWWWWWWt..',
+'..tWWWWWWWWWWWWWWWWWKttttttKWWWWWWWWWWWWWWWWWt..','..tWWWWWWWWWWWWWWWWWKttttttKWWWWWWWWWWWWWWWWWt..',
+'..tWWWWWWWWWWWWWWWWWKttttttKWWWWWWWWWWWWWWWWWt..','..tWWWWWWWWWWWWWWWWWKttttttKWWWWWWWWWWWWWWWWWt..',
+'..tWWWWWWWWWWWWWWWWWKKKKKKKKWWWWWWWWWWWWWWWWWt..','..zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz..',];
+const B_HALL_S=[
+'................................','................................',
+'...............KK...............','.............KzzzK..............',
+'.............KzzzzK.............','.............KzzzzK.............',
+'.............KzzzK..............','.............KKKKK..............',
+'.............KzzzzK.............','............KzzzzzK.............',
+'............KzzzzzK.............','............KKKKKKK.............',
+'............KWWWWWK.............','............KWWWWWK.............',
+'............KWWKWWK.............','............KWWKWWK.............',
+'............KWWWWWK.............','............KWtWtWK.............',
+'............KWWWWWK.............','............KWKKKWK.............',
+'............KWKKKWK.............','............KWWWWWK.............',
+'............KWWWWWK.............','............KzzzzzK.............',
+'............KKKKKKK.............','................................',
+'................................','................................',
+'................................','................................',
+'................................','................................',];
 /* ===== 数据表 ===== */
 const TILES=[
  {rows:T_WILD,   nm:'荒草格', pal:'土底＋草簇＋散石',  note:'未开垦信号'},
@@ -341,6 +419,12 @@ const ITEMS_W=[
  {rows:ITEM_BN,nm:'蚕豆荚',cap:'荚 e · 豆粒 W'},
  {rows:ITEM_RC,nm:'稻穗束',cap:'穗 e · 束把 t'}
 ];
+const BUILDINGS=[
+ {rows:B_HOUSE_A,nm:'民居 · 悬山双坡',pal:'瓦 N/z · 白墙 W · 木裙 t · 檐影 g',note:'8 户民居基准型'},
+ {rows:B_HOUSE_B,nm:'民居 · 临水吊脚',pal:'架空柱 t · 楼板厚 t',note:'溪畔/坡地变型'},
+ {rows:B_HALL_F,nm:'祠堂 · 正门 48×32',pal:'大顶出檐 · 匾 K 框 · 门 t',note:'礼制唯一 · 除祟线锚点'},
+ {rows:B_HALL_S,nm:'祠堂 · 马头山墙侧视',pal:'两级跌落 · 阶梯剪影',note:'剪影闸门专用'}
+];
 const ADJS=[
  {nm:'草 → 犁沟（垦）',  a:7,b:1,note:'垦边：犁沟首行留草根'},
  {nm:'埂 → 水田（灌）',  a:4,b:3,note:'灌口：埂土压水一线'},
@@ -349,7 +433,7 @@ const ADJS=[
 /* ===== 渲染器（与人物稿板同制） ===== */
 function draw(cv,rows,scale,o){
   o=o||{};
-  const w=16,h=rows.length;
+  const w=rows[0].length,h=rows.length;
   cv.width=w*scale;cv.height=h*scale;
   const x=cv.getContext('2d');
   rows.forEach((r,j)=>{
@@ -432,6 +516,14 @@ document.querySelectorAll('.tbtn.season').forEach(b=>{
     fullRender();
   });
 });
+const bldsEl=document.getElementById('blds');
+BUILDINGS.forEach(b=>{
+  const card=document.createElement('div');card.className='card';
+  const cv=document.createElement('canvas');cv.className='checker';card.appendChild(cv);
+  const nm=document.createElement('div');nm.className='nm';nm.textContent=b.nm;
+  const pal=document.createElement('div');pal.className='pal';pal.textContent=b.pal+' · '+b.note;
+  card.append(nm,pal);bldsEl.appendChild(card);b.cv=cv;
+});
 function e_farm(){
   const cv=document.getElementById('farmCv');
   const sc=4,cols=6,rowsN=4;
@@ -470,6 +562,7 @@ function fullRender(){
   e_farm();
   ADJS.forEach(e_adj);
   SEASON_ROWS.forEach(d=>draw(d.cv,d.rows,5,{sil:state.sil,pal:d.pal}));
+  BUILDINGS.forEach(b=>draw(b.cv,b.rows,6,opts()));
   const b1=document.getElementById('btnSil'),b2=document.getElementById('btnGrid');
   b1.setAttribute('aria-pressed',String(state.sil));
   b2.setAttribute('aria-pressed',String(state.grid));
