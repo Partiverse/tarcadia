@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 像素人物稿板 v0.6</title>
+<title>桃花源 · 像素人物稿板 v0.7</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --cinnabar:#9A3B2B;
@@ -105,7 +105,7 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素人物稿</div>
     <div class="subtitle">
       <div class="rule">每一个点都是手排的：本页全部精灵为代码内像素矩阵，零生图。</div>
-      <p>v0.3 据调研重排：<b>帧格 16×20→16×32</b>（对齐星露谷宽1tile高2tile硬规格），<b>工笔多色线</b>（全局黑描边废除，每料取本色暗一档为线），<b>三色阶衣料</b>（亮/中/影各角色主衣三档），<b>发色双重编码</b>（八人发块不再同色同形），<b>女性不挂粉</b>（小满桃夭降为滚边，主衣改靛青）。<b>v0.4 补调研欠账</b>：<b>肤色五档</b>（白净q/常肤S/赭晒b/黝黑x/髹漆同x——星露谷被骂"全员一肤"才扩到 24 档，我们第一版就拉开），<b>发色四族落位</b>（玄H·褐f·霜N·雪W，帽下露发即年龄语言），<b>表情补 7 型</b>（女主 3 型 + NPC 方言 4 型：德厚怒＝胡子翘、黄婶喜＝笑眼眯、大山倦＝日头眯眼、小满赧＝红晕辫梢）。<b>v0.5 补最大硬欠账</b>：<b>工具五类×3 帧</b>——壶／镰／斧／竿 12 帧新排（木柄 n·铁首 z·水线 B·浮标 Y，禁 K 一色），芒种节 15 格齐；同时修 v0.4 三处道具层旧伤（锄 A 行宽溢 1px、锄 B 缺 1 行、锄头 K 线违规改 yOOy）。<b>v0.6 立绘清账</b>：<b>NPC 立绘四型全量 15→28</b>——德厚补常/喜/悲（髯顺垂/八字开/湿塌）、黄婶补常/怒/悲（方眼平嘴/眉压抿嘴/垂眉单泪）、大山补常/喜/怒（笠影方眼/张口/瞪眼）、小满补常/喜/悲（辫梢跳/垂眉泪）、江客补常型（眼开眉平）。</p>
+      <p>v0.3 据调研重排：<b>帧格 16×20→16×32</b>（对齐星露谷宽1tile高2tile硬规格），<b>工笔多色线</b>（全局黑描边废除，每料取本色暗一档为线），<b>三色阶衣料</b>（亮/中/影各角色主衣三档），<b>发色双重编码</b>（八人发块不再同色同形），<b>女性不挂粉</b>（小满桃夭降为滚边，主衣改靛青）。<b>v0.4 补调研欠账</b>：<b>肤色五档</b>（白净q/常肤S/赭晒b/黝黑x/髹漆同x——星露谷被骂"全员一肤"才扩到 24 档，我们第一版就拉开），<b>发色四族落位</b>（玄H·褐f·霜N·雪W，帽下露发即年龄语言），<b>表情补 7 型</b>（女主 3 型 + NPC 方言 4 型：德厚怒＝胡子翘、黄婶喜＝笑眼眯、大山倦＝日头眯眼、小满赧＝红晕辫梢）。<b>v0.5 补最大硬欠账</b>：<b>工具五类×3 帧</b>——壶／镰／斧／竿 12 帧新排（木柄 n·铁首 z·水线 B·浮标 Y，禁 K 一色），芒种节 15 格齐；同时修 v0.4 三处道具层旧伤（锄 A 行宽溢 1px、锄 B 缺 1 行、锄头 K 线违规改 yOOy）。<b>v0.6 立绘清账</b>：<b>NPC 立绘四型全量 15→28</b>——德厚补常/喜/悲（髯顺垂/八字开/湿塌）、黄婶补常/怒/悲（方眼平嘴/眉压抿嘴/垂眉单泪）、大山补常/喜/怒（笠影方眼/张口/瞪眼）、小满补常/喜/悲（辫梢跳/垂眉泪）、江客补常型（眼开眉平）。<b>v0.7 行走拍板落地</b>（C 折中案 2026-10-04）：主角男/女＋江客独立侧视行走 4 帧（开步腿段＋并拢＋bob 沉降，与前视同语法），其余 16 人行走复用三套骨骼换色——量产纪律已写进 art-style-guide §4。</p>
       <div class="spec">
         <span>16×32 × 四方向</span><span>待机 2 + 行走 4 + 工具 5×3</span><span>肤色 5 档 · 发色 4 族</span><span>表情 28 型（男5 女3 江客4 NPC16）</span><span>每角色 ≤12 色</span><span>朱砂只给人情事件</span><span>禁 3D 预渲染</span>
       </div>
@@ -177,6 +177,15 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <p class="lede">v0.5 补齐最大硬欠账：<b>壶／镰／斧／竿四类 12 帧新排，锄沿用 v0.3</b>。MALE 骨骼一帧不改——15 格全是道具叠加矩阵，这就是"工具动作不逐菜动画"的产能账本体。道具纪律：<b>木柄 <code>n</code>、铁首 <code>z</code>（亮面 <code>N</code>）、水线 <code>B/m</code>、钓线淡墨 <code>k</code>、浮标 <code>Y</code></b>——线取本色暗档，禁 K 一色；水与浮标不用朱砂。</p>
   <div class="film" id="tools"></div>
 </section>
+<section aria-labelledby="t-walk">
+  <div class="term-head">
+    <span class="term-plaque">秋分</span>
+    <h2 id="t-walk">行走 · 独立三套 · 其余十六人复用</h2>
+    <span class="en">walk 4 · side view · skeleton reuse, recolor only</span>
+  </div>
+  <p class="lede">拍板（2026-10-04 · C 折中案）：<b>主角男／主角女／江客独立排侧视行走 4 帧</b>，与前视同语法（contact／下沉开步／通过／抬起沉降——开步腿段＋并拢＋bob，只换腿不动躯干）；<b>其余 16 人行走一律复用三套骨骼换色</b>，体型方言（驼背/宽方/斗笠扁担/大头短腿/佝背）只在静态三视与立绘保留——此为量产纪律，已写进 art-style-guide §4。左向＝引擎镜像，帧数再省半。</p>
+  <div class="dirs" id="walk"></div>
+</section>
 <section aria-labelledby="t-faces">
   <div class="term-head">
     <span class="term-plaque">处暑</span>
@@ -224,8 +233,8 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="cinnabar-note">色彩语义账：玩家在第 40 小时看到红绦掉出来的瞬间就该心跳半拍——这是 80 小时只喂四次朱砂换来的条件反射。外包审稿单第一条：这个红是不是人情事件？不是，换掉。</div>
 </section>
 <footer>
-  <span>桃花源（Tarcadia）像素人物稿板 v0.6 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：剪影可辨 · 四方向齐 · 工具五类三帧 · 表情 28 型 · ×1 远景可辨 · 年集换色不混 · 朱砂=人情事件</span>
+  <span>桃花源（Tarcadia）像素人物稿板 v0.7 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：剪影可辨 · 四方向齐 · 工具五类三帧 · 表情 28 型 · 行走独立三套 · ×1 远景可辨 · 年集换色不混 · 朱砂=人情事件</span>
 </footer>
 </div>
 <script>
@@ -795,6 +804,27 @@ const JIANGKE_SIDE=[
 '................',
 '................',
 '................',];
+/* ===== v0.7 侧视开步腿段（行走独立三套：主角男/主角女/江客；其余 16 人复用换色） ===== */
+const SIDE_OPEN_M=[
+'....KteK........',
+'....KteKK.......',
+'....KteK.KteK...',
+'....KteK..KteK..',
+'....KtFK...KtFK.',
+'...KKKK....KKKK.'];
+const SIDE_OPEN_F=[
+'...KkWWK........',
+'...KkWWKK.......',
+'...KkWWK.KkW....',
+'...KkWWK..KkW...',
+'...KkFFK...KkF..',
+'...KKKK....KKK..'];
+const SIDE_OPEN_J=[
+'......zNK.K...O.',
+'......zNK..KNK.O',
+'......zFK...KF.O',
+'.....KzFFK..KFFK',
+'.....KK.KKK.KK..'];
 /* ===== 背视 ===== */
 const MALE_BACK=[
 '................',
@@ -1684,6 +1714,7 @@ function usedColors(rows){
   return [...set];
 }
 function withLegs(base,legs){const out=base.slice();for(let i=20;i<29;i++)out[i]=legs[i];return out;}
+function withRows(base,legs,from,to){const out=base.slice();for(let i=from;i<=to;i++)out[i]=legs[i-from];return out;}
 function bob(rows){return ['................'].concat(rows.slice(0,31));}
 /* ===== 装配 ===== */
 const media=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -1724,6 +1755,38 @@ TOOLS.forEach(f=>{
   const cap=document.createElement('figcaption');cap.textContent=f.cap;fig.appendChild(cap);
   toolsEl.appendChild(fig);f.cv=cv;
 });
+const WALKROWS_M=withRows(MALE_SIDE,SIDE_OPEN_M,23,28);
+const WALKROWS_F=withRows(FEMALE_SIDE,SIDE_OPEN_F,23,28);
+const WALKROWS_J=withRows(JIANGKE_SIDE,SIDE_OPEN_J,24,28);
+const WALK_CAST=[
+ {nm:'主角 · 男',note:'苎麻裤 e · 步幅 4px',frames:[MALE_SIDE,WALKROWS_M,MALE_SIDE,bob(MALE_SIDE)]},
+ {nm:'主角 · 女',note:'裙下窄腿 W · 小步幅',frames:[FEMALE_SIDE,WALKROWS_F,FEMALE_SIDE,bob(FEMALE_SIDE)]},
+ {nm:'江客',note:'灰裤 zN · 佝背小步',frames:[JIANGKE_SIDE,WALKROWS_J,JIANGKE_SIDE,bob(JIANGKE_SIDE)]}
+];
+const walkEl=document.getElementById('walk');
+const WALK_CELLS=[];
+(function(){
+  const head=document.createElement('div');head.className='dirs-head';
+  ['角色','1 · contact','2 · 下沉（开步）','3 · 通过','4 · 抬起（沉降）'].forEach(t=>{
+    const s=document.createElement('span');s.textContent=t;head.appendChild(s);
+  });
+  walkEl.appendChild(head);
+  WALK_CAST.forEach(p=>{
+    const row=document.createElement('div');row.className='drow';
+    const who=document.createElement('div');who.className='who';
+    const small=document.createElement('small');small.textContent=p.note;
+    who.appendChild(document.createTextNode(p.nm));who.appendChild(small);
+    row.appendChild(who);
+    p.frames.forEach(rows=>{
+      const cell=document.createElement('div');cell.className='dcell';
+      const cv=document.createElement('canvas');cv.className='checker';cell.appendChild(cv);
+      const sp=document.createElement('span');sp.textContent='左向＝镜像';cell.appendChild(sp);
+      row.appendChild(cell);
+      WALK_CELLS.push({cv,rows});
+    });
+    walkEl.appendChild(row);
+  });
+})();
 const castEl=document.getElementById('cast');
 CAST.forEach(p=>{
   const card=document.createElement('div');card.className='card';
@@ -1818,6 +1881,7 @@ function fullRender(){
   TOOLS.forEach(f=>{draw(f.cv,MALE,6,opts());overlay(f.cv,f.ovl,6,{sil:state.sil});});
   CAST.forEach(p=>draw(p.cv,p.rows,6,opts()));
   DIR_CELLS.forEach(d=>draw(d.cv,d.rows,5,opts()));
+  WALK_CELLS.forEach(d=>draw(d.cv,d.rows,5,opts()));
   FACES_M.concat(FACES_J,FACES_F,FACES_D,FACES_G,FACES_DS,FACES_X).forEach(f=>draw(f.cv,f.rows,f.scale,opts()));
   DIST.forEach(d=>draw(d.cv,d.rows,d.s,{sil:state.sil}));
   e_fair();
