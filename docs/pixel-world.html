@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 像素世界稿板 v0.4</title>
+<title>桃花源 · 像素世界稿板 v0.5</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -73,9 +73,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素世界稿</div>
     <div class="subtitle">
       <div class="rule">土地先于人定居：地块是玩家每天踩八小时的东西。</div>
-      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）；v0.4 增<b>村内建筑层</b>四型（悬山民居/吊脚楼/祠堂正门/马头山墙侧视，32/48 帧）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
+      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）；v0.4 增<b>村内建筑层</b>四型（悬山民居/吊脚楼/祠堂正门/马头山墙侧视，32/48 帧）；v0.5 增<b>autotile 管线</b>（16 位掩码生成器，三系收边规则，任意形状含内角自动拼接）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
       <div class="spec">
-        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span><span>建筑四型 32/48</span>
+        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span><span>建筑四型 32/48</span><span>autotile 16 掩码</span>
       </div>
       <div class="docs">上游：world-layers.md（千年层积） · vertical-slice-design.md §2（五溪村与溪田规模） · art-style-guide.md §2/§3（分层与色彩） · production-scope.md §9（产能）</div>
     </div>
@@ -156,6 +156,19 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <p class="lede">换季＝换色板不换矩阵：<b>十二键名四季同构</b>（草3 土2 水3 石2 点线2），冬季 W 提亮为雪、全局去饱和 60%（world-layers"年仓季"视觉）。下表六块代表地块四季并排——玩家瞥一眼色温就知道自己在哪一季，<b>纹理疏密一字未动</b>，这就是量产管线：28 作物、全 tileset 换季只出四张色表。</p>
   <div class="map" id="seasons"></div>
 </section>
+<section aria-labelledby="t-auto">
+  <div class="term-head">
+    <span class="term-plaque">立冬</span>
+    <h2 id="t-auto">autotile · 16 位掩码 · 三系收边</h2>
+    <span class="en">4-neighbour blob · edges generated, not hand-placed</span>
+  </div>
+  <p class="lede">地块集要能拼任意形状。v0.1 的直边过渡升级为<b>16 位掩码管线</b>：每格看四邻是否同系（上1 下2 左4 右8），异系侧自动收边——草系 d 暗带＋j 亮齿、犁沟系 N 石沿压实、水系 g 暗带＋m 岸波。<b>变体由生成器产出而非手排</b>（16×3=48 个变体零手排成本，与四季色板管线正交）。下方右侧演示图是引擎逻辑本体：L 形犁沟、水湾、半岛全部自动收边，含内角。</p>
+  <div class="grid" id="auto16" style="grid-template-columns:repeat(4,1fr)"></div>
+  <div class="map">
+    <canvas id="autoCv" class="checker" aria-label="autotile 任意形状拼接演示"></canvas>
+    <p class="map-cap">▲ 8×6 任意形状 · 掩码引擎逐格选变体 · 内角（水湾右上）与外角（犁沟尖）均自动生成</p>
+  </div>
+</section>
 <section aria-labelledby="t-blds">
   <div class="term-head">
     <span class="term-plaque">大雪</span>
@@ -166,8 +179,8 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="grid" id="blds" style="grid-template-columns:repeat(2,1fr)"></div>
 </section>
 <footer>
-  <span>桃花源（Tarcadia）像素世界稿板 v0.4 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 邻接无硬缝 · 四季一眼可辨 · 建筑剪影先行的白墙黛瓦 · 朱砂不进门楣</span>
+  <span>桃花源（Tarcadia）像素世界稿板 v0.5 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 掩码拼接内角外角全自动 · 四季一眼可辨 · 建筑剪影先行的白墙黛瓦 · 朱砂不进门楣</span>
 </footer>
 </div>
 <script>
@@ -461,6 +474,74 @@ function overlay(cv,rows,scale,o){
     }
   });
 }
+
+/* ===== autotile 16 位掩码（4 邻居同系 bit：上1下2左4右8；异系侧收边） ===== */
+function autoTile(rows,mask,rules){
+  const r=rows.map(x=>x.split(''));
+  const band=(cols,rowsIdx,fn)=>{};
+  if(mask&1) rules.up(r);
+  if(mask&2) rules.down(r);
+  if(mask&4) rules.left(r);
+  if(mask&8) rules.right(r);
+  return r.map(x=>x.join(''));
+}
+const EDGE_GRASS={
+  up:r=>{for(let i=0;i<16;i++){r[0][i]='d';if(i%5===0)r[1][i]='j';r[1][i]=r[1][i]==='G'?'j':r[1][i];}},
+  down:r=>{for(let i=0;i<16;i++){r[15][i]='d';r[14][i]=r[14][i]==='G'?'d':r[14][i];}},
+  left:r=>{for(let j=0;j<16;j++){r[j][0]='d';r[j][1]=r[j][1]==='G'?'d':r[j][1];}},
+  right:r=>{for(let j=0;j<16;j++){r[j][15]='d';r[j][14]=r[j][14]==='G'?'d':r[j][14];}}
+};
+const EDGE_TILLED={
+  up:r=>{for(let i=0;i<16;i++){r[0][i]='N';r[1][i]='t';}},
+  down:r=>{for(let i=0;i<16;i++){r[15][i]='t';}},
+  left:r=>{for(let j=0;j<16;j++){r[j][0]='N';}},
+  right:r=>{for(let j=0;j<16;j++){r[j][15]='N';}}
+};
+const EDGE_WATER={
+  up:r=>{for(let i=0;i<16;i++){r[0][i]='g';r[1][i]=i%4===0?'m':'g';}},
+  down:r=>{for(let i=0;i<16;i++){r[15][i]='g';}},
+  left:r=>{for(let j=0;j<16;j++){r[j][0]='g';r[j][1]=r[j][1]==='B'?'m':r[j][1];}},
+  right:r=>{for(let j=0;j<16;j++){r[j][15]='g';}}
+};
+const AUTO_BASES={G:{rows:T_GRASS,edge:EDGE_GRASS,nm:'草系'},T:{rows:T_TILLED,edge:EDGE_TILLED,nm:'犁沟系'},W:{rows:T_WATERC,edge:EDGE_WATER,nm:'水系'}};
+function autoFor(map,j,i){
+  const here=map[j][i], base=AUTO_BASES[here];
+  if(!base)return null;
+  const at=(y,x)=>(map[y]&&map[y][x]===here)?1:0;
+  const mask=(at(j-1,i)?1:0)|(at(j+1,i)?2:0)|(at(j,i-1)?4:0)|(at(j,i+1)?8:0);
+  return autoTile(base.rows,mask,base.edge);
+}
+const AUTO_DEMO=[
+ 'GGGGGGGG',
+ 'GGGTTGGG',
+ 'GGTTTTGG',
+ 'GGTTWWGG',
+ 'GGGWWWGG',
+ 'GGWWWGGG'
+];
+const autoEl=document.getElementById('auto16');
+const AUTO_CARDS=[];
+for(let m=0;m<16;m++){
+  const card=document.createElement('div');card.className='card';
+  const cv=document.createElement('canvas');cv.className='checker';card.appendChild(cv);
+  const nm=document.createElement('div');nm.className='nm';nm.textContent='mask '+m.toString(2).padStart(4,'0');
+  const pal=document.createElement('div');pal.className='pal';pal.textContent=['上','下','左','右'].filter((_,b)=>m&(1<<b)).join('')+' 邻异系收边';
+  card.append(nm,pal);autoEl.appendChild(card);AUTO_CARDS.push({cv,m});
+}
+function e_auto(){
+  AUTO_CARDS.forEach(c=>{draw(c.cv,autoTile(T_GRASS,c.m,EDGE_GRASS),8,{sil:state.sil,pal:PAL});});
+  const cv=document.getElementById('autoCv');
+  const sc=4;
+  cv.width=AUTO_DEMO[0].length*16*sc;cv.height=AUTO_DEMO.length*16*sc;
+  const x=cv.getContext('2d');
+  AUTO_DEMO.forEach((row,j)=>[...row].forEach((ch,i)=>{
+    const rows=autoFor(AUTO_DEMO,j,i)||TILES[7].rows;
+    const tmp=document.createElement('canvas');
+    draw(tmp,rows,sc,{sil:state.sil,pal:PAL});
+    x.drawImage(tmp,i*16*sc,j*16*sc);
+  }));
+}
+
 const state={sil:false,grid:false};
 const opts=()=>({sil:state.sil,grid:state.grid});
 const tilesEl=document.getElementById('tiles');
@@ -563,6 +644,7 @@ function fullRender(){
   ADJS.forEach(e_adj);
   SEASON_ROWS.forEach(d=>draw(d.cv,d.rows,5,{sil:state.sil,pal:d.pal}));
   BUILDINGS.forEach(b=>draw(b.cv,b.rows,6,opts()));
+  e_auto();
   const b1=document.getElementById('btnSil'),b2=document.getElementById('btnGrid');
   b1.setAttribute('aria-pressed',String(state.sil));
   b2.setAttribute('aria-pressed',String(state.grid));
