@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 像素世界稿板 v0.1</title>
+<title>桃花源 · 像素世界稿板 v0.2</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -66,9 +66,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素世界稿</div>
     <div class="subtitle">
       <div class="rule">土地先于人定居：地块是玩家每天踩八小时的东西。</div>
-      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
+      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
       <div class="spec">
-        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季换色留待 v0.2</span>
+        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季换色留待 v0.3</span>
       </div>
       <div class="docs">上游：world-layers.md（千年层积） · vertical-slice-design.md §2（五溪村与溪田规模） · art-style-guide.md §2/§3（分层与色彩） · production-scope.md §9（产能）</div>
     </div>
@@ -118,9 +118,27 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <p class="lede">地块相接处最露馅。v0.1 先给直边过渡三组：<b>草→犁沟</b>（垦）、<b>埂→水田</b>（灌）、<b>静水→梯沿</b>（岸）。完整 47 位掩码 autotile 不在本版——先验证色阶与疏密接得上，再谈自动拼接。</p>
   <div class="adjs" id="adjs"></div>
 </section>
+<section aria-labelledby="t-crops">
+  <div class="term-head">
+    <span class="term-plaque">小满</span>
+    <h2 id="t-crops">作物精灵层 · 切片三作物 × 四生长态</h2>
+    <span class="en">crops overlay on tilled/paddy tiles · slice trio first</span>
+  </div>
+  <p class="lede">切片决议：第 1 局玩家只面对一次"窗口取舍"——<b>黄瓜／蚕豆／稻三者地块竞争</b>（vertical-slice-design）。作物是叠加层：底格＝犁沟（黄瓜/蚕豆）或水田（稻），作物像素落字其上，<b>全部在春款 12 色板内</b>（稻穗用土色 e 不另开黄键——色账不破）。每作物 4 态对应农事节拍：播／立／长／熟。</p>
+  <div class="grid" id="crops"></div>
+</section>
+<section aria-labelledby="t-items">
+  <div class="term-head">
+    <span class="term-plaque">夏至</span>
+    <h2 id="t-items">收获物 · 16×16 物件帧</h2>
+    <span class="en">harvest icons · same palette</span>
+  </div>
+  <p class="lede">田里长的与收进包的要对得上：收获物帧与作物熟态<b>同一色键同一形态语言</b>（黄瓜＝青果 W 高光 t 柄、豆＝e 荚 W 粒、稻＝e 穗 t 把）——玩家从田头到背包不需要重新学习一套图形。</p>
+  <div class="grid" id="itemsW" style="grid-template-columns:repeat(3,1fr)"></div>
+</section>
 <footer>
-  <span>桃花源（Tarcadia）像素世界稿板 v0.1 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：12 色封顶 · 12 地块各司其职 · 24 格拼接可读 · 邻接无硬缝 · 剪影可辨地形骨架</span>
+  <span>桃花源（Tarcadia）像素世界稿板 v0.2 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：12 色封顶 · 12 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 邻接无硬缝 · 剪影可辨地形骨架</span>
 </footer>
 </div>
 <script>
@@ -194,6 +212,82 @@ const T_TERRACE=[
 'zNNNNNNNNNNNNNNz','zzzzzzzzzzzzzzzz','tttttttttttttttt','tttttttttttttttt',
 'tttttttttttttttt','tttttttttttttttt','tttttttttttttttt','tttttttttttttttt',
 'tttttttttttttttt','tttttttttttttttt','tttttttttttttttt','tttttttttttttttt'];
+/* ===== 作物精灵层 16×16 叠加（透明底 · 12 色板内：蔓叶 G/j/g、架与秆 t、荚与穗 e、花 W） ===== */
+const C_CU_1=[
+'................','................','................','................',
+'................','................','................','................',
+'................','................','................','................',
+'................','.....e....e.....','................','................'];
+const C_CU_2=[
+'................','................','................','................',
+'................','................','................','................',
+'................','................','......ttt.......','......t.t.......',
+'......t.t.......','......t.t.......','......t.t.......','.....j...j......'];
+const C_CU_3=[
+'................','................','................','......ttt.......',
+'.....jt.tj......','....Gjt.tjG.....','...GGt.t.GG.....','..GGGt.t.GGG....',
+'..GGGt.t.GGG....','...GGt.t.GG.....','..GGGt.t.GGG....','...Gjt.tjG......',
+'..g..t.t..g.....','..g..t.t..g.....','.....t.t........','.....t...t......'];
+const C_CU_4=[
+'................','................','......ttt.......','.....jt.tj......',
+'....Gjt.tjG.....','...GGjt.tjGG....','...GGjt.tjGG....','..GGGjt.tjGGG...',
+'..GGGjt.tjGGG...','..dGGjt.tjGGd...','.GGg..t.t..gGG..','.GGg..t.t..gGG..',
+'.GWg..t.t..gWG..','.GGg..t.t..gGG..','..gg..t.t..gg...','.....t...t......'];
+const C_BN_1=[
+'................','................','................','................',
+'................','................','................','................',
+'................','................','................','................',
+'................','.....e....e.....','................','................'];
+const C_BN_2=[
+'................','................','................','................',
+'................','................','................','................',
+'................','................','......j.........','.....jtj........',
+'......t.........','......t.........','................','................'];
+const C_BN_3=[
+'................','................','................','................',
+'................','................','................','.....GG.GG......',
+'....GGGGGGG.....','....GWKGGWG.....','...GGGWKGGGG....','...GGGGGGGGG....',
+'....GGGGGGG.....','.....G.G.G......','......t.t.......','................'];
+const C_BN_4=[
+'................','................','................','................',
+'................','................','.....GG.GG......','....GGGGGGG.....',
+'....GGGGGGG.....','...GGdddddGG....','...GeeGGeeeG....','...GeeGGeeeG....',
+'..Gee.GG.eeG....','..ee...G..ee....','......t.t.......','................'];
+const C_RC_1=[
+'................','................','................','................',
+'................','................','................','................',
+'................','................','................','.......j........',
+'.......j........','................','................','................'];
+const C_RC_2=[
+'................','................','................','................',
+'................','................','................','................',
+'................','....j..j..j.....','....j..j..j.....','...Gj.Gj.Gj.....',
+'....G..G..G.....','................','................','................'];
+const C_RC_3=[
+'................','................','................','................',
+'................','....j..j..j.....','...Gj.Gj.Gj.....','...Gj.Gj.Gj.....',
+'...Gj.Gj.Gj.....','..GGj.Gj.GjG....','..GGj.Gj.GjG....','..Gd..Gd..Gd....',
+'...G...G...G....','................','................','................'];
+const C_RC_4=[
+'................','................','................','................',
+'...e..e..e......','..ee.ee.ee......','..ee.ee.ee......','..je.je.je......',
+'..Gj.Gj.Gj......','..Gj.Gj.Gj......','..Gd.Gd.Gd......','..Gd.Gd.Gd......',
+'...G...G...G....','...g...g...g....','................','................'];
+const ITEM_CU=[
+'................','................','................','...GGWGG........',
+'..GGWGGG........','..GWGGg.........','..GGGGg.........','..tGGG..........',
+'.......GGWGG....','......GGWGGG....','......GWGGg.....','......GGGGg.....',
+'......tGGG......','................','................','................'];
+const ITEM_BN=[
+'................','................','................','................',
+'................','...tKeeeeK......','...KeeWeeeK.....','...KeeeeeeK.....',
+'....KeeeeK......','.....KeeK.......','......KK........','................',
+'................','................','................','................'];
+const ITEM_RC=[
+'................','................','................','.....e..e.......',
+'....ee.ee.......','....ee.ee.......','...ee...ee......','...je...je......',
+'....j...j.......','.....G.G........','......G.........','......t.........',
+'......t.........','................','................','................'];
 /* ===== 数据表 ===== */
 const TILES=[
  {rows:T_WILD,   nm:'荒草格', pal:'土底＋草簇＋散石',  note:'未开垦信号'},
@@ -214,6 +308,19 @@ const FARM_MAP=[
  [8,6,6,1,2,4],
  [9,10,4,3,3,4],
  [8,7,6,1,1,4]
+];
+const CROPS=[
+ {nm:'黄瓜',base:1,note:'搭架蔓生 · 花白果青',stages:[
+   {rows:C_CU_1,cap:'播'},{rows:C_CU_2,cap:'立架发芽'},{rows:C_CU_3,cap:'抽蔓'},{rows:C_CU_4,cap:'成熟垂果'}]},
+ {nm:'蚕豆',base:1,note:'矮丛 · 白花黑斑 · 荚褐',stages:[
+   {rows:C_BN_1,cap:'播'},{rows:C_BN_2,cap:'双叶'},{rows:C_BN_3,cap:'开花'},{rows:C_BN_4,cap:'结荚'}]},
+ {nm:'稻',base:3,note:'塘田水生 · 穗黄土色不破 12 色账',stages:[
+   {rows:C_RC_1,cap:'插秧'},{rows:C_RC_2,cap:'分蘖'},{rows:C_RC_3,cap:'拔节'},{rows:C_RC_4,cap:'垂穗'}]}
+];
+const ITEMS_W=[
+ {rows:ITEM_CU,nm:'黄瓜 ×2',cap:'果青 W 高光 · 柄 t'},
+ {rows:ITEM_BN,nm:'蚕豆荚',cap:'荚 e · 豆粒 W'},
+ {rows:ITEM_RC,nm:'稻穗束',cap:'穗 e · 束把 t'}
 ];
 const ADJS=[
  {nm:'草 → 犁沟（垦）',  a:7,b:1,note:'垦边：犁沟首行留草根'},
@@ -240,6 +347,17 @@ function draw(cv,rows,scale,o){
     for(let j=1;j<h;j++){x.beginPath();x.moveTo(0,j*scale+.5);x.lineTo(w*scale,j*scale+.5);x.stroke();}
   }
 }
+function overlay(cv,rows,scale,o){
+  const x=cv.getContext('2d');
+  rows.forEach((r,j)=>{
+    for(let i=0;i<16;i++){
+      const ch=r[i];
+      if(!ch||ch==='.'||ch===' ')continue;
+      x.fillStyle=(o&&o.sil)?'#2B2A24':(PAL[ch]||'#F0F');
+      x.fillRect(i*scale,j*scale,scale,scale);
+    }
+  });
+}
 const state={sil:false,grid:false};
 const opts=()=>({sil:state.sil,grid:state.grid});
 const tilesEl=document.getElementById('tiles');
@@ -249,6 +367,24 @@ TILES.forEach(t=>{
   const nm=document.createElement('div');nm.className='nm';nm.textContent=t.nm;
   const pal=document.createElement('div');pal.className='pal';pal.textContent=t.pal+' · '+t.note;
   card.append(nm,pal);tilesEl.appendChild(card);t.cv=cv;
+});
+const cropsEl=document.getElementById('crops');
+CROPS.forEach(c=>{
+  c.stages.forEach((st,si)=>{
+    const card=document.createElement('div');card.className='card';
+    const cv=document.createElement('canvas');cv.className='checker';card.appendChild(cv);
+    const nm=document.createElement('div');nm.className='nm';nm.textContent=(si===0?c.nm+' · '+c.note:c.nm+' '+si);
+    const pal=document.createElement('div');pal.className='pal';pal.textContent=st.cap;
+    card.append(nm,pal);cropsEl.appendChild(card);st.cv=cv;
+  });
+});
+const itemsWEl=document.getElementById('itemsW');
+ITEMS_W.forEach(it=>{
+  const card=document.createElement('div');card.className='card';
+  const cv=document.createElement('canvas');cv.className='checker';card.appendChild(cv);
+  const nm=document.createElement('div');nm.className='nm';nm.textContent=it.nm;
+  const pal=document.createElement('div');pal.className='pal';pal.textContent=it.cap;
+  card.append(nm,pal);itemsWEl.appendChild(card);it.cv=cv;
 });
 function e_farm(){
   const cv=document.getElementById('farmCv');
@@ -283,6 +419,8 @@ function e_adj(a){
 }
 function fullRender(){
   TILES.forEach(t=>draw(t.cv,t.rows,8,opts()));
+  CROPS.forEach(c=>c.stages.forEach(st=>{draw(st.cv,TILES[c.base].rows,8,{sil:state.sil});overlay(st.cv,st.rows,8,{sil:state.sil});}));
+  ITEMS_W.forEach(it=>draw(it.cv,it.rows,8,opts()));
   e_farm();
   ADJS.forEach(e_adj);
   const b1=document.getElementById('btnSil'),b2=document.getElementById('btnGrid');
