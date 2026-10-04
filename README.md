@@ -6,8 +6,9 @@
 
 ## 从这里开始
 
-- `HANDOFF.md` — **交接与欠账清单**（接续者必读：像素人物设计未完成项、优先级、验证链命令）
-- `docs/pixel-characters.html` — 像素人物稿板 v0.4（浏览器直接打开，单文件零依赖）
+- `HANDOFF.md` — **交接与欠账清单**（人物篇已收官，world 篇已开账；验证链命令必读）
+- `docs/pixel-characters.html` — 像素人物稿板 v0.7 批 4（18 人收官，浏览器直接打开，单文件零依赖）
+- `docs/pixel-world.html` — 像素世界稿板 v0.1（春季 12 地块＋溪田 24 格拼接，同款验证链）
 - `docs/research-stardew-characters.md` — 星露谷人物像素调研（v0.3/v0.4 改稿依据）
 - `docs/feasibility.md → vertical-slice-design.md → slice-numbers.md → slice-calendar.md` — 立项→切片→数值主线
 - `docs/art-style-guide.md · character-style.md · character-roster.md` — 美术宪法与 18 人名册权威
