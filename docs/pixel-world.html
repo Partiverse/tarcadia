@@ -73,7 +73,7 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素世界稿</div>
     <div class="subtitle">
       <div class="rule">土地先于人定居：地块是玩家每天踩八小时的东西。</div>
-      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）；v0.4 增<b>村内建筑层</b>四型（悬山民居/吊脚楼/祠堂正门/马头山墙侧视，32/48 帧）；v0.5 增<b>autotile 管线</b>（16 位掩码生成器，三系收边规则，任意形状含内角自动拼接）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
+      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）；v0.4 增<b>村内建筑层</b>四型（悬山民居/吊脚楼/祠堂正门/马头山墙侧视，32/48 帧）；v0.5 增<b>autotile 管线</b>（16 位掩码生成器，三系收边规则，任意形状含内角自动拼接）；批 2 <b>建筑扩量</b>：8 户民居变体＋小卖部＋飞廊，全部生成器流水线产出（悬山配方参数化＋镜像引擎化）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
       <div class="spec">
         <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span><span>建筑四型 32/48</span><span>autotile 16 掩码</span>
       </div>
@@ -172,14 +172,14 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
 <section aria-labelledby="t-blds">
   <div class="term-head">
     <span class="term-plaque">大雪</span>
-    <h2 id="t-blds">村内建筑 · 四型样张 · 民间不官式</h2>
+    <h2 id="t-blds">村内建筑 · 十一件全册 · 民间不官式</h2>
     <span class="en">houses + ancestral hall · 32/48 px · silhouette-first</span>
   </div>
-  <p class="lede">建筑层纪律（art-style-guide §2）：<b>穿斗/抬梁混合檐口、马头墙剪影、飞廊点缀</b>——<b>禁明清官式符号集中堆砌</b>（要民间山村，不要皇城感）。四型样张：悬山双坡民居（基准）、临水吊脚（湘西地貌兑现）、祠堂正门 48 宽（全村唯一礼制建筑、除祟线锚点）、马头山墙侧视（两级跌落阶梯剪影——开剪影模式验收的就是它）。瓦不描金、墙不加彩：<b>白墙黛瓦木裙板</b>，暖色只留给门内灯。</p>
+  <p class="lede">建筑层纪律（art-style-guide §2）：<b>穿斗/抬梁混合檐口、马头墙剪影、飞廊点缀</b>——<b>禁明清官式符号集中堆砌</b>（要民间山村，不要皇城感）。八户民居全册＋小卖部＋飞廊＋祠堂正侧：悬山配方参数化（门移/裙高/顶宽），镜像交引擎翻 x；吊脚楼兑现湘西地貌；祠堂 48 宽是全村唯一礼制建筑（除祟线锚点），马头山墙侧视开剪影模式验收。瓦不描金、墙不加彩：<b>白墙黛瓦木裙板</b>，暖色只留给门内灯。</p>
   <div class="grid" id="blds" style="grid-template-columns:repeat(2,1fr)"></div>
 </section>
 <footer>
-  <span>桃花源（Tarcadia）像素世界稿板 v0.5 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>桃花源（Tarcadia）像素世界稿板 v0.5 批 2 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
   <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 掩码拼接内角外角全自动 · 四季一眼可辨 · 建筑剪影先行的白墙黛瓦 · 朱砂不进门楣</span>
 </footer>
 </div>
@@ -398,6 +398,126 @@ const B_HALL_S=[
 '................................','................................',
 '................................','................................',
 '................................','................................',];
+/* ===== v0.5 批 2 · 建筑扩量（生成器流水线产出） ===== */
+const B_HOUSE_A2=[
+'................................','................................',
+'...KK......................KK...','...KzzKK................KKzzK...',
+'..KNNNNNK..............KNNNNNK..','..KNNzzNNK............KNNzzNNK..',
+'..KNzzzzNK............KNzzzzNK..','..KNzzzzzzNK........KNzzzzzzNK..',
+'..KNzzzzzzNK........KNzzzzzzNK..','..KNzzzzzzzNK......KNzzzzzzzNK..',
+'..KNNzzzzzzNK......KNzzzzzzNNK..','...KNNNzzzzzNK....KNzzzzzNNNK...',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK','..gggggggggggggggggggggggggggg..',
+'.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.','...tWWWKKWWWWWWWWWWWWWWKKWWWt...',
+'...tWWWKKWWWWWWWWWWWWWWKKWWWt...','...tWWWWWWWWWWKKKKWWWWWWWWWWt...',
+'...tWWWWWWWWKttttKWWWWWWWWWWt...','...tWWWWWWWWKttttKWWWWWWWWWWt...',
+'...tWWWWWWWWKttttKWWWWWWWWWWt...','...tWWWWWWWWKttttKWWWWWWWWWWt...',
+'...tWWWWWWWWKttttKWWWWWWWWWWt...','...tWWWWWWWWKttttKWWWWWWWWWWt...',
+'...tWWWWWWWWKttttKWWWWWWWWWWt...','...tWWWWWWWWWKKKKKWWWWWWWWWWt...',
+'..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..','..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..',
+'................................','................................',
+'................................','................................',];
+const B_HOUSE_A3=[
+'................................','................................',
+'...KK......................KK...','...KzzKK................KKzzK...',
+'..KNNNNNK..............KNNNNNK..','..KNNzzNNK............KNNzzNNK..',
+'..KNzzzzNK............KNzzzzNK..','..KNzzzzzzNK........KNzzzzzzNK..',
+'..KNzzzzzzNK........KNzzzzzzNK..','..KNzzzzzzzNK......KNzzzzzzzNK..',
+'..KNNzzzzzzNK......KNzzzzzzNNK..','...KNNNzzzzzNK....KNzzzzzNNNK...',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK','..gggggggggggggggggggggggggggg..',
+'.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.','...tWWWKKWWWWWWWWWWWWWWKKWWWt...',
+'...tWWWKKWWWWWWWWWWWWWWKKWWWt...','...tWWWWWWWWWWKKKKWWWWWWWWWWt...',
+'...tWWWWWWWWWWWWWKttttKWWWWWt...','...tWWWWWWWWWWWWWKttttKWWWWWt...',
+'...tWWWWWWWWWWWWWKttttKWWWWWt...','...tWWWWWWWWWWWWWKttttKWWWWWt...',
+'...tWWWWWWWWWWWWWKttttKWWWWWt...','...tWWWWWWWWWWWWWKttttKWWWWWt...',
+'...tWWWWWWWWWWWWWKttttKWWWWWt...','...tWWWWWWWWWWWWWKttttKWWWWWt...',
+'...tWWWWWWWWWWWWWKttttKWWWWWt...','....tWWWWWWWWWWKKKKKWWWWWWt.....',
+'..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..','..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..',
+'................................','................................',];
+const B_HOUSE_A4=[
+'................................','................................',
+'.....KK..................KK.....','.....KzzKK............KKzzK.....',
+'..KNNNNK................KNNNNK..','...KNNzNK..............KNzNNK...',
+'....KNzzNK............KNzzNK....','....KNzzzzNK........KNzzzzNK....',
+'....KNzzzzNK........KNzzzzNK....','.....KNzzzzzNK....KNzzzzzNK.....',
+'......KNNzzzNK....KNzzzNNK......','.......KNNNzzNK..KNzzNNNK.......',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK','..gggggggggggggggggggggggggggg..',
+'.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.','...tWWWKKWWWWWWWWWWWWWWKKWWWt...',
+'...tWWWKKWWWWWWWWWWWWWWKKWWWt...','...tWWWWWWWWWWKKKKWWWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKKKKKWWWWWWWWWt...',
+'..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..','..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..',
+'................................','................................',
+'................................','................................',];
+const B_HOUSE_B2=[
+'................................','................................',
+'.....KK..................KK.....','.....KK..................KK.....',
+'...KNNNNNK............KNNNNNK...','...KNNNNNK............KNNNNNK...',
+'..KNzzzzzzNK........KNzzzzzzNK..','..KNzzzzzzNK........KNzzzzzzNK..',
+'.KNzzzzzzzzNK......KNzzzzzzzzNK.','.KNzzzzzzzzNK......KNzzzzzzzzNK.',
+'..KNzzzzzzzzNK..KNzzzzzzzzzzNK..','.KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.',
+'.gggggggggggggggggggggggggggggg.','.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.',
+'.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.','..tWWWWKKWWWWWWWWWWWWWWWWKKWWWt.',
+'..tWWWWKKWWWWWWWWWWWWWWWWKKWWWt.','..tWWWWWWWWWWWWWWWWWWWWWWWWWWWt.',
+'..tWWWWWWWWWWWWWWWWWWWWWWWWWWWt.','.tttttttttttttttttttttttttttttt.',
+'..tt......tt........tt......tt..','..tt......tt........tt......tt..',
+'..tt......tt........tt......tt..','..tt......tt........tt......tt..',
+'..tt......tt........tt......tt..','..tt......tt........tt......tt..',
+'................................','................................',
+'................................','................................',
+'................................','................................',];
+const B_HOUSE_D=[
+'................................................','................................................',
+'..KK..........KK................KK..........KK..','..KzzKK......KKzzK............KKzzK......KKzzK..',
+'KNNNNNK......KNNNNNK........KNNNNNK......KNNNNNK','KNNzzNNK....KNNzzNNK........KNNzzNNK....KNNzzNNK',
+'KNzzzzNK....KNzzzzNK........KNzzzzNK....KNzzzzNK','KNzzzzzzNK..KNzzzzzzNK....KNzzzzzzNK..KNzzzzzzNK',
+'KNzzzzzzNK..KNzzzzzzNK....KNzzzzzzNK..KNzzzzzzNK','KNzzzzzzzNK.KNzzzzzzzNK..KNzzzzzzzNK.KNzzzzzzzNK',
+'KNzzzzzzzNK.KNzzzzzzzNK..KNzzzzzzzNK.KNzzzzzzzNK','KNNzzzzzzNK.KNNzzzzzzNK..KNNzzzzzzNK.KNNzzzzzzNK',
+'KNNzzzzzzNK.KNNzzzzzzNK..KNNzzzzzzNK.KNNzzzzzzNK','KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'..gggggggggggggggggggggggggggggggggggggggggggg..','..tWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'.tWWWKKWWWWWWWWKKWWWt......tWWWKKWWWWWWWWKKWWWt.','.tWWWKKWWWWWWWWKKWWWt......tWWWKKWWWWWWWWKKWWWt.',
+'.tWWWWWWKKKKWWWWWWWt........tWWWWWWWKKKKWWWWWWt.','tWWWWWWKttttKWWWWWWt........tWWWWWWKttttKWWWWWWt',
+'tWWWWWWKttttKWWWWWWt........tWWWWWWKttttKWWWWWWt','tWWWWWWKttttKWWWWWWt........tWWWWWWKttttKWWWWWWt',
+'tWWWWWWKttttKWWWWWWt........tWWWWWWKttttKWWWWWWt','tWWWWWWKttttKWWWWWWt........tWWWWWWKttttKWWWWWWt',
+'tWWWWWWKttttKWWWWWWt........tWWWWWWKttttKWWWWWWt','tWWWWWWKttttKWWWWWWt........tWWWWWWKttttKWWWWWWt',
+'.tWWWWWWKKKKKWWWWWWt........tWWWWWWKKKKKWWWWWWt.','..zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz..',
+'..zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz..','................................................',
+'................................................','................................................',];
+const B_SHOP=[
+'................................','................................',
+'...KK......................KK...','...KzzKK................KKzzK...',
+'..KNNNNNK..............KNNNNNK..','..KNNzzNNK............KNNzzNNK..',
+'..KNzzzzNK............KNzzzzNK..','..KNzzzzzzNK........KNzzzzzzNK..',
+'..KNzzzzzzNK........KNzzzzzzNK..','..KNzzzzzzzNK......KNzzzzzzzNK..',
+'..KNNzzzzzzNK......KNzzzzzzNNK..','...KNNNzzzzzNK....KNzzzzzNNNK...',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK','..gggggggggggggggggggggggggggg..',
+'.tWWWWWWWWWWWWWWWWWWWWWWWWWWWWt.','...tWWWKKWWWWWWWWWWWWWWKKWWWt...',
+'...tWWWKKWWWWWWWWWWWWWWKKWWWt...','..tWWWWWWWWWWKKKKKKKKWWWWWWWWt..',
+'..tWWWWWWWWWWKWWWWWKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKttttKWWWWWWWWt...','...tWWWWWWWWWWKttttKWWWWWWWWt...',
+'...tWWWWWWWWWWKKKKKWWWWWWWWWt...','..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..',
+'..zzzzzzzzzzzzzzzzzzzzzzzzzzzz..','................................',
+'................................','................................',];
+const B_GALLERY=[
+'................................','................................',
+'...KK......................KK...','...KzzKK................KKzzK...',
+'..KNNNNNK..............KNNNNNK..','..KNzzzzzzNK........KNzzzzzzNK..',
+'..KNzzzzzzzNK......KNzzzzzzzNK..','KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'...gggggggggggggggggggggggggg...','..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'..tt........tt....tt........tt..','..tt........tt....tt........tt..',
+'..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..','..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..','..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..','..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..','..tWWWWWWWWWWWWWWWWWWWWWWWWWWt..',
+'..tt........tt....tt........tt..','..tt........tt....tt........tt..',
+'..tt........tt....tt........tt..','..tt........tt....tt........tt..',
+'..tt........tt....tt........tt..','..tt........tt....tt........tt..',
+'..tt........tt....tt........tt..','..tt........tt....tt........tt..',
+'..tt........tt....tt........tt..','..tt........tt....tt........tt..',
+'................................','................................',];
 /* ===== 数据表 ===== */
 const TILES=[
  {rows:T_WILD,   nm:'荒草格', pal:'土底＋草簇＋散石',  note:'未开垦信号'},
@@ -433,10 +553,17 @@ const ITEMS_W=[
  {rows:ITEM_RC,nm:'稻穗束',cap:'穗 e · 束把 t'}
 ];
 const BUILDINGS=[
- {rows:B_HOUSE_A,nm:'民居 · 悬山双坡',pal:'瓦 N/z · 白墙 W · 木裙 t · 檐影 g',note:'8 户民居基准型'},
- {rows:B_HOUSE_B,nm:'民居 · 临水吊脚',pal:'架空柱 t · 楼板厚 t',note:'溪畔/坡地变型'},
- {rows:B_HALL_F,nm:'祠堂 · 正门 48×32',pal:'大顶出檐 · 匾 K 框 · 门 t',note:'礼制唯一 · 除祟线锚点'},
- {rows:B_HALL_S,nm:'祠堂 · 马头山墙侧视',pal:'两级跌落 · 阶梯剪影',note:'剪影闸门专用'}
+ {rows:B_HOUSE_A,nm:'民居一 · 悬山双坡',pal:'瓦 N/z · 白墙 W · 木裙 t',note:'基准型'},
+ {rows:B_HOUSE_A2,nm:'民居二 · 西山向',pal:'基准镜像',note:'引擎翻 x 即得'},
+ {rows:B_HOUSE_A3,nm:'民居三 · 门偏厢房',pal:'门右移 · 裙板加高',note:'door_off=3 skirt=9'},
+ {rows:B_HOUSE_A4,nm:'民居四 · 窄顶仓屋',pal:'roof_narrow',note:'柴棚/仓 variant'},
+ {rows:B_HOUSE_B,nm:'民居五 · 临水吊脚',pal:'架空柱 t',note:'溪畔基准'},
+ {rows:B_HOUSE_B2,nm:'民居六 · 吊脚东向',pal:'吊脚镜像',note:'引擎翻 x'},
+ {rows:B_HOUSE_D,nm:'民居七八 · 联排双户',pal:'48 宽双门',note:'两户共山墙'},
+ {rows:B_SHOP,nm:'小卖部',pal:'门楣横匾 K 框 W 底',note:'村口商业位'},
+ {rows:B_GALLERY,nm:'飞廊',pal:'顶棚＋三柱＋栏档',note:'建筑间连接件'},
+ {rows:B_HALL_F,nm:'祠堂 · 正门 48×32',pal:'大顶出檐 · 匾 K 框',note:'礼制唯一 · 除祟锚点'},
+ {rows:B_HALL_S,nm:'祠堂 · 马头山墙侧视',pal:'两级跌落',note:'剪影闸门专用'}
 ];
 const ADJS=[
  {nm:'草 → 犁沟（垦）',  a:7,b:1,note:'垦边：犁沟首行留草根'},
