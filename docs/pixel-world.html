@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桃花源 · 像素世界稿板 v0.2</title>
+<title>桃花源 · 像素世界稿板 v0.3</title>
 <style>
 :root{
   --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A;
@@ -51,6 +51,13 @@ section{margin-top:56px}
 .adj .nm{font-family:var(--serif);font-size:15px;font-weight:700;margin-top:8px}
 .adj p{font-size:12px;color:var(--indigo);margin-top:2px}
 @media (max-width:820px){.adjs{grid-template-columns:repeat(1,1fr)}}
+.drow{display:grid;grid-template-columns:96px repeat(6,1fr);gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--grid)}
+.drow:last-child{border-bottom:0}
+.drow .who{font-family:var(--serif);font-size:14.5px;font-weight:700}
+.drow .who small{display:block;font-family:var(--sans);font-weight:400;font-size:11px;color:var(--indigo)}
+.dcell{text-align:center}
+.dcell canvas{margin:0 auto}
+.dcell span{font-size:11px;color:var(--indigo);display:block}
 .rules{margin-top:20px;border:1px solid var(--grid);border-left:3px solid var(--indigo);padding:12px 16px;font-size:14px}
 .rules ul{list-style:none}
 .rules li{padding:3px 0}
@@ -66,9 +73,9 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
     <div class="title-band">像素世界稿</div>
     <div class="subtitle">
       <div class="rule">土地先于人定居：地块是玩家每天踩八小时的东西。</div>
-      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
+      <p>v0.1 春季样张：<b>十二块 16×16 地块</b>（荒草/犁沟/湿田/水田/田埂/土路/石板/春草/花草/静水/波纹/梯沿），<b>春款 12 色纪律</b>（G j d · e t · B m g · N z · W K——art-style-guide §3「每季 12 色限制」的第一版兑现），溪田 24 格拼接＋三组邻接样张；v0.2 增<b>作物精灵层</b>（切片三作物×四生长态＋收获物件帧，仍 12 色板内）；v0.3 增<b>四季色板管线</b>（键名同构纯换色值，工具栏四季全局切换）。全部像素矩阵手排，零生图；接续人物稿板的验证链（宽度色键审计/运行时探针/截图目测/剪影闸门）。</p>
       <div class="spec">
-        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季换色留待 v0.3</span>
+        <span>16×16 地块 ×12</span><span>春款 12 色封顶</span><span>作物 3×4 态＋收获物 3</span><span>溪田 24 格单屏</span><span>邻接样张 3 组</span><span>四季色板管线</span>
       </div>
       <div class="docs">上游：world-layers.md（千年层积） · vertical-slice-design.md §2（五溪村与溪田规模） · art-style-guide.md §2/§3（分层与色彩） · production-scope.md §9（产能）</div>
     </div>
@@ -76,7 +83,11 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="toolbar" role="toolbar" aria-label="审稿开关">
     <button class="tbtn" id="btnSil" aria-pressed="false">剪影模式</button>
     <button class="tbtn" id="btnGrid" aria-pressed="false">像素网格</button>
-    <span class="cap">剪影＝只看地形骨架；网格＝排点审稿用。</span>
+    <button class="tbtn season" data-season="spring" aria-pressed="true">春</button>
+    <button class="tbtn season" data-season="summer" aria-pressed="false">夏</button>
+    <button class="tbtn season" data-season="autumn" aria-pressed="false">秋</button>
+    <button class="tbtn season" data-season="winter" aria-pressed="false">冬</button>
+    <span class="cap">剪影＝只看地形骨架；网格＝排点审稿用；四季＝全局换色管线（键名同构，矩阵零改动）。</span>
   </div>
 </header>
 <section aria-labelledby="t-tiles">
@@ -136,21 +147,29 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <p class="lede">田里长的与收进包的要对得上：收获物帧与作物熟态<b>同一色键同一形态语言</b>（黄瓜＝青果 W 高光 t 柄、豆＝e 荚 W 粒、稻＝e 穗 t 把）——玩家从田头到背包不需要重新学习一套图形。</p>
   <div class="grid" id="itemsW" style="grid-template-columns:repeat(3,1fr)"></div>
 </section>
+<section aria-labelledby="t-seasons">
+  <div class="term-head">
+    <span class="term-plaque">霜降</span>
+    <h2 id="t-seasons">四季对照 · 六地块 × 四色板</h2>
+    <span class="en">one matrix · four palettes · 12 keys each</span>
+  </div>
+  <p class="lede">换季＝换色板不换矩阵：<b>十二键名四季同构</b>（草3 土2 水3 石2 点线2），冬季 W 提亮为雪、全局去饱和 60%（world-layers"年仓季"视觉）。下表六块代表地块四季并排——玩家瞥一眼色温就知道自己在哪一季，<b>纹理疏密一字未动</b>，这就是量产管线：28 作物、全 tileset 换季只出四张色表。</p>
+  <div class="map" id="seasons"></div>
+</section>
 <footer>
-  <span>桃花源（Tarcadia）像素世界稿板 v0.2 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：12 色封顶 · 12 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 邻接无硬缝 · 剪影可辨地形骨架</span>
+  <span>桃花源（Tarcadia）像素世界稿板 v0.3 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：12 色封顶 ×4 季 · 地块各司其职 · 作物三×四态 · 24 格拼接可读 · 邻接无硬缝 · 四季一眼可辨 · 剪影可辨地形骨架</span>
 </footer>
 </div>
 <script>
-/* ===== 春款 12 色板（art-style-guide §3） ===== */
-const PAL={
-  K:'#2B2A24',
-  G:'#6F8B6A', j:'#8CA683', d:'#4E6B54',
-  e:'#8A7A5C', t:'#6E6046',
-  B:'#4C7C72', m:'#6A9A8F', g:'#365A52',
-  N:'#71757A', z:'#565A5F',
-  W:'#EFEBDD'
+/* ===== 四季色板（art-style-guide §3：每季 12 色封顶；键名同构、纯换色值、矩阵零改动） ===== */
+const SEASON_PALS={
+spring:{name:'春 · 苔青',K:'#2B2A24',G:'#6F8B6A',j:'#8CA683',d:'#4E6B54',e:'#8A7A5C',t:'#6E6046',B:'#4C7C72',m:'#6A9A8F',g:'#365A52',N:'#71757A',z:'#565A5F',W:'#EFEBDD'},
+summer:{name:'夏 · 荷碧',K:'#2B2A24',G:'#57855B',j:'#74A478',d:'#3F6B46',e:'#9C8A62',t:'#7A6848',B:'#3F7E8C',m:'#5E9EA8',g:'#2E5E68',N:'#75797E',z:'#5A5E63',W:'#EFEBDD'},
+autumn:{name:'秋 · 橘赭',K:'#2B2A24',G:'#8F8A50',j:'#A8A268',d:'#6B6638',e:'#9C7A4C',t:'#785A34',B:'#5A7E78',m:'#78A09A',g:'#40605C',N:'#7A746C',z:'#5E5850',W:'#EFEBDD'},
+winter:{name:'冬 · 墨灰留白',K:'#2B2A24',G:'#6E7468',j:'#848A7E',d:'#525A50',e:'#7E7666',t:'#605A4A',B:'#5E7A80',m:'#7C949A',g:'#445A60',N:'#8A8C8E',z:'#66686A',W:'#F4F2EA'}
 };
+let PAL=SEASON_PALS.spring;
 /* ===== 十二地块 16×16（全填充，键 ∈ 12 色板） ===== */
 const T_WILD=[
 'eeGeeeeNeeeeGeee','eeeejtjeeeeeeeee','eGeeeeeeteeGeeee','eeeNeeeeeeeeeNee',
@@ -337,7 +356,7 @@ function draw(cv,rows,scale,o){
     for(let i=0;i<w;i++){
       const ch=r[i];
       if(!ch||ch==='.'||ch===' ')continue;
-      x.fillStyle=o.sil?'#2B2A24':(PAL[ch]||'#F0F');
+      x.fillStyle=o.sil?'#2B2A24':((o.pal||PAL)[ch]||'#F0F');
       x.fillRect(i*scale,j*scale,scale,scale);
     }
   });
@@ -353,7 +372,7 @@ function overlay(cv,rows,scale,o){
     for(let i=0;i<16;i++){
       const ch=r[i];
       if(!ch||ch==='.'||ch===' ')continue;
-      x.fillStyle=(o&&o.sil)?'#2B2A24':(PAL[ch]||'#F0F');
+      x.fillStyle=(o&&o.sil)?'#2B2A24':((o&&o.pal)||PAL)[ch]||'#F0F';
       x.fillRect(i*scale,j*scale,scale,scale);
     }
   });
@@ -385,6 +404,33 @@ ITEMS_W.forEach(it=>{
   const nm=document.createElement('div');nm.className='nm';nm.textContent=it.nm;
   const pal=document.createElement('div');pal.className='pal';pal.textContent=it.cap;
   card.append(nm,pal);itemsWEl.appendChild(card);it.cv=cv;
+});
+const SEASON_PICK=[0,1,3,5,9,11];
+const seasonsEl=document.getElementById('seasons');
+const SEASON_ROWS=[];
+Object.keys(SEASON_PALS).forEach(sk=>{
+  const row=document.createElement('div');row.className='drow';
+  const who=document.createElement('div');who.className='who';
+  const small=document.createElement('small');small.textContent='12 键';
+  who.appendChild(document.createTextNode(SEASON_PALS[sk].name.split(' · ')[1]));
+  who.appendChild(small);
+  row.appendChild(who);
+  SEASON_PICK.forEach(ti=>{
+    const cell=document.createElement('div');cell.className='dcell';
+    const cv=document.createElement('canvas');cv.className='checker';cell.appendChild(cv);
+    const sp=document.createElement('span');sp.textContent=TILES[ti].nm;cell.appendChild(sp);
+    row.appendChild(cell);
+    SEASON_ROWS.push({cv,rows:TILES[ti].rows,pal:SEASON_PALS[sk]});
+  });
+  seasonsEl.appendChild(row);
+});
+document.querySelectorAll('.tbtn.season').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tbtn.season').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    PAL=SEASON_PALS[b.dataset.season];
+    fullRender();
+  });
 });
 function e_farm(){
   const cv=document.getElementById('farmCv');
@@ -423,6 +469,7 @@ function fullRender(){
   ITEMS_W.forEach(it=>draw(it.cv,it.rows,8,opts()));
   e_farm();
   ADJS.forEach(e_adj);
+  SEASON_ROWS.forEach(d=>draw(d.cv,d.rows,5,{sil:state.sil,pal:d.pal}));
   const b1=document.getElementById('btnSil'),b2=document.getElementById('btnGrid');
   b1.setAttribute('aria-pressed',String(state.sil));
   b2.setAttribute('aria-pressed',String(state.grid));
