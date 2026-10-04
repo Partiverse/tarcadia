@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* pixel-audit 审计器：宽度/行数/色键/语法，按 profile 参数化。
-   用法：node audit.cjs characters|world|phenology  （在 tarcadia 仓根执行） */
+   用法：node audit.cjs characters|world|phenology|ui  （在 tarcadia 仓根执行） */
 const fs = require('fs');
 const path = require('path');
 
@@ -26,6 +26,7 @@ const PROFILES = {
       return h === want ? null : ('行数 ' + h + ' 与宽 ' + w + ' 不配（应 ' + want + '）');
     },
     width: null, /* 宽=首行长度，须 ∈{16,32,48} */
+    widthSet: [16, 32, 48],
     palKeys: `const PALSET=new Set(Object.keys(SEASON_PALS.spring).filter(k=>k!=='name'));`,
   },
   phenology: {
@@ -34,12 +35,29 @@ const PROFILES = {
     width: 16,
     palKeys: `const PALSET=new Set(Object.keys(SEASON_PALS.spring).filter(k=>k!=='name'));`,
   },
+  ui: {
+    file: 'docs/pixel-ui.html',
+    /* 通用校验：宽=首行长 ∈ 16 的倍数集 {16,32,48,64,96,112}，行数 ∈ 同集；
+       规格特例走 per-array 白名单（SIGN_SLIP 40×14、SEP_TRIDOT 96×4——签条/分隔线规格件非 16 倍数行数） */
+    wantRows: (nm, h, w) => {
+      const S = [16, 32, 48, 64, 96, 112];
+      const OV = { SIGN_SLIP: [40, 14], SEP_TRIDOT: [96, 4] };
+      if (OV[nm]) return (w === OV[nm][0] && h === OV[nm][1]) ? null : ('应 ' + OV[nm][0] + '×' + OV[nm][1] + '，实际 ' + w + '×' + h);
+      if (S.indexOf(w) < 0) return ('宽 ' + w + ' ∉{16,32,48,64,96,112}');
+      if (S.indexOf(h) < 0) return ('行数 ' + h + ' ∉ 同集');
+      return null;
+    },
+    width: null,
+    widthSet: [16, 32, 48, 64, 96, 112],
+    widthOV: { SIGN_SLIP: 40, SEP_TRIDOT: 96 },
+    palKeys: `const PALSET=new Set(Object.keys(UI_PAL).filter(k=>k!=='name'));`,
+  },
 };
 
 const profileName = process.argv[2];
 const prof = PROFILES[profileName];
 if (!prof) {
-  console.log('用法: node audit.cjs characters|world|phenology');
+  console.log('用法: node audit.cjs characters|world|phenology|ui');
   process.exit(2);
 }
 const file = path.join(ROOT, prof.file);
@@ -58,6 +76,8 @@ let count = 0;
 const code = data + `
 ;${prof.palKeys}
 PALSET.add('.'); PALSET.add(' ');
+const AUDIT_WSET = ${JSON.stringify(prof.widthSet || [16, 32, 48])};
+const AUDIT_WOV = ${JSON.stringify(prof.widthOV || {})};
 const AUDIT_NAMES = ${JSON.stringify(names)};
 const AUDIT_WR = ${prof.wantRows.toString()};
 const AUDIT_PROBLEMS = [];
@@ -67,7 +87,7 @@ for (const nm of AUDIT_NAMES) {
   if (typeof arr[0] !== 'string') continue; /* CAST/FACES/ITEMS 等数据表 */
   AUDIT_COUNT++;
   const w = ${prof.width === null ? 'arr[0].length' : prof.width};
-  if (${prof.width === null ? '![16,32,48].includes(w)' : 'false'}) AUDIT_PROBLEMS.push(nm + ': 宽 ' + w + ' 非法');
+  if (${prof.width === null ? '!AUDIT_WSET.includes(w) && AUDIT_WOV[nm] !== w' : 'false'}) AUDIT_PROBLEMS.push(nm + ': 宽 ' + w + ' 非法');
   const rowErr = AUDIT_WR(nm, arr.length, w);
   if (rowErr) AUDIT_PROBLEMS.push(nm + ': ' + rowErr);
   arr.forEach((r, j) => {

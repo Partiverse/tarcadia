@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桃花源 · 水墨 UI 稿板 v0.1</title>
+<style>
+:root{
+  --paper:#EFEBDD; --ink:#2B2A24; --indigo:#31475F; --spring:#6F8B6A; --cinnabar:#A8402F;
+  --grid:rgba(43,42,36,.14);
+  --serif:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+  --sans:"PingFang SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7}
+.wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+canvas{image-rendering:pixelated;display:block}
+header{padding-top:34px}
+.colophon{display:flex;align-items:flex-start;gap:14px;padding:6px 0 10px}
+.title-band{writing-mode:vertical-rl;font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:.22em;line-height:1;padding:22px 12px;border:1.5px solid var(--ink);background:#F5F2E8;box-shadow:3px 3px 0 rgba(43,42,36,.12)}
+.subtitle{max-width:680px;padding-top:6px}
+.subtitle .rule{font-family:var(--serif);font-size:20px;line-height:1.6;margin-bottom:8px}
+.subtitle p{color:var(--indigo);font-size:14px}
+.spec{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.spec span{font-size:12.5px;border:1px solid var(--ink);padding:1px 9px;background:#F5F2E8}
+.spec span.c{color:var(--cinnabar);border-color:var(--cinnabar)}
+.docs{font-size:12.5px;opacity:.65;margin-top:8px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.toolbar .tbtn{font-family:var(--serif);font-size:14.5px;letter-spacing:.08em;border:1px solid var(--ink);background:var(--paper);padding:5px 14px;cursor:pointer;color:var(--ink)}
+.toolbar .tbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.toolbar .cap{font-size:12.5px;color:var(--indigo)}
+section{margin-top:56px}
+.term-head{display:flex;align-items:baseline;gap:14px;border-bottom:1.5px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.term-plaque{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.14em;padding:2px 12px;border:1px solid var(--ink);background:#F5F2E8}
+.term-head h2{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:.06em}
+.term-head .en{font-size:12.5px;color:var(--indigo)}
+.lede{max-width:820px;font-size:14.5px;color:var(--indigo);margin:10px 0 22px}
+.lede b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{border:1px solid var(--ink);background:#F5F2E8;padding:12px 10px 10px;text-align:center}
+.card canvas{margin:0 auto}
+.card .sizes{display:flex;gap:14px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
+.card .sizes small{display:block;font-size:10.5px;color:var(--indigo);margin-top:3px}
+.card .nm{font-family:var(--serif);font-size:15px;font-weight:700;margin-top:8px}
+.card .micro{font-size:11.5px;color:var(--indigo);margin-top:2px}
+.chips{display:flex;gap:3px;justify-content:center;margin-top:5px}
+.chip{width:12px;height:12px;border:1px solid rgba(43,42,36,.4);display:inline-block}
+.ovl-wrap{position:relative;display:inline-block}
+.ovl{position:absolute;pointer-events:none;font-family:var(--serif)}
+body.sil .ovl{opacity:.08}
+.vtitle{writing-mode:vertical-rl;font-size:19px;letter-spacing:.3em;color:var(--ink);opacity:.85}
+.rest-labels{position:relative;width:92px;height:150px;text-align:left}
+.rest-labels span{position:absolute;font-family:var(--serif);font-size:13px;color:var(--indigo);border-left:1px solid rgba(43,42,36,.35);padding-left:7px;white-space:nowrap}
+.rules{margin-top:20px;border:1px solid var(--grid);border-left:3px solid var(--indigo);padding:12px 16px;font-size:14px;text-align:left}
+.rules ul{list-style:none}
+.rules li{padding:3px 0}
+.rules li::before{content:"禁　";font-family:var(--serif);font-weight:700;color:var(--indigo);margin-right:4px}
+.rules li.pos::before{content:"则　";color:var(--spring)}
+.plaque-note{max-width:560px;border:1px solid var(--grid);border-left:3px solid var(--indigo);padding:12px 16px;font-size:13.5px;color:var(--indigo);text-align:left;margin:20px auto 0}
+.plaque-note b{color:var(--ink)}
+.plaque-note p{padding:2px 0}
+.duo{display:flex;gap:16px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
+.duo small{display:block;font-size:10.5px;color:var(--indigo);margin-top:3px}
+footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:var(--indigo)}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="colophon">
+    <div class="title-band">水墨UI稿</div>
+    <div class="subtitle">
+      <div class="rule">界面前先见物：控件是纸墨做的，不是浮层做的。</div>
+      <p>魂层稿板第三件（art-style-guide §2：魂层＝过场卡、物候牌、<b>历法环 UI</b>、年集供单；物候牌已由 pixel-phenology 收官，本板立 <b>UI_PAL</b> 与控件基元）。正典全部引 presentation-ux §4.1 diegetic 表：<b>罗盘</b>（主界面唯一常驻图形 UI——本板不重画，只引 pixel-phenology.html v0.5「周天」节）、<b>挑担</b>（前九位随身挂扁担两端，超出回筐）、<b>安置</b>（存档＝入夜上炕，退出＝灯熄了）、<b>名款签条</b>（人立在那里，签条从画外入说完收走）。v0.1 内容：控件基元四件（面板底／按钮两态／签条／墨点分隔线）＋三控件骨架（挑担／安置／罗盘接口预留）＋<b>语义色样张</b>两组（朱砂信使·靛青杂记——本板存在的核心理由）＋水墨过场两帧（聚拢／散开）。UI_PAL 八键封顶十二；<b>朱砂 C=#A8402F 系本板首定</b>——正典只锁「朱砂只给人情事件」的语义、未锁色值，主会话 2026-10-04 目测复签确认（砖红不刺眼、语义差分成立），可下游引用。文字一律 HTML 叠加不进矩阵（宋体、汉字小写数字纪律在实现层执行）。</p>
+      <div class="spec">
+        <span>UI_PAL 8/12 键</span><span class="c">朱砂 C=#A8402F 已确认</span><span>无弹窗 · diegetic 优先</span><span>过场 ≤20 张/局</span><span>宽 ∈ 16 倍数集</span><span>文字不进矩阵</span>
+      </div>
+      <div class="docs">上游：presentation-ux.md §1.2/§4.1/§4.2（无弹窗／diegetic 表／措辞色彩纪律） · art-style-guide.md §2/§3（魂层与色彩语义） · process-log.md §3/§4（质检九条／画法通则） · 正典引用：pixel-phenology.html v0.5（罗盘历法环）</div>
+    </div>
+  </div>
+  <div class="toolbar" role="toolbar" aria-label="审稿开关">
+    <button class="tbtn" id="btnSil" aria-pressed="false">剪影模式</button>
+    <button class="tbtn" id="btnGrid" aria-pressed="false">像素网格</button>
+    <span class="cap">剪影＝退掉纸色只看墨骨——UI 骨架不靠色也须成立；网格＝排点审稿用。语义样张剪影下朱砂/靛退成墨，语义靠彩显。</span>
+  </div>
+</header>
+<section id="sec-prim" aria-labelledby="t-prim">
+  <div class="term-head">
+    <span class="term-plaque">基元</span>
+    <h2 id="t-prim">控件基元 · 面板／按钮／签条／分隔</h2>
+    <span class="en">primitives · panel, button, slip, rule-line</span>
+  </div>
+  <p class="lede">UI_PAL 八键（<b>P 纸底 · W 宣纸 · K 墨 · z 深灰 · N 灰 · n 浅灰 · I 靛 · C 朱砂</b>）内的四件基元：面板底立「宣纸＋墨框＋顿笔」的容器语法；按钮两态只反转底色，文字永在 HTML 层；名款签条是「签条从画外入、说完收走」（§4.2）的像素载体；墨点分隔线三点一组、由浓转枯。</p>
+  <div class="grid">
+    <div class="card">
+      <div class="sizes">
+        <div><div class="ovl-wrap"><canvas id="cvPanel"></canvas><span class="ovl" style="top:6px;left:0;right:0;text-align:center;font-size:10.5px;letter-spacing:.5em;opacity:.4">题名条留位</span></div><small>×3 审稿</small></div>
+        <div><canvas id="cvPanelM"></canvas><small>×1 实装</small></div>
+      </div>
+      <div class="nm">面板底 · 96×64</div>
+      <div class="micro">宣纸 W 底＋墨框 1px＋四角顿笔（2×2 内错 1px）；row13 淡墨 N 线隔出题名条位</div>
+      <div class="chips"><span class="chip" style="background:#EFEBDD" title="W"></span><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#71757A" title="N"></span></div>
+      <div class="micro">剪影：实墨方（容器实底语义——面板是画内之物，非骨架透稿）</div>
+    </div>
+    <div class="card">
+      <div class="sizes">
+        <div><div class="ovl-wrap"><canvas id="cvBtnN"></canvas><span class="ovl" style="inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.35em;text-indent:.35em">挑担</span></div><small>常态 ×4</small></div>
+        <div><div class="ovl-wrap"><canvas id="cvBtnP"></canvas><span class="ovl" style="inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.35em;text-indent:.35em;color:#EFEBDD">挑担</span></div><small>按下 ×4</small></div>
+        <div><canvas id="cvBtnNM"></canvas><small>常态 ×1</small></div>
+        <div><canvas id="cvBtnPM"></canvas><small>按下 ×1</small></div>
+      </div>
+      <div class="nm">按钮两态 · 48×16</div>
+      <div class="micro">常态纸底墨框、按下墨底——只反转底色；字位留空，示例「挑担」在 HTML 层</div>
+      <div class="chips"><span class="chip" style="background:#F5F2E8" title="P"></span><span class="chip" style="background:#2B2A24" title="K"></span></div>
+      <div class="micro">剪影：空框／实墨条</div>
+    </div>
+    <div class="card">
+      <div class="sizes">
+        <div><div class="ovl-wrap"><canvas id="cvSign"></canvas><span class="ovl" style="left:9px;top:50%;transform:translateY(-50%);font-size:11px;letter-spacing:.2em">江客</span></div><small>×4 审稿</small></div>
+        <div><canvas id="cvSignM"></canvas><small>×1 实装</small></div>
+      </div>
+      <div class="nm">名款签条 · 40×14</div>
+      <div class="micro">竖切墨线分两段（左段名款字位，示例「江客」在 HTML 层）＋右端半圆卷轴（轴心反白）</div>
+      <div class="chips"><span class="chip" style="background:#EFEBDD" title="W"></span><span class="chip" style="background:#2B2A24" title="K"></span></div>
+      <div class="micro">剪影：长条一竖切、右端半圆</div>
+    </div>
+    <div class="card">
+      <div class="sizes">
+        <div><canvas id="cvSep"></canvas><small>×4 审稿</small></div>
+        <div><canvas id="cvSepM"></canvas><small>×1 实装</small></div>
+      </div>
+      <div class="nm">墨点分隔线 · 96×4</div>
+      <div class="micro">三点一组 ×8，K→z→n 由浓转枯——分节不封口，纸上断笔意</div>
+      <div class="chips"><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#9A988F" title="n"></span></div>
+      <div class="micro">剪影：三点一列、渐枯</div>
+    </div>
+  </div>
+  <div class="rules">
+    <ul>
+      <li class="pos">键 ∈ UI_PAL（8 键，封顶 12）；'.'＝透纸；色键未定义即洋红兜底，洋红计数必须 0</li>
+      <li class="pos">朱砂 C=#A8402F 系本板首定、<b>主会话 2026-10-04 已确认</b>——下游稿板可引用（正典只有语义无色值，色值自此锁定于本板，art-style §3）</li>
+      <li class="pos">文字一律 HTML 叠加不进矩阵：矩阵只画框、线、字位；宋体／汉字小写数字（账单位除外）在实现层执行（presentation-ux §4.2）</li>
+      <li class="pos">顿笔＝角部 2×2 墨块内错 1px：像素近似毛笔顿笔，禁斜角抗锯齿</li>
+      <li>禁渐变／半透明／阴影滤镜：水墨感靠 K/z/N 三阶与留白，不靠渲染特效</li>
+      <li>禁朱砂／靛进结构色：面板、按钮、签条、分隔线永不红靛（语义色只活在本板「语义」节）</li>
+    </ul>
+  </div>
+</section>
+<section id="sec-skel" aria-labelledby="t-skel">
+  <div class="term-head">
+    <span class="term-plaque">骨架</span>
+    <h2 id="t-skel">三控件骨架 · 正典在 presentation-ux §4.1</h2>
+    <span class="en">skeletons · carrying-pole, rest-box, compass hook</span>
+  </div>
+  <p class="lede">只立骨不点睛：挑担是「背包」的世界观化（前九位随身挂扁担两端，超出回筐——容量感物理化）；安置是「存档」的世界观化（入夜上炕自动落账）。两件皆骨架稿——<b>槽位全虚框＝容器不占语义色</b>，物到位才见物。</p>
+  <div class="grid">
+    <div class="card">
+      <div class="sizes">
+        <div><canvas id="cvPole"></canvas><small>×3 审稿</small></div>
+        <div><canvas id="cvPoleM"></canvas><small>×1 实装</small></div>
+      </div>
+      <div class="nm">挑担视图 · 112×48 骨架</div>
+      <div class="micro">扁担弧 1px 两端下弯＋两端 2×2 槽（16×16 虚框）＋右下回筐 3×1（超九位回筐的视觉账）；骨架非终稿——回筐让位右下，挂载位留实现阶段对齐</div>
+      <div class="chips"><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span></div>
+      <div class="micro">剪影：一弧两坠、右下三格</div>
+    </div>
+    <div class="card">
+      <div class="sizes">
+        <div style="display:flex;gap:8px;justify-content:center">
+          <div class="ovl-wrap"><canvas id="cvRest"></canvas></div>
+          <div class="rest-labels"><span style="top:33px">睡好了</span><span style="top:60px">再坐坐</span><span style="top:87px">灯熄了</span></div>
+        </div>
+        <div><canvas id="cvRestM"></canvas><small>×1 实装</small></div>
+      </div>
+      <div class="nm">安置存档框 · 96×48 骨架</div>
+      <div class="micro">夜窗格（2×2 窗棂 z 夜色）＋三行字位线——矩阵只画框与窗；三行文案标注卡外（HTML）</div>
+      <div class="chips"><span class="chip" style="background:#EFEBDD" title="W"></span><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#9A988F" title="n"></span></div>
+      <div class="micro">剪影：方匡左窗三行线</div>
+    </div>
+  </div>
+  <div class="plaque-note">
+    <p><b>罗盘 HUD 适配——不重画正典：</b>主界面唯一常驻图形 UI＝廿四格罗盘历法环，成品与规格见 <b>docs/pixel-phenology.html v0.5「周天」节</b>（立春正东起顺时针 · 四象限 · 当前段高亮三重证法 · 天心镜）。本板只预留接口三行：</p>
+    <p>① 尺寸档 ×1 常驻（production-scope §2）；② 环上 icon 永远本季色板、永远正立，环动格不动；③ 当前段高亮＝单线墨框 42px，高亮不用朱砂——UI_PAL 的 C 键与环无关。</p>
+    <p>新增常驻件若与环同屏，遵 v0.5 边距纪律（画布留边 ≥12px、题名不贴边）。</p>
+  </div>
+  <div class="rules">
+    <ul>
+      <li class="pos">挑担：槽位全虚框（z 色 1on1off）＝容器不占语义色；回筐是「超九位」的视觉账，不是第二背包（presentation-ux §4.1）</li>
+      <li class="pos">安置：无 Save/Load 菜单腔——「睡好了／再坐坐／灯熄了」三行即全部交互文案（§4.1 存档行）</li>
+      <li class="pos">罗盘接口预留不重画：防两处正典打架——环的规格以 phenology v0.5 为唯一正典</li>
+      <li>禁弹窗／浮层／toast：以上控件全是画内物（§1.2 零弹窗红线）；禁词表（任务／领取／完成度／成就／等级）零命中</li>
+    </ul>
+  </div>
+</section>
+<section id="sec-sem" aria-labelledby="t-sem">
+  <div class="term-head">
+    <span class="term-plaque">语义</span>
+    <h2 id="t-sem">语义色样张 · 朱砂人情／靛青知识</h2>
+    <span class="en">semantic ink · vermilion means someone seeks you</span>
+  </div>
+  <p class="lede">本板存在的核心理由：把 art-style §3／presentation-ux §4.2 的色彩语义做成可验收的像素样张——<b>玩家见朱砂＝有人找</b>（新信／供单／红布），<b>靛＝知识类</b>（杂记有新页）。两帧差只动一个语义元素：常帧灰阶、事件帧上语义色。</p>
+  <div class="grid">
+    <div class="card">
+      <div class="duo">
+        <div><canvas id="cvMailN"></canvas><small>常帧 ×5（角标灰）</small></div>
+        <div><canvas id="cvMailF"></canvas><small>闪帧 ×5（角标 C）</small></div>
+      </div>
+      <div class="sizes" style="margin-top:6px">
+        <div><canvas id="cvMailNM"></canvas><small>×1</small></div>
+        <div><canvas id="cvMailFM"></canvas><small>×1</small></div>
+      </div>
+      <div class="nm">朱砂事件点 · 信使 16×16 ×2</div>
+      <div class="micro">信封形＋右上角标：常帧灰 z（无事）、闪帧朱砂 C（有人找）——只闪角标，不做整卡闪烁</div>
+      <div class="chips"><span class="chip" style="background:#EFEBDD" title="W"></span><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#A8402F" title="C"></span></div>
+      <div class="micro">剪影：封一角、常灰闪朱</div>
+    </div>
+    <div class="card">
+      <div class="duo">
+        <div><canvas id="cvKbN"></canvas><small>常帧 ×5（折角灰）</small></div>
+        <div><canvas id="cvKbF"></canvas><small>新帧 ×5（折角 I）</small></div>
+      </div>
+      <div class="sizes" style="margin-top:6px">
+        <div><canvas id="cvKbNM"></canvas><small>×1</small></div>
+        <div><canvas id="cvKbFM"></canvas><small>×1</small></div>
+      </div>
+      <div class="nm">靛青知识角标 · 杂记 16×16 ×2</div>
+      <div class="micro">书册形（脊线＋题签框）＋折角：常帧灰 z、新帧靛 I——杂记有新页，靛是新页的证不是书的漆色</div>
+      <div class="chips"><span class="chip" style="background:#EFEBDD" title="W"></span><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#31475F" title="I"></span></div>
+      <div class="micro">剪影：册一折角、常灰新靛</div>
+    </div>
+  </div>
+  <div class="rules">
+    <ul>
+      <li class="pos">朱砂只给人情事件（art-style §3）：信使／供单／红布三族——本样张立「信使」件，供单与红布复用同角标语法</li>
+      <li class="pos">靛＝知识类：杂记条目由村民笔迹陆续补全（presentation-ux §4.1 图鉴行）——折角转靛即「有新页可读」</li>
+      <li class="pos">每屏朱砂 ≤1 处（§6 验收线）；C=#A8402F 已确认（2026-10-04），本板样张为正典参照</li>
+      <li>禁语义色挪作装饰：按钮高亮／选中态／标题强调一律用墨，不用红靛</li>
+    </ul>
+  </div>
+</section>
+<section id="sec-fade" aria-labelledby="t-fade">
+  <div class="term-head">
+    <span class="term-plaque">过场</span>
+    <h2 id="t-fade">水墨过场样张 · 墨晕聚拢／散开</h2>
+    <span class="en">ink-wash transitions · gather &amp; scatter</span>
+  </div>
+  <p class="lede">过场卡是魂层最贵的资产：<b>每局 ≤20 张</b>（art-style §2「稀缺才有辨识度」）——本节只立画法不立片单。画法＝K/z/N 三阶墨晕＋留白过半＋竖排题字位（左侧固定留白列，题字 HTML 竖排叠加，示例「夜雨／天明」）；聚拢帧墨心浓、外晕散，散开帧碎点离析、K 只剩星点。过场是场景接管不是弹窗：无框、无按钮、无 Loading 腔。</p>
+  <div class="grid">
+    <div class="card">
+      <div class="duo">
+        <div><div class="ovl-wrap"><canvas id="cvInkA"></canvas><span class="ovl vtitle" style="left:16px;top:18px">夜雨</span></div><small>聚拢 ×3（题字示例）</small></div>
+        <div><canvas id="cvInkAM"></canvas><small>×1</small></div>
+      </div>
+      <div class="nm">墨晕聚拢 · 64×64</div>
+      <div class="micro">入：墨自四方聚拢成形——K 心 z 环 N 外晕＋飞白卫星点，墨占比 26.7%</div>
+      <div class="chips"><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#71757A" title="N"></span></div>
+      <div class="micro">剪影：一团三阶、左侧留题列</div>
+    </div>
+    <div class="card">
+      <div class="duo">
+        <div><div class="ovl-wrap"><canvas id="cvInkB"></canvas><span class="ovl vtitle" style="left:16px;top:18px">天明</span></div><small>散开 ×3（题字示例）</small></div>
+        <div><canvas id="cvInkBM"></canvas><small>×1</small></div>
+      </div>
+      <div class="nm">墨晕散开 · 64×64</div>
+      <div class="micro">出：碎点离析、K 只剩星点（墨枯），墨占比 11.4%——墨散尽即场景醒</div>
+      <div class="chips"><span class="chip" style="background:#2B2A24" title="K"></span><span class="chip" style="background:#565A5F" title="z"></span><span class="chip" style="background:#71757A" title="N"></span></div>
+      <div class="micro">剪影：碎点离析、K 只剩星</div>
+    </div>
+  </div>
+  <div class="rules">
+    <ul>
+      <li class="pos">过场 ≤20 张/局（魂层限量）；片单另立，本板只锁「三阶墨＋留白过半＋题字位」三要素</li>
+      <li class="pos">竖排题字位＝x5..13 全透留白列，两帧同位——题字不随墨晕漂移</li>
+      <li class="pos">散开帧 K 占比骤降（墨枯）：过场收束的视觉语＝墨散尽即场景醒</li>
+      <li>禁过场弹窗腔：无框无边无进度条；禁朱砂／靛入过场（过场无事件）</li>
+    </ul>
+  </div>
+</section>
+<footer>
+  <span>桃花源（Tarcadia）水墨 UI 稿板 v0.1 · 2026-10-04 · 全部像素矩阵生成脚本拼装入码，零 AI 生图</span>
+  <span><b>验收链：</b>audit ui（宽 ∈ 16 倍数集 · 键 ∈ UI_PAL）→ 探针 fullRender 走完 → 洋红 #F0F 计数 0 → 剪影墨骨成立 · 文字不进矩阵 · 朱砂／靛仅语义样张 · 过场留白过半 · 罗盘只引正典</span>
+</footer>
+</div>
+<script>
+/* ===== UI_PAL 八键封顶十二（朱砂 C 系本板首定，正典只有语义无色值，主会话 2026-10-04 已确认） ===== */
+const UI_PAL={name:'水墨 UI',P:'#F5F2E8',W:'#EFEBDD',K:'#2B2A24',z:'#565A5F',N:'#71757A',n:'#9A988F',I:'#31475F',C:'#A8402F'};
+/* 面板底 96×64：宣纸 W 底 · 墨框 1px · 四角顿笔（2×2 内错 1px）· 顶部题名条留位（row13 淡墨 N 分隔线） */
+const PANEL_BASE=[
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KKKWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KKKWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KKKWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'
+];
+
+/* 按钮常态 48×16：纸底 P · 墨框 · 字位留空（文字 HTML 叠加） */
+const BTN_NORMAL=[
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'
+];
+
+/* 按钮按下 48×16：墨底（纸字位，反转只动底色） */
+const BTN_PRESSED=[
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'
+];
+
+/* 名款签条 40×14：竖切墨线两段 · 右端半圆卷轴（轴心反白）· 左段名款字位（HTML 叠加） */
+const SIGN_SLIP=[
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWKKWK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWKKK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KWWWWWWWWWWWKWWWWWWWWWWWWWWWWWWWWWWWWWWK',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'
+];
+
+/* 墨点分隔线 96×4：三点一组 ×8（K→z→n 渐枯），点 2×2 */
+const SEP_TRIDOT=[
+'................................................................................................',
+'KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....',
+'KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....KK.zz.nn....',
+'................................................................................................'
+];
+
+/* 挑担视图 112×48 骨架：扁担弧 1px 两端下弯 · 两端 2×2 槽位虚框（16×16）· 右下回筐 3×1 · 槽位全虚框＝容器不占语义色 */
+const POLE_VIEW=[
+'................................................................................................................',
+'................................................................................................................',
+'.....................................KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.....................................',
+'.......................KKKKKKKKKKKKKK.............K........................KKKKKKKKKKKKKK.......................',
+'.............KKKKKKKKKK...........................K......................................KKKKKKKKKK.............',
+'.....KKKKKKKK...K.................................K................................................KKKKKKKK.....',
+'.KKKK...........K.................................K........................................................KKKK.',
+'................K.................................K.............................................................',
+'................K.................................K.............................................................',
+'z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'................................................................................................................',
+'z...............z...............z.z...............z...............z.............................................',
+'..................................................................z.z.z.z.z.z.z.zzz.z.z.z.z.z.z.z.z.z.z.z.z.z.zz',
+'z...............z...............z.z...............z...............z.............................................',
+'..................................................................z..............z..............z..............z',
+'z...............z...............z.z...............z...............z.............................................',
+'..................................................................z..............z..............z..............z',
+'z...............z...............z.z...............z...............z.............................................',
+'..................................................................z..............z..............z..............z',
+'z...............z...............z.z...............z...............z.............................................',
+'..................................................................z..............z..............z..............z',
+'z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.............................................',
+'..................................................................z..............z..............z..............z',
+'................................................................................................................',
+'..................................................................z..............z..............z..............z',
+'................................................................................................................',
+'..................................................................z..............z..............z..............z',
+'..................................................................z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.z.'
+];
+
+/* 安置存档框 96×48：夜窗格（2×2 窗棂 z 夜色）＋三行字位线 n——矩阵只画框与窗，文案「睡好了/再坐坐/灯熄了」卡外 HTML */
+const REST_BOX=[
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K.......KKKKKKKKKKKKKKKKKKKK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK........nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.n......K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KKKKKKKKKKKKKKKKKKKK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK........nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.n......K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KzzzzzzzzKzzzzzzzzzK...................................................................K',
+'K.......KKKKKKKKKKKKKKKKKKKK...................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K...................................nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.nnn.n......K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'K..............................................................................................K',
+'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'
+];
+
+/* 朱砂事件点 · 信使常帧 16×16：信封形＋右上角标（灰 z＝无事） */
+const EV_MAIL_N=[
+'...........zzzzz',
+'............zzzz',
+'.............zzz',
+'..............zz',
+'...............z',
+'..KKKKKKKKKKK...',
+'..KKWWWWWWWKK...',
+'..KWKWWWWWKWK...',
+'..KWWKWWWKWWK...',
+'..KWWWKKKWWWK...',
+'..KWWWWWWWWWK...',
+'..KWWWWWWWWWK...',
+'..KWWWWWWWWWK...',
+'..KKKKKKKKKKK...',
+'................',
+'................'
+];
+
+/* 朱砂事件点 · 信使闪帧 16×16：角标转朱砂 C——玩家见朱砂＝有人找 */
+const EV_MAIL_F=[
+'...........CCCCC',
+'............CCCC',
+'.............CCC',
+'..............CC',
+'...............C',
+'..KKKKKKKKKKK...',
+'..KKWWWWWWWKK...',
+'..KWKWWWWWKWK...',
+'..KWWKWWWKWWK...',
+'..KWWWKKKWWWK...',
+'..KWWWWWWWWWK...',
+'..KWWWWWWWWWK...',
+'..KWWWWWWWWWK...',
+'..KKKKKKKKKKK...',
+'................',
+'................'
+];
+
+/* 靛青知识角标 · 杂记常帧 16×16：书册形（脊线＋题签框）＋折角（灰 z） */
+const KB_PAGE_N=[
+'................',
+'.............zzz',
+'............zzzz',
+'...........zzzzz',
+'.KKKKKKKKKzzzzzz',
+'.KWKWWWWWWWWK...',
+'.KWKWKKKKKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKKKKKWWK...',
+'.KWKWWWWWWWWK...',
+'.KKKKKKKKKKKK...',
+'................',
+'................'
+];
+
+/* 靛青知识角标 · 杂记新帧 16×16：折角转靛 I——杂记有新页 */
+const KB_PAGE_F=[
+'................',
+'.............III',
+'............IIII',
+'...........IIIII',
+'.KKKKKKKKKIIIIII',
+'.KWKWWWWWWWWK...',
+'.KWKWKKKKKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKWWWKWWK...',
+'.KWKWKKKKKWWK...',
+'.KWKWWWWWWWWK...',
+'.KKKKKKKKKKKK...',
+'................',
+'................'
+];
+
+/* 过场卡 · 墨晕聚拢 64×64：K 心 z 环 N 外晕三阶墨＋飞白卫星点 · 左侧 x5..13 竖排题字位全留白 · 留白过半 */
+const INK_GATHER=[
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'......................................................N.........',
+'........................................N............NNN........',
+'......................z............NNNNNNNNNNN......NNNNN.......',
+'.....................zzz.........NNNNNNNNNNNNNNN.....NNN........',
+'....................zzzzz......NNNNNNNNNNNNNNNNNNN....N.........',
+'.....................zzz......NNNNNNNNNNNNNNNNNNNNN.............',
+'......................z......NNNNNNNNNNNNNNNNNNNNNNN............',
+'............................NNNNNNNNNNNNzNNNNNNNNNNNN...........',
+'............................NNNNNNNNzzzzzzzzzNNNNNNNN...........',
+'...........................NNNNNNNzzzzzzzzzzzzzNNNNNNN..........',
+'...........................NNNNNNzzzzzzzzzzzzzzzNNNNNN..........',
+'..........................NNNNNNzzzzzzzzzzzzzzzzzNNNNNN.........',
+'..........................NNNNNNzzzzKzzzzzzzzzzzzNNNNNN.........',
+'..........................NNNNNzzzKKKKKzzKzzzzzzzzNNNNN.........',
+'..........................NNNNzzzzKKKKKKKKKKKzzzzzNNNNN.........',
+'........................NNNNNzzzzKKKKKKKKKKKKKzzzzNNNNN.........',
+'.......................NNNNNzzzzzzKKKKKKKKKKKKzzzzNNNNNN........',
+'....................z.NNNNNNzzzzzzKKKKKKKKKKKKzzzzzNNNN.........',
+'...................zzzNNNNNNzzzzzzzzKKKKKKKKKKKzzzzzNNNNN.......',
+'....................zNNNNNNzzzzzzzzzzKKKKKKKKKzzzzzzzNNNNN......',
+'....................NNNNNNNNzzzzzzzzzKKKKKKKKKzzzzzzzNNNNNN.....',
+'....................NNNNNNNNzzzzzzzzzKKKKKKKKKzzzzzzzNNNNNN.....',
+'....................NNNNNNNNzzzzzzzzzzKKKKKKKzzzzzzzzzNNNNNN....',
+'....................NNNNNNNNNzzzzzzzzzzzzKzzzzzzzzzzzNNNNNNN....',
+'...................NNNNNNNNNNNzzzzzzzzzzzzzzzzzzzzzzzNNNNNNN....',
+'....................NNNNNNNNNNNNNzzzzzzzzzzzzzzzzzzzzNNNNNNN....',
+'....................NNNNNNNNNNNNNNNNzzzzzzzzzzzzzzzzNNNNNNNNN...',
+'....................NNNNNNNNNNNNNNNNNNNNzNzzzzzzzzzNNNNNNNNN....',
+'....................NNNNNNNNNNNNNNNNNNNNNNNzzzzzzzNNNNNNNNNN....',
+'.....................NNNNNNNNNNNNNNNNNNNNNNNNNzNNNNNNNNNNNNN....',
+'.....................NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN....',
+'......................NNNNNNNNNNNNNNNNN.N.NNNNNNNNNNNNNNNNN.....',
+'.......................NNNNNNNNNNNNNNN....NNNNNNNNNNNNNNNNN.....',
+'........................NNNNNNNNNNNNN......NNNNNNNNNNNNNNN......',
+'........................N.NNNNNNNNN.........NNNNNNNNNNNNN.......',
+'.......................NNN....N...............NNNNNNNNNK........',
+'......................NNNNN.......................N...KKK.......',
+'.......................NNN.............................K........',
+'........................N.......................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................'
+];
+
+/* 过场卡 · 墨晕散开 64×64：z/N 碎点离析、K 只剩星点 · 同一题字位 · 留白大半 */
+const INK_SCATTER=[
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'........................................................z.......',
+'.......................................................zzz......',
+'........................................................z.......',
+'............................N...................................',
+'...........................NNN..................................',
+'..........................NNNNN.................................',
+'...........................NNN....................N.............',
+'............................N.....N............NNNNNNN..........',
+'................................NNNNN.........NNNNNNKNN.........',
+'...............................NNNNNNN........NNNNNKKKN.........',
+'...............................NNNNNNN..z...N.NNNNNNKNN.........',
+'..............................NNNNNNNNzzzzzNNNNNNNNNNNNN........',
+'...............................NNNNNNNzzzzzNNNNNNNNNNNN.........',
+'...............................NNNNNNzzzzzzzNNNNNNNNNNN.........',
+'................................NNNNN.zzzzzNNNNNNNNNNNN.........',
+'........................z.........N...zzzzzKNNNNNNNNNN....z.....',
+'.......................zzz............NNzNKKKNNNNNN......zzz....',
+'......................zzzzz..........NNNNKKKKKNNNNNN....zzzzz...',
+'.......................zzz............NNNNKKKNzNNNN......zzz....',
+'........................z........K.NNNNNNNNKzzzzzNN.......z.....',
+'................................KKKNNNNNNNNNzzzzzNN.............',
+'.................................KNNNNNNNNNzzzzzzz..............',
+'..................................NNNNNNNNNNzzzzz.....N.........',
+'.................................NNNNNNNNNNNzzzzz...NNNNN.......',
+'..................................NNNNNNNNN.N.z.....NNNNN.......',
+'..................................NNNNNNNNN........NNNNNNN......',
+'..............................z...NNNNNNNNN.........NNNNN.......',
+'............................zzzzz..NNNNNNN..........NNNNN.......',
+'............................zzzzz.....N...............N.........',
+'...........................zzzzzzz..............................',
+'............................zzzzz...........................N...',
+'............................zzzzz..........................NNN..',
+'..............................z.............................N...',
+'....................................N.............N.............',
+'...................................NNN...........NNN............',
+'..................................NNNNN.........NNNNN...........',
+'...................................NNN...........NNN............',
+'....................................N.............N.............',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................',
+'................................................................'
+];
+/* ===== 渲染器（仿物候板：draw 支持 sil/grid/pal；state；fullRender 唯一重绘入口） ===== */
+const state={sil:false,grid:false};
+const opts=()=>({sil:state.sil,grid:state.grid});
+function draw(cv,rows,scale,o){
+  o=o||{};
+  const w=rows[0].length,h=rows.length;
+  cv.width=w*scale;cv.height=h*scale;
+  const c=cv.getContext('2d');
+  const pal=o.pal||UI_PAL;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const ch=rows[y][x];
+    if(ch==='.'||ch===' ')continue;
+    c.fillStyle=o.sil?'#2B2A24':(pal[ch]||'#F0F');
+    c.fillRect(x*scale,y*scale,scale,scale);
+  }
+  if(o.grid&&scale>=4){
+    c.strokeStyle='rgba(43,42,36,.18)';c.lineWidth=1;
+    for(let i=1;i<w;i++){c.beginPath();c.moveTo(i*scale+.5,0);c.lineTo(i*scale+.5,h*scale);c.stroke();}
+    for(let j=1;j<h;j++){c.beginPath();c.moveTo(0,j*scale+.5);c.lineTo(w*scale,j*scale+.5);c.stroke();}
+  }
+}
+const RENDERS=[
+  ['cvPanel',PANEL_BASE,3],['cvPanelM',PANEL_BASE,1],
+  ['cvBtnN',BTN_NORMAL,4],['cvBtnNM',BTN_NORMAL,1],['cvBtnP',BTN_PRESSED,4],['cvBtnPM',BTN_PRESSED,1],
+  ['cvSign',SIGN_SLIP,4],['cvSignM',SIGN_SLIP,1],
+  ['cvSep',SEP_TRIDOT,4],['cvSepM',SEP_TRIDOT,1],
+  ['cvPole',POLE_VIEW,3],['cvPoleM',POLE_VIEW,1],
+  ['cvRest',REST_BOX,3],['cvRestM',REST_BOX,1],
+  ['cvMailN',EV_MAIL_N,5],['cvMailNM',EV_MAIL_N,1],['cvMailF',EV_MAIL_F,5],['cvMailFM',EV_MAIL_F,1],
+  ['cvKbN',KB_PAGE_N,5],['cvKbNM',KB_PAGE_N,1],['cvKbF',KB_PAGE_F,5],['cvKbFM',KB_PAGE_F,1],
+  ['cvInkA',INK_GATHER,3],['cvInkAM',INK_GATHER,1],['cvInkB',INK_SCATTER,3],['cvInkBM',INK_SCATTER,1]
+];
+function fullRender(){
+  RENDERS.forEach(r=>{const cv=document.getElementById(r[0]);if(cv)draw(cv,r[1],r[2],Object.assign({pal:UI_PAL},opts()));});
+  document.body.classList.toggle('sil',state.sil);
+  document.getElementById('btnSil').setAttribute('aria-pressed',String(state.sil));
+  document.getElementById('btnGrid').setAttribute('aria-pressed',String(state.grid));
+  window.__UI={arrays:13,drawn:RENDERS.length};
+}
+document.getElementById('btnSil').addEventListener('click',()=>{state.sil=!state.sil;fullRender();});
+document.getElementById('btnGrid').addEventListener('click',()=>{state.grid=!state.grid;fullRender();});
+fullRender();
+</script>
+</body>
+</html>
