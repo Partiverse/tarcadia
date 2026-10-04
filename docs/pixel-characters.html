@@ -224,12 +224,12 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="term-head">
     <span class="term-plaque">大寒</span>
     <h2 id="t-fair">年集 · 18 人同屏</h2>
-    <span class="en">换色不换形：同一骨骼换季色，轮廓仍不混</span>
+    <span class="en">18 sprites · one row · silhouette is the test</span>
   </div>
-  <p class="lede">年集是全作同屏人数峰值。下面 18 人由八张稿<b>换色复用</b>而来（春苔青/夏荷碧/秋橘赭/冬墨灰各挂衣料主色）——如果换色后还能分清谁是谁，说明区分度真的长在剪影上，不在色板里。</p>
+  <p class="lede">年集是全作同屏人数峰值，也是人物层的终考。<b>十八人本卡直排</b>（v0.7 批 4：批 3 前此条是 8 人换色复用演示，18 人卡齐后改为真名册本色同屏）——开剪影模式再过：纯黑 18 人仍能叫出名字，区分度才是真的长在剪影上，不在色板里。</p>
   <div class="fair">
     <canvas id="fairCv" class="checker" aria-label="年集十八人同屏条"></canvas>
-    <p class="fair-cap">▲ 年集带 · 高 32px 帧 ×18 · 横向可滚。冬装四人（墨灰）压后，缸与灯的暖色留给人事——此处无朱砂。</p>
+    <p class="fair-cap">▲ 年集带 · 18 人本卡直排 ×1 行 · 横向可滚。秩序＝花名册序（主角→江客→量产批 2→批 3）。缸与灯的暖色留给人事——此处无朱砂。</p>
   </div>
 </section>
 <section aria-labelledby="t-items">
@@ -243,8 +243,8 @@ footer{margin:64px 0 40px;border-top:1.5px solid var(--ink);padding-top:14px;dis
   <div class="cinnabar-note">色彩语义账：玩家在第 40 小时看到红绦掉出来的瞬间就该心跳半拍——这是 80 小时只喂四次朱砂换来的条件反射。外包审稿单第一条：这个红是不是人情事件？不是，换掉。</div>
 </section>
 <footer>
-  <span>桃花源（Tarcadia）像素人物稿板 v0.7 批 3 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
-  <span>验收链：剪影可辨 · 四方向齐 · 工具五类三帧 · 表情 28 型 · 行走独立三套 · ×1 远景可辨 · 年集换色不混 · 朱砂=人情事件</span>
+  <span>桃花源（Tarcadia）像素人物稿板 v0.7 批 4 · 2026-10-04 · 全部像素矩阵手排入码，零 AI 生图</span>
+  <span>验收链：剪影可辨 · 四方向齐 · 工具五类三帧 · 表情 68 型 · 行走独立三套 · ×1 远景可辨 · 年集 18 人同屏不混 · 朱砂=人情事件</span>
 </footer>
 </div>
 <script>
@@ -2358,8 +2358,7 @@ CAST.slice(2).forEach(p=>{
   });
   distEl.appendChild(row);
 });
-const SEASON_SWAP={0:{I:'#6F8B6A',v:'#8CA683',c:'#4E6B54'},1:{G:'#4C7C72',j:'#6A9A8F',d:'#365A52'},4:{e:'#A8663C',t:'#7E4A2A'},5:{u:'#71757A',w:'#565A5F'},7:{B:'#31475F',m:'#47668A',g:'#26374B'}};
-const FAIR_ORDER=[0,3,1,4,2,5,6,7, 0,3, 1,4, 2,5, 6,7, 0,4];
+const FAIR_ORDER=[...Array(18).keys()];
 function e_fair(){
   const cv=document.getElementById('fairCv');
   const sc=3,n=FAIR_ORDER.length;
@@ -2368,7 +2367,7 @@ function e_fair(){
   FAIR_ORDER.forEach((idx,i)=>{
     const p=CAST[idx];
     const tmp=document.createElement('canvas');
-    draw(tmp,p.rows,sc,{sil:state.sil,swap:SEASON_SWAP[idx]});
+    draw(tmp,p.rows,sc,{sil:state.sil});
     x.drawImage(tmp,(i*18)*sc,(i%3)*sc);
   });
 }
