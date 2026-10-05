@@ -21,12 +21,15 @@ const PROFILES = {
   },
   world: {
     file: 'docs/pixel-world.html',
+    /* 特例白名单：W_FOG 96×48——雾带横幅规格件（v1.1 天气层样张，research-stardew-assets-gap §2-A 归口补账） */
     wantRows: (nm, h, w) => {
+      if (nm === 'W_FOG') return (w === 96 && h === 48) ? null : ('雾带应 96×48，实际 ' + w + '×' + h);
       const want = w === 16 ? 16 : 32;
       return h === want ? null : ('行数 ' + h + ' 与宽 ' + w + ' 不配（应 ' + want + '）');
     },
-    width: null, /* 宽=首行长度，须 ∈{16,32,48} */
+    width: null, /* 宽=首行长度，须 ∈{16,32,48}＋特例 W_FOG=96 */
     widthSet: [16, 32, 48],
+    widthOV: { W_FOG: 96 },
     palKeys: `const PALSET=new Set(Object.keys(SEASON_PALS.spring).filter(k=>k!=='name'));`,
   },
   phenology: {
