@@ -2,7 +2,7 @@
 // 仓库级引擎闸门（repo gate）：定位 Godot 4.x → 写 tools/godot.path 供复用 →
 // headless 资源导入（--import）→ headless 冒烟场景。
 // 任何一步失败（找不到 Godot / 版本非 4.x / import 非 0 / 冒烟非 0 / 未打印 SMOKE_OK）都 exit 非 0。
-// 用法：node game/tools/smoke.mjs   （或仓库根任意 cwd，相对本文件自定位）
+// 用法（复核命令）：cd 仓根 && node tools/smoke.mjs   （相对本文件自定位，任意 cwd 亦可）
 
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -10,9 +10,9 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import zlib from 'node:zlib';
 
-const here = dirname(fileURLToPath(import.meta.url)); // game/tools
-const gameRoot = resolve(here, '..');
-const repoRoot = resolve(gameRoot, '..');
+const here = dirname(fileURLToPath(import.meta.url)); // 仓库根 tools/
+const gameRoot = resolve(here, '..', 'game');
+const repoRoot = resolve(here, '..');
 const pathFile = join(here, 'godot.path');
 const fixture = join(gameRoot, 'assets', 'tiles', 'smoke_tile.png');
 

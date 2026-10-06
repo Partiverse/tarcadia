@@ -1,5 +1,2 @@
 # Godot 导入缓存（本机生成）
 .godot/
-
-# Godot 可执行文件探测结果（机器相关，smoke.mjs 每次重写）
-tools/godot.path

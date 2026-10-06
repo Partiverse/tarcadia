@@ -23,14 +23,16 @@ game/
 │   ├── sprites/         # 16/32/48 宽精灵帧（人物/作物/物件；稿板导出后入此）
 │   └── tiles/           # 16×16 地块与 autotile 集（smoke_tile.png 仅为导入管线冒烟夹具，非正典美术）
 ├── scenes/              # 场景文件（smoke.tscn = headless 冒烟场景）
-├── scripts/             # GDScript（smoke.gd = 冒烟断言，不含游戏逻辑）
-└── tools/               # 工具链（smoke.mjs = 仓库级闸门；godot.path = 探测结果，不入库）
+└── scripts/             # GDScript（smoke.gd = 冒烟断言，不含游戏逻辑）
+
+tools/                   # 仓库根工具链（与 game/ 并行）
+└── smoke.mjs            # 仓库级引擎闸门；godot.path = 探测结果，不入库
 ```
 
 ## 闸门（任何失败 exit 非 0）
 
 ```bash
-node game/tools/smoke.mjs
+node tools/smoke.mjs   # 仓根执行，复核用确定性命令
 ```
 
 流程：探测 Godot 4.x（`GODOT_BIN` 环境变量 > PATH > 常见安装位）→ 路径写 `tools/godot.path` →
@@ -40,5 +42,5 @@ headless 渲染服务为 dummy，像素回读不可用，故 nearest 以配置�
 
 ## 已知边界
 
-- `game/tools/godot.path` 与 `.godot/`（导入缓存）不入库，见 `.gitignore`。
+- `tools/godot.path`（仓库根）与 `game/.godot/`（导入缓存）不入库，见各处 `.gitignore`。
 - 主场景暂指 smoke.tscn；首个游戏场景落地时由实现线改写。
