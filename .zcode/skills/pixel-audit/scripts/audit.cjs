@@ -73,7 +73,7 @@ const script = m[1];
 const cut = script.indexOf('/* ===== 渲染器');
 if (cut < 0) { console.log('FAIL: 找不到渲染器注释锚（数据段边界）'); process.exit(1); }
 const data = script.slice(0, cut);
-const names = [...data.matchAll(/const ([A-Z_0-9]+)=\[/g)].map(x => x[1]);
+const names = [...data.matchAll(/const ([A-Z_0-9]+)=\s*\[/g)].map(x => x[1]);
 const problems = [];
 let count = 0;
 
