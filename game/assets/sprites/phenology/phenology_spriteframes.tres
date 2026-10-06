@@ -1,0 +1,221 @@
+[gd_resource type="SpriteFrames" load_steps=25 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_LICHUN.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_YUSHUI.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_JINGZHE.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_CHUNFEN.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_QINGMING.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_GUYU.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_LIXIA.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_XIAOMAN.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_MANGZHONG.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_XIAZHI.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_XIAOSHU.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_DASHU.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_LIQIU.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_CHUSHU.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_BAILU.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_QIUFEN.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_HANLU.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_SHUANGJIANG.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_LIDONG.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_XIAOXUE.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_DAXUE.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_DONGZHI.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_XIAOHAN.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/sprites/phenology/I_DAHAN.png" id="24"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"I_LICHUN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"I_YUSHUI",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"I_JINGZHE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": true,
+"name": &"I_CHUNFEN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"I_QINGMING",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}],
+"loop": true,
+"name": &"I_GUYU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": true,
+"name": &"I_LIXIA",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": true,
+"name": &"I_XIAOMAN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9")
+}],
+"loop": true,
+"name": &"I_MANGZHONG",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
+"loop": true,
+"name": &"I_XIAZHI",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
+"loop": true,
+"name": &"I_XIAOSHU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12")
+}],
+"loop": true,
+"name": &"I_DASHU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13")
+}],
+"loop": true,
+"name": &"I_LIQIU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14")
+}],
+"loop": true,
+"name": &"I_CHUSHU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15")
+}],
+"loop": true,
+"name": &"I_BAILU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16")
+}],
+"loop": true,
+"name": &"I_QIUFEN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17")
+}],
+"loop": true,
+"name": &"I_HANLU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18")
+}],
+"loop": true,
+"name": &"I_SHUANGJIANG",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19")
+}],
+"loop": true,
+"name": &"I_LIDONG",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20")
+}],
+"loop": true,
+"name": &"I_XIAOXUE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21")
+}],
+"loop": true,
+"name": &"I_DAXUE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22")
+}],
+"loop": true,
+"name": &"I_DONGZHI",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23")
+}],
+"loop": true,
+"name": &"I_XIAOHAN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24")
+}],
+"loop": true,
+"name": &"I_DAHAN",
+"speed": 5.0
+}]
