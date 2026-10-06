@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+
+config_version=5
+
+[application]
+
+config/name="tarcadia"
+run/main_scene="res://scenes/smoke.tscn"
+config/features=PackedStringArray("4.7")
+
+[display]
+
+; 16px 像素完美管线：基座视口 640×360（16px 地块 40×22.5 格），
+; 视口缩放模式保证低分辨率画面先整幅渲染再整数倍放大。
+window/size/viewport_width=640
+window/size/viewport_height=360
+; 桌面窗口首开 2×（1280×720），缩放由 stretch/integer 保证只能取整数倍。
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+; 整数倍缩放：禁止非整数拉伸导致的半像素糊。
+window/stretch/scale_mode="integer"
+
+[importer_defaults]
+
+; 新纹理导入默认：无损压缩、关 mipmap、禁 3D 检测重压——像素画管线三件套。
+; 采样过滤由 [rendering] default_texture_filter=0（Nearest）全局接管。
+texture={
+"detect_3d/compress_to": 0,
+"mipmaps/generate": false,
+"compress/mode": 0
+}
+
+[rendering]
+
+; 2D 像素游戏走 GL Compatibility（含 mobile 回退），headless 冒烟不受影响。
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+; 全局最近邻采样：0 = Nearest，所有 CanvasItem 默认无插值放大。
+textures/canvas_textures/default_texture_filter=0
+; 亚像素抖动双保险：变换吸附到物理像素。
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
