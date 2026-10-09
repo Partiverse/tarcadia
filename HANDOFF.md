@@ -1,7 +1,32 @@
 # HANDOFF — 像素人物设计 v0.7 批 4：人物篇收官，接续者从这里
 
-> 状态截至 2026-10-04（ZCode 会话）。**人物像素篇收官**（v0.7 批 4）：18 人像素层全齐＋年集真名册同屏＋最终剪影闸门通过。人物层此后只做维护性补件；world 篇 **v1.0 作物层全册收官**（工作流批：冬作物三种＋竹第五件）；魂层物候牌篇收官（v0.5）。**三稿板开发数字资产齐备**，解冻评估已出＝`docs/unfreeze-assessment.md`（解冻本身是用户决议）。本文件自包含：先读这份，再开 `docs/pixel-characters.html` 与 `docs/research-stardew-characters.md`。
+> 状态截至 2026-10-09（跨机交接更新）。**实现已解冻并开跑**：M0+M1 完成（Godot 4.7.2＋game/ 工程骨架＋285 数组 633 帧全量迁移，见 §0）；设计侧人物篇 v0.7 收官／world 篇 v1.1（作物层全册＋天气层）／魂层物候牌 v0.5＋水墨 UI 板 v0.3（四件套收官）。上游调研两件＝research-stardew-assets-gap.md（资产对比）＋research-xinglugu-wiki-adopt.md（机制采纳 22 项裁决）。解冻决议＝docs/resolutions/2026-10-04-unfreeze.md（范围 M0–M6，两道门有效）。本文件自包含，先读 §0。
 > 铁律（2026-10-04 起）：**实现冻结已解除**——范围＝垂直切片实现 M0–M6（决议记录 `docs/resolutions/2026-10-04-unfreeze.md`：两道门继续有效，production-scope.md:5 与 vertical-slice-design §10；三前提用户确认）；**稿板宪法永不解除**——稿板精灵保持代码内手排像素矩阵、零生图，资产迁移产物须与手排矩阵逐帧一致。三稿板账：人物/物候牌/UI 见 §1/§7。 **实现线已开跑（M0+M1 完成，2026-10-04）**：Godot 4.7.2 入机、game/ 工程骨架（640×360 整数缩放＋headless 冒烟闸门 tools/smoke.mjs，9/9 断言）、tools/board2godot.mjs 全量迁移 285 数组＝633 帧（--verify 双向闸门＋洋红 0＋独立复核 magick 抽检 12 帧全过；MANIFEST=285 与 audit 对账闭合）。下一步 M2 场景循环。
+
+## 0. 跨机接手速览（ZCode on Kubuntu，2026-10-09）
+
+> 本节为 macOS→Kubuntu 换机交接而写；本文件其余部分自包含，冲突时以本节与 git log 为准。会话记忆/项目记忆不跨机，**一切以仓内文档为准**。
+
+**同步点**：main 分支 ＝ `32d399b`（随后续 push 前移皆正常）；工作树应干净（.mimosa/.v2c/.video_agent/.zcode/plans 等 untracked 目录为前机本地工具产物，勿 clone 后误提交，建议保持 untracked 或加 .gitignore）。
+
+**Kubuntu 工具链三处平台差异**（唯一需要动手的接手成本）：
+1. **Godot 重装**：官网 AppImage 或 flatpak 装 4.x stable，放任意 PATH 位置；然后仓根跑 `node tools/smoke.mjs`——它自动探测 godot 并把路径重写进 tools/godot.path（该文件已 gitignore，属机器本地件；也可用环境变量 GODOT_BIN 显式指定，无效会 fail 不静默回退）。
+2. **截图类闸门的 Chrome 路径**：pixel-audit SKILL 与各 workflow 脚本里的 `/Applications/Google Chrome.app/...` 是 macOS 形——Linux 换 `chromium`/`google-chrome-stable` 同参数即可，其余命令（node/magick）不变。
+3. **大体积 GitHub 下载走 `https://gh-proxy.com/https://github.com/...` 前缀**——前机 brew/curl 直连两次断流（HTTP/2 PROTOCOL_ERROR），gh-proxy 6 秒 162MB 实锤。
+
+**验证链速查**（改任何稿板/资产后必跑，全绿才算完）：
+```bash
+node .zcode/skills/pixel-audit/scripts/audit.cjs characters|world|phenology|ui   # 宽/行数/色键
+node tools/smoke.mjs                       # Godot headless 冒烟（9/9 断言）
+node tools/board2godot.mjs --verify        # 迁移双向闸门（重导出比对＋洋红 0＋对 MANIFEST）
+```
+洋红计数（截图后）：`magick <图> -fuzz 0% -fill white -opaque '#F0F0F0' -fill black +opaque white -format '%[fx:int(mean*w*h)]' info:` 须＝0。
+
+**当前里程碑与下一步**：解冻生效（范围垂直切片 M0–M6，两道门继续有效——production-scope.md:5 与 vertical-slice-design §10，解冻不豁免）；M0+M1 完成＝game/ 骨架＋全量迁移；**下一站 M2**＝灰盒溪田 24 格场景（vertical-slice §2）＋一日循环骨架（slice-calendar）＋罗盘 HUD 实装（phenology v0.5 正典）。
+
+**挂账与待拍板**：audio 询价挂起（用户拍板顺延，重启时点待定）；18 人生日日期未定（生日窗机制已入 production-scope §7，日期正典零设定留拍板）；gated 余量（半线 4 人/季节外罩/autotile 石板系/临水镇建筑群）见 §2/§6/§7，各有触发条件勿提前做。
+
+**文档地图**：设计决议链 22 件＝docs/*.md（逐件验收见 unfreeze-assessment ②节）；四稿板＝pixel-characters/world/phenology/ui.html；过程志＝process-log.md（缺陷台账＋质检九条＋画法通则，**开工前必读**）；调研＝research-stardew-characters/-assets-gap/-xinglugu-wiki-adopt；决议＝resolutions/；评审＝reviews/。git 历史即完整账本，commit 信息含每批验证结论。
 
 ## 1. 已完成（v0.2 → v0.5）
 
